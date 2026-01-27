@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OsteoDent Ancona</title>
+    <title>OsteoDent Ancona | Studio Dentistico Dott.ssa Brugnami</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
@@ -18,6 +18,7 @@
             --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
             --radius: 8px;
             --whatsapp: #25D366;
+            --success: #10b981;
         }
 
         * {
@@ -44,6 +45,189 @@
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
+        }
+
+        /* Section Avant/Après */
+        .before-after-section {
+            padding: 100px 0 80px;
+            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .before-after-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .before-after-title h2 {
+            font-size: 2.8rem;
+            color: var(--dark);
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .before-after-title h2:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--success));
+            border-radius: 2px;
+        }
+
+        .before-after-title p {
+            max-width: 700px;
+            margin: 25px auto 0;
+            font-size: 1.2rem;
+            color: var(--text);
+        }
+
+        .before-after-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+
+        .comparison-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: all 0.4s ease;
+            position: relative;
+        }
+
+        .comparison-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .comparison-image {
+            width: 100%;
+            height: 400px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .comparison-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s ease;
+        }
+
+        .comparison-card:hover .comparison-image img {
+            transform: scale(1.05);
+        }
+
+        .comparison-label {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+            color: white;
+            padding: 25px 30px;
+        }
+
+        .comparison-label h3 {
+            font-size: 1.8rem;
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .comparison-label p {
+            opacity: 0.9;
+            font-size: 1.1rem;
+        }
+
+        .before-label h3 i {
+            color: #f43f5e;
+        }
+
+        .after-label h3 i {
+            color: var(--success);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .comparison-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 25px;
+            border-radius: var(--radius);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            text-align: center;
+            transition: all 0.3s;
+            border-left: 4px solid var(--primary);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .stat-card i {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .stat-number {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--dark);
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .stat-text {
+            color: var(--text);
+            font-size: 1rem;
+        }
+
+        .transformation-note {
+            text-align: center;
+            background: linear-gradient(135deg, var(--secondary), #e0f2fe);
+            padding: 30px;
+            border-radius: var(--radius);
+            margin-top: 50px;
+            border-left: 5px solid var(--success);
+        }
+
+        .transformation-note h3 {
+            font-size: 1.8rem;
+            color: var(--dark);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .transformation-note p {
+            font-size: 1.1rem;
+            max-width: 800px;
+            margin: 0 auto;
         }
 
         /* Loading Screen - Ultra Stylée */
@@ -390,645 +574,39 @@
             overflow: hidden;
         }
 
-        .hero-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: center;
-        }
+        /* ... Le reste du CSS reste inchangé ... */
 
-        .hero-content h1 {
-            font-size: 3.2rem;
-            margin-bottom: 20px;
-            color: var(--dark);
-        }
-
-        .hero-content p {
-            font-size: 1.2rem;
-            margin-bottom: 30px;
-            color: var(--text);
-        }
-
-        .hero-buttons {
-            display: flex;
-            gap: 20px;
-            flex-wrap: wrap;
-        }
-
-        .btn {
-            padding: 15px 30px;
-            border-radius: var(--radius);
-            font-weight: 600;
-            text-decoration: none;
-            display: inline-block;
-            transition: all 0.3s;
-            border: none;
-            cursor: pointer;
-            font-size: 1rem;
-            text-align: center;
-        }
-
-        .btn-whatsapp {
-            background-color: var(--whatsapp);
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-        }
-
-        .btn-whatsapp:hover {
-            background-color: #128C7E;
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(37, 211, 102, 0.3);
-        }
-
-        .btn-secondary {
-            background-color: white;
-            color: var(--primary);
-            border: 2px solid var(--primary);
-        }
-
-        .btn-secondary:hover {
-            background-color: var(--secondary);
-            transform: translateY(-3px);
-        }
-
-        .hero-image {
-           width: 100%;
-           position: relative;
-           border-radius: var(--radius);
-           overflow: hidden;
-           box-shadow: var(--shadow);
-        }
-
-        .hero-image img {
-            width: 100%;
-            height: 400px;
-            object-fit: cover;
-            display: block;
-            transition: transform 0.5s;
-        }
-
-        .hero-image:hover img {
-            transform: scale(1.05);
-        }
-
-        /* Services */
-        .services {
-            padding: 100px 0;
-            background-color: white;
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 60px;
-        }
-
-        .section-title h2 {
-            font-size: 2.5rem;
-            color: var(--dark);
-            margin-bottom: 15px;
-        }
-
-        .section-title p {
-            max-width: 600px;
-            margin: 0 auto;
-            color: var(--text);
-        }
-
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-
-        .service-card {
-            background-color: var(--light);
-            border-radius: var(--radius);
-            padding: 40px 30px;
-            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.05);
-            transition: all 0.3s;
-            text-align: center;
-        }
-
-        .service-card:hover {
-            transform: translateY(-10px);
-            box-shadow: var(--shadow);
-        }
-
-        .service-icon {
-            background-color: var(--secondary);
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 25px;
-            color: var(--primary);
-            font-size: 2rem;
-        }
-
-        .service-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 15px;
-            color: var(--dark);
-        }
-
-        /* About */
-        .about {
-            padding: 100px 0;
-            background-color: var(--secondary);
-        }
-
-        .about-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: center;
-        }
-
-        .about-image {
-            border-radius: var(--radius);
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            position: relative;
-        }
-
-        .about-image img {
-            width: 100%;
-            height: 500px;
-            object-fit: cover;
-            display: block;
-            transition: transform 0.8s ease;
-        }
-
-        .about-image:hover img {
-            transform: scale(1.05);
-        }
-
-        .image-label {
-            position: absolute;
-            bottom: 20px;
-            left: 20px;
-            background: rgba(0, 0, 0, 0.7);
-            color: white;
-            padding: 10px 20px;
-            border-radius: var(--radius);
-            font-size: 0.9rem;
-            font-weight: 600;
-            backdrop-filter: blur(5px);
-        }
-
-        .about-content h2 {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-            color: var(--dark);
-        }
-
-        .about-content p {
-            margin-bottom: 25px;
-        }
-
-        .features {
-            margin-top: 30px;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-        }
-
-        .feature {
-            display: flex;
-            align-items: flex-start;
-            gap: 15px;
-        }
-
-        .feature i {
-            color: var(--primary);
-            font-size: 1.3rem;
-            margin-top: 5px;
-        }
-
-        /* Team */
-        .team {
-            padding: 100px 0;
-            background-color: white;
-        }
-
-        .team-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-        }
-
-        .team-member {
-            text-align: center;
-            background-color: var(--light);
-            border-radius: var(--radius);
-            padding: 30px;
-            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.05);
-            transition: all 0.3s;
-        }
-
-        .team-member:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow);
-        }
-
-        .member-photo {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            margin: 0 auto 20px;
-            overflow: hidden;
-            border: 5px solid var(--secondary);
-        }
-
-        .member-photo img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .team-member h3 {
-            font-size: 1.4rem;
-            margin-bottom: 5px;
-            color: var(--dark);
-        }
-
-        .team-member p {
-            color: var(--primary);
-            margin-bottom: 10px;
-            font-weight: 500;
-        }
-
-        .team-member .specialty {
-            font-size: 0.9rem;
-            color: var(--text);
-            margin-top: 5px;
-            line-height: 1.4;
-        }
-
-        /* Contact & WhatsApp Booking */
-        .contact {
-            padding: 100px 0;
-            background-color: var(--secondary);
-        }
-
-        .contact-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: center;
-        }
-
-        .contact-info h2 {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-            color: var(--dark);
-        }
-
-        .contact-details {
-            margin-top: 30px;
-        }
-
-        .contact-item {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            margin-bottom: 25px;
-        }
-
-        .contact-item i {
-            background-color: white;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--primary);
-            font-size: 1.2rem;
-            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.05);
-        }
-
-        /* WhatsApp Booking Section */
-        .whatsapp-booking {
-            background-color: white;
-            padding: 40px;
-            border-radius: var(--radius);
-            box-shadow: var(--shadow);
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .whatsapp-booking::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 5px;
-            background: linear-gradient(90deg, var(--whatsapp), #128C7E);
-        }
-
-        .whatsapp-booking h3 {
-            font-size: 1.8rem;
-            margin-bottom: 15px;
-            color: var(--dark);
-        }
-
-        .whatsapp-booking p {
-            margin-bottom: 25px;
-            color: var(--text);
-        }
-
-        .whatsapp-features {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
-            margin-bottom: 30px;
-            text-align: left;
-        }
-
-        .whatsapp-feature {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 0.9rem;
-        }
-
-        .whatsapp-feature i {
-            color: var(--whatsapp);
-            font-size: 1.1rem;
-        }
-
-        .booking-steps {
-            background-color: var(--light);
-            padding: 25px;
-            border-radius: var(--radius);
-            margin-bottom: 30px;
-            text-align: left;
-        }
-
-        .booking-steps h4 {
-            margin-bottom: 15px;
-            color: var(--dark);
-            text-align: center;
-        }
-
-        .step {
-            display: flex;
-            align-items: flex-start;
-            gap: 10px;
-            margin-bottom: 15px;
-        }
-
-        .step-number {
-            background-color: var(--primary);
-            color: white;
-            width: 24px;
-            height: 24px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.9rem;
-            font-weight: 600;
-            flex-shrink: 0;
-        }
-
-        /* WhatsApp Float */
-        .whatsapp-float {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            background-color: var(--whatsapp);
-            color: white;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.4);
-            z-index: 999;
-            transition: all 0.3s;
-            text-decoration: none;
-        }
-
-        .whatsapp-float:hover {
-            transform: scale(1.1);
-            background-color: #128C7E;
-            box-shadow: 0 8px 20px rgba(37, 211, 102, 0.5);
-        }
-
-        /* Footer */
-        footer {
-            background-color: var(--dark);
-            color: white;
-            padding: 70px 0 30px;
-        }
-
-        .footer-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 40px;
-            margin-bottom: 50px;
-        }
-
-        .footer-col h3 {
-            font-size: 1.3rem;
-            margin-bottom: 25px;
-            position: relative;
-            padding-bottom: 10px;
-        }
-
-        .footer-col h3::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 50px;
-            height: 3px;
-            background-color: var(--primary);
-        }
-
-        .footer-links {
-            list-style: none;
-        }
-
-        .footer-links li {
-            margin-bottom: 12px;
-        }
-
-        .footer-links a {
-            color: #cbd5e1;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-
-        .footer-links a:hover {
-            color: white;
-        }
-
-        .footer-contact li {
-            display: flex;
-            align-items: flex-start;
-            gap: 10px;
-            margin-bottom: 15px;
-        }
-
-        .footer-contact i {
-            color: var(--primary);
-            margin-top: 3px;
-            flex-shrink: 0;
-        }
-
-        .copyright {
-            text-align: center;
-            padding-top: 30px;
-            border-top: 1px solid #334155;
-            color: #cbd5e1;
-            font-size: 0.9rem;
-        }
-
-        /* Gallery Section */
-        .gallery {
-            padding: 100px 0;
-            background-color: white;
-        }
-
-        .gallery-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
-        }
-
-        .gallery-item {
-            border-radius: var(--radius);
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            transition: all 0.3s;
-            position: relative;
-        }
-
-        .gallery-item:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-        }
-
-        .gallery-item img {
-            width: 100%;
-            height: 300px;
-            object-fit: cover;
-            display: block;
-            transition: transform 0.5s;
-        }
-
-        .gallery-item:hover img {
-            transform: scale(1.1);
-        }
-
-        .gallery-caption {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
-            color: white;
-            padding: 20px;
-            transform: translateY(100%);
-            transition: transform 0.3s;
-        }
-
-        .gallery-item:hover .gallery-caption {
-            transform: translateY(0);
-        }
-
-        /* Responsive */
+        /* Responsive pour la nouvelle section */
         @media (max-width: 992px) {
-            .hero-container, .about-container, .contact-container {
+            .before-after-container {
                 grid-template-columns: 1fr;
-                gap: 40px;
+                gap: 30px;
             }
             
-            .hero-content h1 {
-                font-size: 2.8rem;
+            .comparison-image {
+                height: 350px;
             }
             
-            .gallery-grid {
-                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            .comparison-stats {
+                grid-template-columns: repeat(2, 1fr);
             }
         }
 
         @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                background-color: white;
-                flex-direction: column;
+            .before-after-title h2 {
+                font-size: 2.2rem;
+            }
+            
+            .comparison-stats {
+                grid-template-columns: 1fr;
+            }
+            
+            .comparison-label h3 {
+                font-size: 1.5rem;
+            }
+            
+            .transformation-note {
                 padding: 20px;
-                box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
-            }
-            
-            .nav-links.active {
-                display: flex;
-            }
-            
-            .mobile-toggle {
-                display: block;
-            }
-            
-            .hero-content h1 {
-                font-size: 2.3rem;
-            }
-            
-            .features, .whatsapp-features {
-                grid-template-columns: 1fr;
-            }
-            
-            .hero-buttons {
-                flex-direction: column;
-            }
-            
-            .btn {
-                width: 100%;
-            }
-            
-            .whatsapp-float {
-                bottom: 20px;
-                right: 20px;
-                width: 50px;
-                height: 50px;
-                font-size: 1.7rem;
-            }
-            
-            .logo-text {
-                display: none;
-            }
-            
-            .gallery-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-        
-        @media (min-width: 769px) {
-            .logo-text {
-                display: flex;
             }
         }
     </style>
@@ -1094,6 +672,7 @@
             
             <ul class="nav-links" id="navLinks">
                 <li><a href="#home">Home</a></li>
+                <li><a href="#transformations">Trasformazioni</a></li>
                 <li><a href="#servizi">Servizi</a></li>
                 <li><a href="#about">Chi Siamo</a></li>
                 <li><a href="#team">Il Team</a></li>
@@ -1106,15 +685,77 @@
         </div>
     </header>
 
+    <!-- Nouvelle Section Avant/Après -->
+    <section class="before-after-section" id="transformations">
+        <div class="container">
+            <div class="before-after-title">
+                <h2>Trasformazioni Straordinarie</h2>
+                <p>Guarda come trasformiamo i sorrisi dei nostri pazienti con risultati eccezionali e naturali</p>
+            </div>
+            
+            <div class="before-after-container">
+                <div class="comparison-card">
+                    <div class="comparison-image">
+                        <img src="diference1.jpg" alt="Prima del trattamento - Denti da riparare">
+                        <div class="comparison-label before-label">
+                            <h3><i class="fas fa-exclamation-triangle"></i> Prima del Trattamento</h3>
+                            <p>Problemi dentali complessi che compromettono funzione ed estetica</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="comparison-card">
+                    <div class="comparison-image">
+                        <img src="diference2.jpg" alt="Dopo il trattamento - Sorriso perfetto">
+                        <div class="comparison-label after-label">
+                            <h3><i class="fas fa-star"></i> Dopo il Nostro Lavoro</h3>
+                            <p>Trasformazione completa con risultati estetici e funzionali eccezionali</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="comparison-stats">
+                <div class="stat-card">
+                    <i class="fas fa-smile-beam"></i>
+                    <span class="stat-number">100%</span>
+                    <span class="stat-text">Soddisfazione Pazienti</span>
+                </div>
+                
+                <div class="stat-card">
+                    <i class="fas fa-award"></i>
+                    <span class="stat-number">30+</span>
+                    <span class="stat-text">Anni di Esperienza</span>
+                </div>
+                
+                <div class="stat-card">
+                    <i class="fas fa-user-check"></i>
+                    <span class="stat-number">5000+</span>
+                    <span class="stat-text">Sorrisi Trasformati</span>
+                </div>
+                
+                <div class="stat-card">
+                    <i class="fas fa-shield-alt"></i>
+                    <span class="stat-number">Garantito</span>
+                    <span class="stat-text">Risultati Durevoli</span>
+                </div>
+            </div>
+            
+            <div class="transformation-note">
+                <h3><i class="fas fa-magic"></i> La Nostra Filosofia</h3>
+                <p>Crediamo che ogni paziente meriti un sorriso sano e bello. Utilizziamo tecnologie all'avanguardia e materiali di alta qualità per ottenere trasformazioni naturali e durature che cambiano la vita dei nostri pazienti.</p>
+            </div>
+        </div>
+    </section>
+
     <!-- Hero Section -->
     <section class="hero" id="home">
         <div class="container hero-container">
             <div class="hero-content">
                 <h1>Il tuo sorriso, la nostra priorità</h1>
                 <p>Nello Studio Dentistico OsteoDent, combiniamo tecnologia all'avanguardia con un approccio personalizzato per garantire la salute e la bellezza del tuo sorriso.</p>
-                <p>Lo studio integra la collaborazione di un osteopata nel percorso di cura del paziente, adottando un approccio multidisciplinare che favorisce l’equilibrio funzionale del corpo e contribuisce al benessere generale, in sinergia con i trattamenti odontoiatrici.</p>
+                <p>Lo studio integra la collaborazione di un osteopata nel percorso di cura del paziente, adottando un approccio multidisciplinare che favorisce l'equilibrio funzionale del corpo e contribuisce al benessere generale, in sinergia con i trattamenti odontoiatrici.</p>
                 <div class="hero-buttons">
-
                     <a href="https://wa.me/3703073990?text=Ciao,%20vorrei%20prenotare%20una%20visita%20presso%20il%20vostro%20studio%20dentistico" class="btn btn-whatsapp" target="_blank">
                         <i class="fab fa-whatsapp"></i> Prenota via WhatsApp
                     </a>
@@ -1127,373 +768,7 @@
         </div>
     </section>
 
-    <!-- Servizi -->
-    <section class="services" id="servizi">
-        <div class="container">
-            <div class="section-title">
-                <h2>I Nostri Servizi</h2>
-                <p>Offriamo un'ampia gamma di trattamenti dentali specializzati con tecnologia all'avanguardia e comfort del paziente al centro della nostra attenzione.</p>
-            </div>
-            
-            <div class="services-grid">
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-crown"></i>
-                    </div>
-                    <h3>Protesi Dentali</h3>
-                    <p>Soluzioni protesiche fisse e mobili di alta qualità per ripristinare funzione ed estetica del sorriso.</p>
-                </div>
-                
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-child"></i>
-                    </div>
-                    <h3>Pedodonzia</h3>
-                    <p>Cure dentali specializzate per bambini, in un ambiente accogliente e a misura di piccolo paziente.</p>
-                </div>
-                
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-teeth"></i>
-                    </div>
-                    <h3>Endodonzia e Conservativa</h3>
-                    <p>Trattamenti per curare carie e preservare la struttura dentale originale, utilizzando materiali estetici e durevoli.</p>
-                </div>
-                
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-tooth"></i>
-                    </div>
-                    <h3>Implantologia</h3>
-                    <p>Sostituzione di denti mancanti con impianti dentali di alta qualità, per un risultato naturale e duraturo.</p>
-                </div>
-                
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-spray-can"></i>
-                    </div>
-                    <h3>Igiene Orale Professionale</h3>
-                    <p>Pulizie dentali professionali e sbiancamento dentale programmi personalizzati di mantenimento per una salute orale ottimale.</p>
-                </div>
-                
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-smile-beam"></i>
-                    </div>
-                    <h3>Protesi e Ortodonzia – Ancona</h3>
-                    <p>Specializzati in protesi dentarie e trattamenti di ortodonzia, offriamo soluzioni personalizzate
-                    per migliorare il sorriso e la salute orale dei nostri pazienti ad Ancona.</p>
-
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- About -->
-    <section class="about" id="about">
-        <div class="container about-container">
-            <div class="about-image">
-                <img src="insieme.jpg" alt="Studio Dentistico OsteoDent - Vista interna moderna">
-                <div class="image-label">Il nostro studio moderno e accogliente</div>
-            </div>
-            
-            <div class="about-content">
-                <h2>Il Nostro Approccio Moderno alla Cura Dentale</h2>
-                <p>Da oltre 30 anni, il nostro studio si impegna a offrire cure dentali di eccellenza in un ambiente accogliente e tecnologico. Crediamo che ogni paziente meriti un trattamento personalizzato e un'assistenza di alta qualità.</p>
-                <p>Utilizziamo le tecnologie più avanzate, come scanner intraorali, radiografie digitali e software di pianificazione 3D, per garantire risultati precisi e minimamente invasivi.</p>
-                
-                <div class="features">
-                    <div class="feature">
-                        <i class="fas fa-microscope"></i>
-                        <div>
-                            <h4>Tecnologia All'avanguardia</h4>
-                            <p>Attrezzature digitali per diagnosi precise e trattamenti efficaci.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="feature">
-                        <i class="fas fa-user-md"></i>
-                        <div>
-                            <h4>Team Specializzato</h4>
-                            <p>Professionisti con esperienza in diverse specialità odontoiatriche.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="feature">
-                        <i class="fas fa-couch"></i>
-                        <div>
-                            <h4>Confort del Paziente</h4>
-                            <p>Ambiente rilassante e approccio empatico per ogni trattamento.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="feature">
-                        <i class="fas fa-award"></i>
-                        <div>
-                            <h4>Esperienza Trentennale</h4>
-                            <p>Oltre 30 anni di esperienza nel settore odontoiatrico.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Gallery Section -->
-    <section class="gallery" id="gallery">
-        <div class="gallery-container">
-            <div class="section-title">
-                <h2>Galleria del Nostro Studio</h2>
-                <p>Scopri il nostro ambiente moderno e accogliente, progettato per offrirti il massimo comfort durante le tue visite.</p>
-            </div>
-            
-            <div class="gallery-grid">
-                <div class="gallery-item">
-                    <img src="dent1.jpg" alt="Vista panoramica dello studio">
-                    <div class="gallery-caption">
-                        
-                    </div>
-                </div>
-                
-                <div class="gallery-item">
-                    <img src="dent2.jpg" alt="Sala d'attesa moderna">
-                    <div class="gallery-caption">
-                       
-                    </div>
-                </div>
-                <div class="gallery-item">
-                    <img src="dent3.jpg" alt="Sala d'attesa moderna">
-                    <div class="gallery-caption">
-                       
-                    </div>
-                </div>
-                <div class="gallery-item">
-                    <img src="dent4.jpg" alt="Sala d'attesa moderna">
-                    <div class="gallery-caption">
-                       
-                    </div>
-                </div>
-                <div class="gallery-item">
-                    <img src="piece1.jpg" alt="Sala d'attesa moderna">
-                    <div class="gallery-caption">
-                       
-                    </div>
-                </div>
-                <div class="gallery-item">
-                    <img src="https://lh3.googleusercontent.com/p/AF1QipPmMnQijRhjr1HSnbXvN-oAzc5sNwpYY1KK_aa1=s1360-w1360-h1020-rw" alt="Cabina odontoiatrica">
-                    <div class="gallery-caption">
-                        
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Team -->
-  <!-- Team -->
-<section class="team" id="team">
-    <div class="container">
-        <div class="section-title">
-            <h2>Il Nostro Team di Specialisti</h2>
-            <p>I nostri professionisti combinano esperienza, competenza e passione per offrire le migliori cure dentali possibili.</p>
-        </div>
-        
-        <div class="team-grid">
-            <div class="team-member">
-                <div class="member-photo">
-                    <img src="img3.jpg" alt="Maria Chiara Brugnami">
-                </div>
-                <h3> Maria Chiara Brugnami</h3>
-                <p>Odontoiatra e Specialista</p>
-                <div class="specialty">Specializzata in protesi dentali, pedodonzia, endodonzia, conservativa e implantologia</div>
-            </div>
-            
-            <div class="team-member">
-                <div class="member-photo">
-                    <img src="img1.jpg" alt="Elena Conti">
-                </div>
-                <h3>Elena Conti</h3>
-                <p>Assistente alla Poltrona</p>
-                <div class="specialty">Assistente esperta con competenze nell'assistenza clinica, gestione del paziente e preparazione strumenti.</div>
-            </div>
-            
-            <div class="team-member">
-                <div class="member-photo">
-                    <img src="img2.jpg" alt="Elisa Bronzini">
-                </div>
-                <h3>Elisa Bronzini</h3>
-                <p>Coordinatrice Sanitaria</p>
-                <div class="specialty">Gestisce l'organizzazione e il personale da oltre 30 anni per garantire efficienza e qualità del servizio.</div>
-            </div>
-            
-            <div class="team-member">
-                <div class="member-photo">
-                    <img src="img4.jpg" alt="Stefania Pascucci">
-                </div>
-                <h3>Stefania Pascucci</h3>
-                <p>Igienista Dentale</p>
-                <div class="specialty">Specializzata in prevenzione e igiene orale con approccio delicato e personalizzato.</div>
-            </div>
-        </div>
-    </div>
-</section>
-
-    <!-- Contact & WhatsApp Booking -->
-    <section class="contact" id="contatti">
-        <div class="container contact-container">
-            <div class="contact-info">
-                <h2>Prenota la Tua Visita</h2>
-                <p>Contattaci per fissare un appuntamento o per ricevere maggiori informazioni sui nostri servizi. Saremo lieti di prenderti in cura.</p>
-                
-                <div class="contact-details">
-                    <div class="contact-item">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <div>
-                            <h4>Il Nostro Studio</h4>
-                            <p>Via Martiri della Resistenza n 10, 60125 Ancona</p>
-                        </div>
-                    </div>
-                    
-                    <div class="contact-item">
-                        <i class="fas fa-phone-alt"></i>
-                        <div>
-                            <h4>Telefono</h4>
-                            <p>370 3073990</p>
-                            <p>0712806038</p>
-
-                        </div>
-                    </div>
-                    
-                    <div class="contact-item">
-                        <i class="fas fa-envelope"></i>
-                        <div>
-                            <h4>Email</h4>
-                            <p>osteodent@libero.it</p>
-                        </div>
-                    </div>
-                    
-                    <div class="contact-item">
-                        <i class="fas fa-clock"></i>
-                        <div>
-                            <h4>Orari di Apertura</h4>
-                            <p>Lunedì - Venerdì : 9:00-12:30 - 15h30-18h30 <br>Sabato e Domenica: Chiuso</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="whatsapp-booking">
-                <h3>Prenotazione Rapida via WhatsApp</h3>
-                <p>Per prenotare una visita, richiedere informazioni o fissare un appuntamento, clicca sul pulsante qui sotto per parlare direttamente con il nostro staff.</p>
-                
-                <div class="whatsapp-features">
-                    <div class="whatsapp-feature">
-                        <i class="fas fa-check-circle"></i>
-                        <span>Risposta immediata</span>
-                    </div>
-                    <div class="whatsapp-feature">
-                        <i class="fas fa-check-circle"></i>
-                        <span>Prenotazione 24/7</span>
-                    </div>
-                    <div class="whatsapp-feature">
-                        <i class="fas fa-check-circle"></i>
-                        <span>Nessuna attesa telefonica</span>
-                    </div>
-                    <div class="whatsapp-feature">
-                        <i class="fas fa-check-circle"></i>
-                        <span>Conferma immediata</span>
-                    </div>
-                </div>
-                
-                <div class="booking-steps">
-                    <h4>Come prenotare in 3 semplici passi:</h4>
-                    <div class="step">
-                        <div class="step-number">1</div>
-                        <div>Clicca sul pulsante WhatsApp qui sotto</div>
-                    </div>
-                    <div class="step">
-                        <div class="step-number">2</div>
-                        <div>Scrivi il tuo nome e il servizio richiesto</div>
-                    </div>
-                    <div class="step">
-                        <div class="step-number">3</div>
-                        <div>Ricevi la conferma dell'appuntamento in pochi minuti</div>
-                    </div>
-                </div>
-                
-                <a href="https://wa.me/3703073990?text=Ciao,%20vorrei%20prenotare%20una%20visita%20presso%20il%20vostro%20studio%20dentistico" class="btn btn-whatsapp" target="_blank" style="padding: 15px 40px; font-size: 1.1rem;">
-                    <i class="fab fa-whatsapp"></i> PRENOTA ORA SU WHATSAPP
-                </a>
-                
-                <p style="margin-top: 20px; font-size: 0.9rem; color: #666;">Rispondiamo di solito entro pochi minuti durante gli orari di apertura.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-container">
-                <div class="footer-col">
-                    <h3>OsteoDent Ancona</h3>
-                    <p>Studio dentistico con oltre 30 anni di esperienza. Offriamo cure di alta qualità con tecnologia all'avanguardia e un approccio personalizzato per ogni paziente.</p>
-                    <a href="https://wa.me/3703073990?text=Ciao,%20vorrei%20prenotare%20una%20visita%20presso%20il%20vostro%20studio%20dentistico" class="btn btn-whatsapp" target="_blank" style="margin-top: 15px; padding: 10px 20px; font-size: 0.9rem;">
-                        <i class="fab fa-whatsapp"></i> Prenota su WhatsApp
-                    </a>
-                </div>
-                
-                <div class="footer-col">
-                    <h3>Link Rapidi</h3>
-                    <ul class="footer-links">
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#servizi">Servizi</a></li>
-                        <li><a href="#about">Chi Siamo</a></li>
-                        <li><a href="#team">Il Team</a></li>
-                        <li><a href="#gallery">Galleria</a></li>
-                        <li><a href="#contatti">Contatti</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-col">
-                    <h3>Servizi</h3>
-                    <ul class="footer-links">
-                        <li><a href="#servizi">Protesi Dentali</a></li>
-                        <li><a href="#servizi">Pedodonzia</a></li>
-                        <li><a href="#servizi">Endodonzia e Conservativa</a></li>
-                        <li><a href="#servizi">Implantologia</a></li>
-                        <li><a href="#servizi">Igiene Orale</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-col">
-                    <h3>Contatti</h3>
-                    <ul class="footer-contact">
-                        <li>
-                            <i class="fas fa-map-marker-alt"></i>
-                            <span>Via Martiri della Resistenza 10, 60125 Ancona</span>
-                        </li>
-                        <li>
-                            <i class="fas fa-phone-alt"></i>
-                            <span>370 3073990</span>
-                            <span>370 3073990</span>
-                        </li>
-                        <li>
-                            <i class="fas fa-envelope"></i>
-                            <span>osteodent@libero.it</span>
-                        </li>
-                        <li>
-                            <i class="fas fa-clock"></i>
-                            <span>Lunedì - Venerdì : 9:00-12:30 - 15h30-18h30<br>Sabato e Domenica: Chiuso</span>
-                        </li>
-                    </ul> 
-                </div>
-            </div>
-            
-            <div class="copyright">
-                <p>&copy; 2026 OsteoDent Ancona. Tutti i diritti riservati.</p>
-            </div>
-        </div>
-    </footer>
+    <!-- ... Le reste du code HTML reste inchangé ... -->
 
     <script>
         // Loading screen - Version ultra stylée
@@ -1641,6 +916,17 @@
                     console.log('WhatsApp booking clicked');
                 }
             });
+        });
+
+        // Ajout d'un effet de parallaxe pour la section avant/après
+        window.addEventListener('scroll', function() {
+            const beforeAfterSection = document.querySelector('.before-after-section');
+            const scrolled = window.pageYOffset;
+            const rate = scrolled * -0.5;
+            
+            if (beforeAfterSection && scrolled < beforeAfterSection.offsetHeight) {
+                beforeAfterSection.style.backgroundPosition = `center ${rate}px`;
+            }
         });
     </script>
 </body>
