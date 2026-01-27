@@ -1,0 +1,1649 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OsteoDent Ancona | Studio Dentistico Dott.ssa Brugnami</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0ea5e9;
+            --primary-dark: #0284c7;
+            --secondary: #f0f9ff;
+            --accent: #f59e0b;
+            --text: #334155;
+            --light: #f8fafc;
+            --dark: #1e293b;
+            --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            --radius: 8px;
+            --whatsapp: #25D366;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            line-height: 1.3;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Loading Screen - Ultra Stylée */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 50%, #0c4a6e 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 1.2s cubic-bezier(0.77, 0, 0.175, 1), visibility 1.2s;
+            overflow: hidden;
+        }
+
+        .loading-screen.fade-out {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .loading-background {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(255,255,255,0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255,255,255,0.1) 0%, transparent 50%);
+            animation: float 20s infinite alternate ease-in-out;
+        }
+
+        @keyframes float {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            100% { transform: translate(-30px, -30px) rotate(1deg); }
+        }
+
+        .loading-logo-container {
+            position: relative;
+            z-index: 2;
+            margin-bottom: 50px;
+            perspective: 1000px;
+        }
+
+        .loading-logo {
+            height: 180px;
+            width: auto;
+            filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.3));
+            animation: logoFloat 3s infinite ease-in-out, logoGlow 2s infinite alternate;
+            transform-style: preserve-3d;
+        }
+
+        @keyframes logoFloat {
+            0%, 100% { transform: translateY(0) rotateX(0deg) rotateY(0deg); }
+            50% { transform: translateY(-20px) rotateX(5deg) rotateY(5deg); }
+        }
+
+        @keyframes logoGlow {
+            0% { filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.3)) brightness(1); }
+            100% { filter: drop-shadow(0 15px 30px rgba(255, 255, 255, 0.4)) brightness(1.2); }
+        }
+
+        .loading-spinner-container {
+            position: relative;
+            width: 120px;
+            height: 120px;
+            margin-bottom: 40px;
+        }
+
+        .loading-spinner-outer {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border: 3px solid transparent;
+            border-top: 3px solid rgba(255, 255, 255, 0.8);
+            border-right: 3px solid rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            animation: spin 2s linear infinite;
+        }
+
+        .loading-spinner-middle {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            width: 90px;
+            height: 90px;
+            border: 2px solid transparent;
+            border-top: 2px solid rgba(255, 255, 255, 0.6);
+            border-left: 2px solid rgba(255, 255, 255, 0.4);
+            border-radius: 50%;
+            animation: spinReverse 1.5s linear infinite;
+        }
+
+        .loading-spinner-inner {
+            position: absolute;
+            top: 30px;
+            left: 30px;
+            width: 60px;
+            height: 60px;
+            border: 1px solid transparent;
+            border-top: 1px solid rgba(255, 255, 255, 0.9);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        .loading-particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+            animation: particles 3s infinite ease-in-out;
+        }
+
+        .particle:nth-child(1) { top: 20%; left: 20%; animation-delay: 0s; }
+        .particle:nth-child(2) { top: 60%; left: 80%; animation-delay: 0.5s; }
+        .particle:nth-child(3) { top: 80%; left: 40%; animation-delay: 1s; }
+        .particle:nth-child(4) { top: 30%; left: 70%; animation-delay: 1.5s; }
+        .particle:nth-child(5) { top: 70%; left: 30%; animation-delay: 2s; }
+        .particle:nth-child(6) { top: 40%; left: 90%; animation-delay: 2.5s; }
+        .particle:nth-child(7) { top: 90%; left: 10%; animation-delay: 3s; }
+
+        @keyframes particles {
+            0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.8; }
+            50% { transform: translate(20px, -20px) scale(1.5); opacity: 0.4; }
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes spinReverse {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(-360deg); }
+        }
+
+        .loading-text-container {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+        }
+
+        .loading-text {
+            font-size: 2rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 15px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            position: relative;
+            display: inline-block;
+        }
+
+        .loading-text::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, white, transparent);
+            animation: underline 2s infinite ease-in-out;
+        }
+
+        @keyframes underline {
+            0%, 100% { transform: scaleX(0.3); opacity: 0.5; }
+            50% { transform: scaleX(1); opacity: 1; }
+        }
+
+        .loading-subtext {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1.1rem;
+            margin-top: 10px;
+            animation: fadeInOut 2s infinite alternate;
+        }
+
+        @keyframes fadeInOut {
+            0% { opacity: 0.6; }
+            100% { opacity: 1; }
+        }
+
+        .loading-progress {
+            width: 200px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 2px;
+            margin-top: 30px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .loading-progress-bar {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, #25D366, #0ea5e9);
+            border-radius: 2px;
+            animation: progress 2s ease-in-out infinite;
+            box-shadow: 0 0 10px rgba(37, 211, 102, 0.5);
+        }
+
+        @keyframes progress {
+            0% { width: 0%; left: 0; }
+            50% { width: 100%; left: 0; }
+            100% { width: 0%; left: 100%; }
+        }
+
+        .loading-dots {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            background: white;
+            border-radius: 50%;
+            animation: dots 1.5s infinite ease-in-out;
+        }
+
+        .dot:nth-child(1) { animation-delay: 0s; }
+        .dot:nth-child(2) { animation-delay: 0.2s; }
+        .dot:nth-child(3) { animation-delay: 0.4s; }
+        .dot:nth-child(4) { animation-delay: 0.6s; }
+
+        @keyframes dots {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.5); opacity: 1; }
+        }
+
+        /* Header */
+        header {
+            background-color: white;
+            box-shadow: var(--shadow);
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            transform: translateY(0);
+            transition: transform 0.3s ease;
+        }
+
+        header.hidden {
+            transform: translateY(-100%);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .logo-img {
+            height: 60px;
+            width: auto;
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .logo-main {
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        .logo-sub {
+            font-size: 0.9rem;
+            font-weight: 400;
+            color: var(--text);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: color 0.3s;
+            font-size: 1rem;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-cta {
+            background-color: var(--whatsapp);
+            color: white;
+            padding: 10px 24px;
+            border-radius: 50px;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-cta:hover {
+            background-color: #128C7E;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3);
+        }
+
+        .mobile-toggle {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--primary);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding-top: 140px;
+            padding-bottom: 80px;
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .hero-content h1 {
+            font-size: 3.2rem;
+            margin-bottom: 20px;
+            color: var(--dark);
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            color: var(--text);
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 15px 30px;
+            border-radius: var(--radius);
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            text-align: center;
+        }
+
+        .btn-whatsapp {
+            background-color: var(--whatsapp);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .btn-whatsapp:hover {
+            background-color: #128C7E;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(37, 211, 102, 0.3);
+        }
+
+        .btn-secondary {
+            background-color: white;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--secondary);
+            transform: translateY(-3px);
+        }
+
+        .hero-image {
+           width: 100%;
+           position: relative;
+           border-radius: var(--radius);
+           overflow: hidden;
+           box-shadow: var(--shadow);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.5s;
+        }
+
+        .hero-image:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Services */
+        .services {
+            padding: 100px 0;
+            background-color: white;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--dark);
+            margin-bottom: 15px;
+        }
+
+        .section-title p {
+            max-width: 600px;
+            margin: 0 auto;
+            color: var(--text);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background-color: var(--light);
+            border-radius: var(--radius);
+            padding: 40px 30px;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
+            text-align: center;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow);
+        }
+
+        .service-icon {
+            background-color: var(--secondary);
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            color: var(--primary);
+            font-size: 2rem;
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+
+        /* About */
+        .about {
+            padding: 100px 0;
+            background-color: var(--secondary);
+        }
+
+        .about-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .about-image {
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            position: relative;
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.8s ease;
+        }
+
+        .about-image:hover img {
+            transform: scale(1.05);
+        }
+
+        .image-label {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 10px 20px;
+            border-radius: var(--radius);
+            font-size: 0.9rem;
+            font-weight: 600;
+            backdrop-filter: blur(5px);
+        }
+
+        .about-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: var(--dark);
+        }
+
+        .about-content p {
+            margin-bottom: 25px;
+        }
+
+        .features {
+            margin-top: 30px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .feature {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+        }
+
+        .feature i {
+            color: var(--primary);
+            font-size: 1.3rem;
+            margin-top: 5px;
+        }
+
+        /* Team */
+        .team {
+            padding: 100px 0;
+            background-color: white;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .team-member {
+            text-align: center;
+            background-color: var(--light);
+            border-radius: var(--radius);
+            padding: 30px;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
+        }
+
+        .team-member:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow);
+        }
+
+        .member-photo {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            overflow: hidden;
+            border: 5px solid var(--secondary);
+        }
+
+        .member-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .team-member h3 {
+            font-size: 1.4rem;
+            margin-bottom: 5px;
+            color: var(--dark);
+        }
+
+        .team-member p {
+            color: var(--primary);
+            margin-bottom: 10px;
+            font-weight: 500;
+        }
+
+        .team-member .specialty {
+            font-size: 0.9rem;
+            color: var(--text);
+            margin-top: 5px;
+            line-height: 1.4;
+        }
+
+        /* Contact & WhatsApp Booking */
+        .contact {
+            padding: 100px 0;
+            background-color: var(--secondary);
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .contact-info h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: var(--dark);
+        }
+
+        .contact-details {
+            margin-top: 30px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .contact-item i {
+            background-color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            font-size: 1.2rem;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        /* WhatsApp Booking Section */
+        .whatsapp-booking {
+            background-color: white;
+            padding: 40px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .whatsapp-booking::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--whatsapp), #128C7E);
+        }
+
+        .whatsapp-booking h3 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+
+        .whatsapp-booking p {
+            margin-bottom: 25px;
+            color: var(--text);
+        }
+
+        .whatsapp-features {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-bottom: 30px;
+            text-align: left;
+        }
+
+        .whatsapp-feature {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.9rem;
+        }
+
+        .whatsapp-feature i {
+            color: var(--whatsapp);
+            font-size: 1.1rem;
+        }
+
+        .booking-steps {
+            background-color: var(--light);
+            padding: 25px;
+            border-radius: var(--radius);
+            margin-bottom: 30px;
+            text-align: left;
+        }
+
+        .booking-steps h4 {
+            margin-bottom: 15px;
+            color: var(--dark);
+            text-align: center;
+        }
+
+        .step {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .step-number {
+            background-color: var(--primary);
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+
+        /* WhatsApp Float */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: var(--whatsapp);
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.4);
+            z-index: 999;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            background-color: #128C7E;
+            box-shadow: 0 8px 20px rgba(37, 211, 102, 0.5);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 70px 0 30px;
+        }
+
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+
+        .footer-col h3 {
+            font-size: 1.3rem;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-col h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background-color: var(--primary);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: #cbd5e1;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .footer-contact li {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .footer-contact i {
+            color: var(--primary);
+            margin-top: 3px;
+            flex-shrink: 0;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #334155;
+            color: #cbd5e1;
+            font-size: 0.9rem;
+        }
+
+        /* Gallery Section */
+        .gallery {
+            padding: 100px 0;
+            background-color: white;
+        }
+
+        .gallery-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .gallery-item {
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.5s;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+            color: white;
+            padding: 20px;
+            transform: translateY(100%);
+            transition: transform 0.3s;
+        }
+
+        .gallery-item:hover .gallery-caption {
+            transform: translateY(0);
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .hero-container, .about-container, .contact-container {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            .hero-content h1 {
+                font-size: 2.8rem;
+            }
+            
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: white;
+                flex-direction: column;
+                padding: 20px;
+                box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .mobile-toggle {
+                display: block;
+            }
+            
+            .hero-content h1 {
+                font-size: 2.3rem;
+            }
+            
+            .features, .whatsapp-features {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+            }
+            
+            .btn {
+                width: 100%;
+            }
+            
+            .whatsapp-float {
+                bottom: 20px;
+                right: 20px;
+                width: 50px;
+                height: 50px;
+                font-size: 1.7rem;
+            }
+            
+            .logo-text {
+                display: none;
+            }
+            
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (min-width: 769px) {
+            .logo-text {
+                display: flex;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Screen Ultra Stylée -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loading-background"></div>
+        <div class="loading-particles">
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+        </div>
+        
+        <div class="loading-logo-container">
+            <img src="logo.png" alt="OsteoDent Logo" class="loading-logo">
+        </div>
+        
+        <div class="loading-spinner-container">
+            <div class="loading-spinner-outer"></div>
+            <div class="loading-spinner-middle"></div>
+            <div class="loading-spinner-inner"></div>
+        </div>
+        
+        <div class="loading-text-container">
+            <div class="loading-text">OsteoDent Ancona</div>
+            <div class="loading-subtext">Studio Dentistico Dott.ssa Brugnami</div>
+            <div class="loading-progress">
+                <div class="loading-progress-bar"></div>
+            </div>
+            <div class="loading-dots">
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- WhatsApp Float -->
+    <a href="https://wa.me/3703073990?text=Ciao,%20vorrei%20prenotare%20una%20visita%20presso%20il%20vostro%20studio%20dentistico" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Header -->
+    <header id="mainHeader">
+        <div class="container nav-container">
+            <a href="#" class="logo">
+                <img src="logo.png" alt="OsteoDent Logo" class="logo-img">
+                <div class="logo-text">
+                    <span class="logo-main">OsteoDent</span>
+                    <span class="logo-sub">Studio Dentistico Ancona</span>
+                </div>
+            </a>
+            
+            <div class="mobile-toggle" id="mobileToggle">
+                <i class="fas fa-bars"></i>
+            </div>
+            
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#servizi">Servizi</a></li>
+                <li><a href="#about">Chi Siamo</a></li>
+                <li><a href="#team">Il Team</a></li>
+                <li><a href="#gallery">Galleria</a></li>
+                <li><a href="#contatti">Contatti</a></li>
+                <li><a href="https://wa.me/3703073990?text=Ciao,%20vorrei%20prenotare%20una%20visita%20presso%20il%20vostro%20studio%20dentistico" class="nav-cta" target="_blank">
+                    <i class="fab fa-whatsapp"></i> Prenota
+                </a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container hero-container">
+            <div class="hero-content">
+                <h1>Il tuo sorriso, la nostra priorità</h1>
+                <p>Nello Studio Dentistico OsteoDent, combiniamo tecnologia all'avanguardia con un approccio personalizzato per garantire la salute e la bellezza del tuo sorriso.</p>
+                <p>Lo studio integra la collaborazione di un osteopata nel percorso di cura del paziente, adottando un approccio multidisciplinare che favorisce l’equilibrio funzionale del corpo e contribuisce al benessere generale, in sinergia con i trattamenti odontoiatrici.</p>
+                <div class="hero-buttons">
+
+                    <a href="https://wa.me/3703073990?text=Ciao,%20vorrei%20prenotare%20una%20visita%20presso%20il%20vostro%20studio%20dentistico" class="btn btn-whatsapp" target="_blank">
+                        <i class="fab fa-whatsapp"></i> Prenota via WhatsApp
+                    </a>
+                    <a href="#servizi" class="btn btn-secondary">I Nostri Servizi</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="https://lh3.googleusercontent.com/gps-cs-s/AHVAweqoCMb95T1auoouFmbPscOZbPEOgs1lPqLDQbSnEDg6Qcs3rcC8176DJdabnzqxtGmm1xHyo2_4jvN0ZH0o85aLHW-iUgXrg__j8uOqrjXw7WTGXv3QvMoc-yjnlZlqhLapoW6Y=s1360-w1360-h1020-rw" alt="Studio Dentistico OsteoDent">
+            </div>
+        </div>
+    </section>
+
+    <!-- Servizi -->
+    <section class="services" id="servizi">
+        <div class="container">
+            <div class="section-title">
+                <h2>I Nostri Servizi</h2>
+                <p>Offriamo un'ampia gamma di trattamenti dentali specializzati con tecnologia all'avanguardia e comfort del paziente al centro della nostra attenzione.</p>
+            </div>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-crown"></i>
+                    </div>
+                    <h3>Protesi Dentali</h3>
+                    <p>Soluzioni protesiche fisse e mobili di alta qualità per ripristinare funzione ed estetica del sorriso.</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-child"></i>
+                    </div>
+                    <h3>Pedodonzia</h3>
+                    <p>Cure dentali specializzate per bambini, in un ambiente accogliente e a misura di piccolo paziente.</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-teeth"></i>
+                    </div>
+                    <h3>Endodonzia e Conservativa</h3>
+                    <p>Trattamenti per curare carie e preservare la struttura dentale originale, utilizzando materiali estetici e durevoli.</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-tooth"></i>
+                    </div>
+                    <h3>Implantologia</h3>
+                    <p>Sostituzione di denti mancanti con impianti dentali di alta qualità, per un risultato naturale e duraturo.</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-spray-can"></i>
+                    </div>
+                    <h3>Igiene Orale Professionale</h3>
+                    <p>Pulizie dentali professionali e sbiancamento dentale programmi personalizzati di mantenimento per una salute orale ottimale.</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-smile-beam"></i>
+                    </div>
+                    <h3>Sbiancamento Dentale</h3>
+                    <p>Trattamenti professionali per sbiancare i denti in modo sicuro ed efficace, con risultati immediati.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About -->
+    <section class="about" id="about">
+        <div class="container about-container">
+            <div class="about-image">
+                <img src="https://lh3.googleusercontent.com/p/AF1QipNsggZvI-FHpPYeM7LM8W-zVPaS6fMqijRDuVTO=s1360-w1360-h1020-rw" alt="Studio Dentistico OsteoDent - Vista interna moderna">
+                <div class="image-label">Il nostro studio moderno e accogliente</div>
+            </div>
+            
+            <div class="about-content">
+                <h2>Il Nostro Approccio Moderno alla Cura Dentale</h2>
+                <p>Da oltre 30 anni, il nostro studio si impegna a offrire cure dentali di eccellenza in un ambiente accogliente e tecnologico. Crediamo che ogni paziente meriti un trattamento personalizzato e un'assistenza di alta qualità.</p>
+                <p>Utilizziamo le tecnologie più avanzate, come scanner intraorali, radiografie digitali e software di pianificazione 3D, per garantire risultati precisi e minimamente invasivi.</p>
+                
+                <div class="features">
+                    <div class="feature">
+                        <i class="fas fa-microscope"></i>
+                        <div>
+                            <h4>Tecnologia All'avanguardia</h4>
+                            <p>Attrezzature digitali per diagnosi precise e trattamenti efficaci.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="feature">
+                        <i class="fas fa-user-md"></i>
+                        <div>
+                            <h4>Team Specializzato</h4>
+                            <p>Professionisti con esperienza in diverse specialità odontoiatriche.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="feature">
+                        <i class="fas fa-couch"></i>
+                        <div>
+                            <h4>Confort del Paziente</h4>
+                            <p>Ambiente rilassante e approccio empatico per ogni trattamento.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="feature">
+                        <i class="fas fa-award"></i>
+                        <div>
+                            <h4>Esperienza Trentennale</h4>
+                            <p>Oltre 30 anni di esperienza nel settore odontoiatrico.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="gallery" id="gallery">
+        <div class="gallery-container">
+            <div class="section-title">
+                <h2>Galleria del Nostro Studio</h2>
+                <p>Scopri il nostro ambiente moderno e accogliente, progettato per offrirti il massimo comfort durante le tue visite.</p>
+            </div>
+            
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="https://lh3.googleusercontent.com/p/AF1QipNsggZvI-FHpPYeM7LM8W-zVPaS6fMqijRDuVTO=s1360-w1360-h1020-rw" alt="Vista panoramica dello studio">
+                    <div class="gallery-caption">
+                        
+                    </div>
+                </div>
+                
+                <div class="gallery-item">
+                    <img src="https://lh3.googleusercontent.com/p/AF1QipNRNQagcIyVpe9LL-EOrXsjMMfKsgE8yJ4XS3N6=s1360-w1360-h1020-rw" alt="Sala d'attesa moderna">
+                    <div class="gallery-caption">
+                       
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://lh3.googleusercontent.com/p/AF1QipMl1WLKGU_EOQf3x66wSpVoIBwmm76KjczJToxG=s1360-w1360-h1020-rw" alt="Sala d'attesa moderna">
+                    <div class="gallery-caption">
+                       
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://lh3.googleusercontent.com/p/AF1QipMwfScdpGYpxajHsDM0WuVKjTNl0HBbBY7e6Kf3=s1360-w1360-h1020-rw" alt="Sala d'attesa moderna">
+                    <div class="gallery-caption">
+                       
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://lh3.googleusercontent.com/p/AF1QipOXJxUM51RpdLvjIp0ZkSyG90LyqDcg7KtqeDTn=s1360-w1360-h1020-rw" alt="Sala d'attesa moderna">
+                    <div class="gallery-caption">
+                       
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://lh3.googleusercontent.com/p/AF1QipPmMnQijRhjr1HSnbXvN-oAzc5sNwpYY1KK_aa1=s1360-w1360-h1020-rw" alt="Cabina odontoiatrica">
+                    <div class="gallery-caption">
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team -->
+    <section class="team" id="team">
+        <div class="container">
+            <div class="section-title">
+                <h2>Il Nostro Team di Specialisti</h2>
+                <p>I nostri professionisti combinano esperienza, competenza e passione per offrire le migliori cure dentali possibili.</p>
+            </div>
+            
+            <div class="team-grid">
+                <div class="team-member">
+                    <div class="member-photo">
+                        <div style="background: linear-gradient(45deg, #6366f1, #8b5cf6); height: 100%; display: flex; align-items: center; justify-content: center; color: white;">
+                            <i class="fas fa-user-md" style="font-size: 4rem;"></i>
+                        </div>
+                    </div>
+                    <h3>Dott.ssa Maria Chiara Brugnami</h3>
+                    <p>Odontoiatra e Specialista</p>
+                    <div class="specialty">Specializzata in protesi dentali, pedodonzia, endodonzia, conservativa e implantologia</div>
+                </div>
+                
+                <div class="team-member">
+                    <div class="member-photo">
+                        <div style="background: linear-gradient(45deg, #ec4899, #f43f5e); height: 100%; display: flex; align-items: center; justify-content: center; color: white;">
+                            <i class="fas fa-hands-helping" style="font-size: 4rem;"></i>
+                        </div>
+                    </div>
+                    <h3>Elena Conti</h3>
+                    <p>Assistente alla Poltrona</p>
+                    <div class="specialty">Assistente esperta con competenze nell'assistenza clinica, gestione del paziente e preparazione strumenti.</div>
+                </div>
+                
+                <div class="team-member">
+                    <div class="member-photo">
+                        <div style="background: linear-gradient(45deg, #10b981, #0ea5e9); height: 100%; display: flex; align-items: center; justify-content: center; color: white;">
+                            <i class="fas fa-clipboard-check" style="font-size: 4rem;"></i>
+                        </div>
+                    </div>
+                    <h3>Elisa Bronzini</h3>
+                    <p>Coordinatrice Sanitaria</p>
+                    <div class="specialty">Gestisce l'organizzazione e il personale da oltre 30 anni per garantire efficienza e qualità del servizio.</div>
+                </div>
+                
+                <div class="team-member">
+                    <div class="member-photo">
+                        <div style="background: linear-gradient(45deg, #f59e0b, #d97706); height: 100%; display: flex; align-items: center; justify-content: center; color: white;">
+                            <i class="fas fa-teeth" style="font-size: 4rem;"></i>
+                        </div>
+                    </div>
+                    <h3>Stefania Pascucci</h3>
+                    <p>Igienista Dentale</p>
+                    <div class="specialty">Specializzata in prevenzione e igiene orale con approccio delicato e personalizzato.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact & WhatsApp Booking -->
+    <section class="contact" id="contatti">
+        <div class="container contact-container">
+            <div class="contact-info">
+                <h2>Prenota la Tua Visita</h2>
+                <p>Contattaci per fissare un appuntamento o per ricevere maggiori informazioni sui nostri servizi. Saremo lieti di prenderti in cura.</p>
+                
+                <div class="contact-details">
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <h4>Il Nostro Studio</h4>
+                            <p>Via Martiri della Resistenza n 10, 60125 Ancona</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <i class="fas fa-phone-alt"></i>
+                        <div>
+                            <h4>Telefono</h4>
+                            <p>370 3073990</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <h4>Email</h4>
+                            <p>osteodent@libero.it</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <i class="fas fa-clock"></i>
+                        <div>
+                            <h4>Orari di Apertura</h4>
+                            <p>Lunedì - Venerdì : 9:00-19:00<br>Sabato e Domenica: Chiuso</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="whatsapp-booking">
+                <h3>Prenotazione Rapida via WhatsApp</h3>
+                <p>Per prenotare una visita, richiedere informazioni o fissare un appuntamento, clicca sul pulsante qui sotto per parlare direttamente con il nostro staff.</p>
+                
+                <div class="whatsapp-features">
+                    <div class="whatsapp-feature">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Risposta immediata</span>
+                    </div>
+                    <div class="whatsapp-feature">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Prenotazione 24/7</span>
+                    </div>
+                    <div class="whatsapp-feature">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Nessuna attesa telefonica</span>
+                    </div>
+                    <div class="whatsapp-feature">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Conferma immediata</span>
+                    </div>
+                </div>
+                
+                <div class="booking-steps">
+                    <h4>Come prenotare in 3 semplici passi:</h4>
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <div>Clicca sul pulsante WhatsApp qui sotto</div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <div>Scrivi il tuo nome e il servizio richiesto</div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <div>Ricevi la conferma dell'appuntamento in pochi minuti</div>
+                    </div>
+                </div>
+                
+                <a href="https://wa.me/3703073990?text=Ciao,%20vorrei%20prenotare%20una%20visita%20presso%20il%20vostro%20studio%20dentistico" class="btn btn-whatsapp" target="_blank" style="padding: 15px 40px; font-size: 1.1rem;">
+                    <i class="fab fa-whatsapp"></i> PRENOTA ORA SU WHATSAPP
+                </a>
+                
+                <p style="margin-top: 20px; font-size: 0.9rem; color: #666;">Rispondiamo di solito entro pochi minuti durante gli orari di apertura.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-col">
+                    <h3>OsteoDent Ancona</h3>
+                    <p>Studio dentistico con oltre 30 anni di esperienza. Offriamo cure di alta qualità con tecnologia all'avanguardia e un approccio personalizzato per ogni paziente.</p>
+                    <a href="https://wa.me/3703073990?text=Ciao,%20vorrei%20prenotare%20una%20visita%20presso%20il%20vostro%20studio%20dentistico" class="btn btn-whatsapp" target="_blank" style="margin-top: 15px; padding: 10px 20px; font-size: 0.9rem;">
+                        <i class="fab fa-whatsapp"></i> Prenota su WhatsApp
+                    </a>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Link Rapidi</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#servizi">Servizi</a></li>
+                        <li><a href="#about">Chi Siamo</a></li>
+                        <li><a href="#team">Il Team</a></li>
+                        <li><a href="#gallery">Galleria</a></li>
+                        <li><a href="#contatti">Contatti</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Servizi</h3>
+                    <ul class="footer-links">
+                        <li><a href="#servizi">Protesi Dentali</a></li>
+                        <li><a href="#servizi">Pedodonzia</a></li>
+                        <li><a href="#servizi">Endodonzia e Conservativa</a></li>
+                        <li><a href="#servizi">Implantologia</a></li>
+                        <li><a href="#servizi">Igiene Orale</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Contatti</h3>
+                    <ul class="footer-contact">
+                        <li>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Via Martiri della Resistenza 10, 60125 Ancona</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-phone-alt"></i>
+                            <span>370 3073990</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-envelope"></i>
+                            <span>osteodent@libero.it</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-clock"></i>
+                            <span>Lunedì - Venerdì : 9:00-19:00<br>Sabato e Domenica: Chiuso</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2026 OsteoDent Ancona. Tutti i diritti riservati.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Loading screen - Version ultra stylée
+        window.addEventListener('load', function() {
+            // Simuler un chargement progressif
+            let progress = 0;
+            const progressBar = document.querySelector('.loading-progress-bar');
+            const interval = setInterval(function() {
+                progress += Math.random() * 10;
+                if (progress >= 100) {
+                    progress = 100;
+                    clearInterval(interval);
+                    
+                    // Animation de fin avec délai
+                    setTimeout(function() {
+                        const loadingScreen = document.getElementById('loadingScreen');
+                        loadingScreen.classList.add('fade-out');
+                        
+                        // Ajouter une animation de particules de fin
+                        const particles = document.createElement('div');
+                        particles.style.position = 'fixed';
+                        particles.style.top = '0';
+                        particles.style.left = '0';
+                        particles.style.width = '100%';
+                        particles.style.height = '100%';
+                        particles.style.zIndex = '9998';
+                        particles.style.pointerEvents = 'none';
+                        document.body.appendChild(particles);
+                        
+                        // Créer des particules d'explosion
+                        for (let i = 0; i < 50; i++) {
+                            const particle = document.createElement('div');
+                            particle.style.position = 'absolute';
+                            particle.style.width = '6px';
+                            particle.style.height = '6px';
+                            particle.style.background = 'white';
+                            particle.style.borderRadius = '50%';
+                            particle.style.top = '50%';
+                            particle.style.left = '50%';
+                            particle.style.opacity = '0.8';
+                            
+                            const angle = Math.random() * Math.PI * 2;
+                            const distance = 100 + Math.random() * 200;
+                            const duration = 0.5 + Math.random() * 0.5;
+                            
+                            particle.style.animation = `explode ${duration}s ease-out forwards`;
+                            particle.style.setProperty('--end-x', `${Math.cos(angle) * distance}px`);
+                            particle.style.setProperty('--end-y', `${Math.sin(angle) * distance}px`);
+                            
+                            particles.appendChild(particle);
+                        }
+                        
+                        // Supprimer l'écran de chargement après l'animation
+                        setTimeout(function() {
+                            loadingScreen.style.display = 'none';
+                            particles.remove();
+                        }, 1200);
+                    }, 500);
+                }
+            }, 100);
+        });
+
+        // Ajouter l'animation d'explosion au CSS
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes explode {
+                0% {
+                    transform: translate(0, 0);
+                    opacity: 0.8;
+                }
+                100% {
+                    transform: translate(var(--end-x), var(--end-y));
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Mobile menu toggle
+        const mobileToggle = document.getElementById('mobileToggle');
+        const navLinks = document.getElementById('navLinks');
+        const header = document.getElementById('mainHeader');
+        let lastScrollTop = 0;
+
+        mobileToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            
+            // Change icon
+            const icon = mobileToggle.querySelector('i');
+            if (navLinks.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+
+        // Hide/show header on scroll
+        window.addEventListener('scroll', function() {
+            let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            
+            if (scrollTop > lastScrollTop && scrollTop > 100) {
+                // Scrolling down
+                header.classList.add('hidden');
+            } else {
+                // Scrolling up
+                header.classList.remove('hidden');
+            }
+            
+            lastScrollTop = scrollTop;
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    // Close mobile menu if open
+                    if (navLinks.classList.contains('active')) {
+                        navLinks.classList.remove('active');
+                        const icon = mobileToggle.querySelector('i');
+                        icon.classList.remove('fa-times');
+                        icon.classList.add('fa-bars');
+                    }
+                    
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // WhatsApp message enhancement
+        document.querySelectorAll('.btn-whatsapp, .whatsapp-float, .nav-cta').forEach(button => {
+            button.addEventListener('click', function(e) {
+                if (this.getAttribute('href') && this.getAttribute('href').includes('wa.me')) {
+                    // Optional: Track WhatsApp clicks
+                    console.log('WhatsApp booking clicked');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
