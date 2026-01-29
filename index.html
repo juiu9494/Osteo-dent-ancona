@@ -3529,6 +3529,147 @@
                 }
             }, 100);
         });
+        // Gallery Carousel
+function initGalleryCarousel() {
+    const track = document.querySelector('.carousel-track');
+    const slides = Array.from(track.children);
+    const nextButton = document.querySelector('.next-btn');
+    const prevButton = document.querySelector('.prev-btn');
+    const dots = document.querySelectorAll('.carousel-dots .dot');
+    const playPauseBtn = document.getElementById('playPauseBtn');
+    const controlText = document.querySelector('.control-text');
+    
+    let currentSlide = 0;
+    let autoPlayInterval;
+    let isPlaying = true;
+    const slideInterval = 4000; // 4 secondes
+    
+    // Set initial slide positions
+    slides.forEach((slide, index) => {
+        slide.style.transform = `translateX(${index * 100}%)`;
+    });
+    
+    // Move to specific slide
+    function moveToSlide(slideIndex) {
+        track.style.transform = `translateX(-${slideIndex * 100}%)`;
+        currentSlide = slideIndex;
+        
+        // Update active dot
+        dots.forEach(dot => dot.classList.remove('active'));
+        dots[slideIndex].classList.add('active');
+    }
+    
+    // Next slide
+    function nextSlide() {
+        const nextIndex = currentSlide === slides.length - 1 ? 0 : currentSlide + 1;
+        moveToSlide(nextIndex);
+    }
+    
+    // Previous slide
+    function prevSlide() {
+        const prevIndex = currentSlide === 0 ? slides.length - 1 : currentSlide - 1;
+        moveToSlide(prevIndex);
+    }
+    
+    // Start auto-play
+    function startAutoPlay() {
+        autoPlayInterval = setInterval(nextSlide, slideInterval);
+        isPlaying = true;
+        playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
+        controlText.textContent = 'Auto-scorrimento attivo';
+    }
+    
+    // Pause auto-play
+    function pauseAutoPlay() {
+        clearInterval(autoPlayInterval);
+        isPlaying = false;
+        playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
+        controlText.textContent = 'Auto-scorrimento in pausa';
+    }
+    
+    // Event listeners
+    nextButton.addEventListener('click', () => {
+        nextSlide();
+        if (isPlaying) {
+            pauseAutoPlay();
+            setTimeout(startAutoPlay, 10000); // Restart after 10 seconds
+        }
+    });
+    
+    prevButton.addEventListener('click', () => {
+        prevSlide();
+        if (isPlaying) {
+            pauseAutoPlay();
+            setTimeout(startAutoPlay, 10000); // Restart after 10 seconds
+        }
+    });
+    
+    // Dots navigation
+    dots.forEach((dot, index) => {
+        dot.addEventListener('click', () => {
+            moveToSlide(index);
+            if (isPlaying) {
+                pauseAutoPlay();
+                setTimeout(startAutoPlay, 10000); // Restart after 10 seconds
+            }
+        });
+    });
+    
+    // Play/Pause button
+    playPauseBtn.addEventListener('click', () => {
+        if (isPlaying) {
+            pauseAutoPlay();
+        } else {
+            startAutoPlay();
+        }
+    });
+    
+    // Pause on hover
+    track.addEventListener('mouseenter', pauseAutoPlay);
+    track.addEventListener('mouseleave', () => {
+        if (isPlaying) {
+            startAutoPlay();
+        }
+    });
+    
+    // Touch/swipe support for mobile
+    let touchStartX = 0;
+    let touchEndX = 0;
+    
+    track.addEventListener('touchstart', e => {
+        touchStartX = e.changedTouches[0].screenX;
+        if (isPlaying) pauseAutoPlay();
+    });
+    
+    track.addEventListener('touchend', e => {
+        touchEndX = e.changedTouches[0].screenX;
+        handleSwipe();
+        if (isPlaying) {
+            setTimeout(startAutoPlay, 5000);
+        }
+    });
+    
+    function handleSwipe() {
+        const swipeThreshold = 50;
+        const diff = touchStartX - touchEndX;
+        
+        if (Math.abs(diff) > swipeThreshold) {
+            if (diff > 0) {
+                // Swipe left - next
+                nextSlide();
+            } else {
+                // Swipe right - previous
+                prevSlide();
+            }
+        }
+    }
+    
+    // Start auto-play initially
+    startAutoPlay();
+}
+
+// Initialize carousel when page loads
+document.addEventListener('DOMContentLoaded', initGalleryCarousel);
 
         // Ajouter l'animation d'explosion au CSS
         const style = document.createElement('style');
