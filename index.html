@@ -2185,6 +2185,95 @@
         .review-card:hover {
             transform: translateY(-10px);
         }
+        /* Map Section */
+.map-section {
+    padding: 80px 0;
+    background-color: white;
+}
+
+.map-container {
+    width: 100%;
+    height: 450px;
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    margin-bottom: 30px;
+}
+
+.map-container iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+.map-info {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.map-info-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    padding: 25px;
+    background: var(--secondary);
+    border-radius: var(--radius);
+    transition: all 0.3s ease;
+}
+
+.map-info-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.map-info-item i {
+    background-color: var(--primary);
+    color: white;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    flex-shrink: 0;
+}
+
+.map-info-item h4 {
+    font-size: 1.2rem;
+    margin-bottom: 8px;
+    color: var(--dark);
+}
+
+.map-info-item p {
+    color: var(--text);
+    line-height: 1.5;
+}
+
+/* Responsive pour la map */
+@media (max-width: 768px) {
+    .map-container {
+        height: 350px;
+    }
+    
+    .map-info {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 576px) {
+    .map-container {
+        height: 300px;
+    }
+    
+    .map-info-item {
+        flex-direction: column;
+        text-align: center;
+        align-items: center;
+    }
+}
     </style>
 </head>
 <body>
@@ -3016,7 +3105,39 @@
             </div>
         </div>
     </section>
-
+    <!-- Map Section -->
+<section class="map-section">
+    <div class="container">
+        <div class="section-title">
+            <h2>Dove Siamo</h2>
+            <p>Trovaci facilmente nella nostra posizione centrale ad Ancona</p>
+        </div>
+        <div class="map-container">
+            <iframe 
+                src="https://www.google.com/maps/embed?pb=!4v1769706840366!6m8!1m7!1se46ZYP6G0YTQgfIQLqofqg!2m2!1d43.6071116568084!2d13.51139420578692!3f187.10753396098053!4f3.200941769841563!5f0.7820865974627469"
+                allowfullscreen
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+        </div>
+        <div class="map-info">
+            <div class="map-info-item">
+                <i class="fas fa-map-marker-alt"></i>
+                <div>
+                    <h4>Indirizzo</h4>
+                    <p>Via Martiri della Resistenza 10, 60125 Ancona</p>
+                </div>
+            </div>
+            <div class="map-info-item">
+                <i class="fas fa-directions"></i>
+                <div>
+                    <h4>Come Raggiungerci</h4>
+                    <p>Parcheggio disponibile nelle vicinanze. Accessibile con mezzi pubblici.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    </section>
     <!-- Footer -->
     <footer>
         <div class="container">
