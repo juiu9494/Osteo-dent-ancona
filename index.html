@@ -1575,64 +1575,307 @@
             margin-bottom: 15px;
         }
 
-        /* Gallery Section */
+        /* Gallery Section - NOUVELLE VERSION STYLÉE */
         .gallery {
             padding: 100px 0;
             background-color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .gallery::before {
+            content: '';
+            position: absolute;
+            top: -100px;
+            left: -100px;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(14, 165, 233, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            z-index: 1;
+        }
+
+        .gallery::after {
+            content: '';
+            position: absolute;
+            bottom: -100px;
+            right: -100px;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(16, 185, 129, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            z-index: 1;
         }
 
         .gallery-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
+            position: relative;
+            z-index: 2;
         }
 
         .gallery-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
             margin-top: 40px;
         }
 
+        /* Nouveau design de galerie */
         .gallery-item {
-            border-radius: var(--radius);
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            transition: all 0.3s;
             position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            aspect-ratio: 4/3;
+            background: var(--dark);
+            cursor: pointer;
+            transform: translateY(30px);
+            opacity: 0;
+            animation: galleryItemAppear 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+
+        .gallery-item:nth-child(1) { animation-delay: 0.1s; }
+        .gallery-item:nth-child(2) { animation-delay: 0.2s; }
+        .gallery-item:nth-child(3) { animation-delay: 0.3s; }
+        .gallery-item:nth-child(4) { animation-delay: 0.4s; }
+
+        @keyframes galleryItemAppear {
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
         }
 
         .gallery-item:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            transform: translateY(-15px) scale(1.03);
+            box-shadow: 0 25px 60px rgba(14, 165, 233, 0.25);
         }
 
-        .gallery-item img {
+        .gallery-image {
             width: 100%;
-            height: 300px;
+            height: 100%;
             object-fit: cover;
             display: block;
-            transition: transform 0.5s;
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            filter: brightness(0.9);
         }
 
-        .gallery-item:hover img {
-            transform: scale(1.1);
+        .gallery-item:hover .gallery-image {
+            transform: scale(1.15);
+            filter: brightness(1);
         }
 
-        .gallery-caption {
+        .gallery-overlay {
             position: absolute;
-            bottom: 0;
+            top: 0;
             left: 0;
             right: 0;
-            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
-            color: white;
-            padding: 20px;
-            transform: translateY(100%);
-            transition: transform 0.3s;
+            bottom: 0;
+            background: linear-gradient(to bottom, 
+                transparent 0%,
+                transparent 60%,
+                rgba(0, 0, 0, 0.9) 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 30px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        .gallery-item:hover .gallery-caption {
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
             transform: translateY(0);
+        }
+
+        .gallery-icon {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            font-size: 1.5rem;
+            transform: scale(0);
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            z-index: 10;
+        }
+
+        .gallery-item:hover .gallery-icon {
+            transform: scale(1);
+        }
+
+        .gallery-icon:hover {
+            background: var(--primary);
+            color: white;
+            transform: scale(1.1) rotate(90deg);
+        }
+
+        .gallery-content {
+            transform: translateY(100%);
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1) 0.2s;
+        }
+
+        .gallery-item:hover .gallery-content {
+            transform: translateY(0);
+        }
+
+        .gallery-content h3 {
+            font-size: 1.8rem;
+            color: white;
+            margin-bottom: 10px;
+            font-weight: 700;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .gallery-content p {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1rem;
+            line-height: 1.5;
+            margin-bottom: 15px;
+        }
+
+        .gallery-tag {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        /* Gallery Modal */
+        .gallery-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            backdrop-filter: blur(10px);
+        }
+
+        .gallery-modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-container {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+            width: auto;
+            height: auto;
+        }
+
+        .modal-image {
+            max-width: 100%;
+            max-height: 80vh;
+            object-fit: contain;
+            border-radius: 10px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+            transform: scale(0.9);
+            opacity: 0;
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .gallery-modal.active .modal-image {
+            transform: scale(1);
+            opacity: 1;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: -40px;
+            right: -40px;
+            width: 50px;
+            height: 50px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: var(--dark);
+            cursor: pointer;
+            transition: all 0.3s;
+            border: none;
+            z-index: 10;
+        }
+
+        .modal-close:hover {
+            background: var(--primary);
+            color: white;
+            transform: rotate(90deg);
+        }
+
+        .modal-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.9);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            color: var(--dark);
+            cursor: pointer;
+            transition: all 0.3s;
+            border: none;
+            z-index: 10;
+        }
+
+        .modal-nav:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .modal-prev {
+            left: -80px;
+        }
+
+        .modal-next {
+            right: -80px;
+        }
+
+        .modal-info {
+            position: absolute;
+            bottom: -60px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            color: white;
+            padding: 15px;
+        }
+
+        .modal-info h3 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            color: white;
+        }
+
+        .modal-info p {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1.1rem;
         }
 
         /* Contact & WhatsApp Booking */
@@ -1879,6 +2122,11 @@
             .member-image-container {
                 height: 400px;
             }
+            
+            /* Gallery responsive */
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
 
         @media (max-width: 992px) {
@@ -1904,10 +2152,6 @@
                 grid-template-columns: repeat(2, 1fr);
             }
             
-            .gallery-grid {
-                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            }
-            
             /* MODIFICATION pour responsive */
             .member-image-container {
                 height: 350px;
@@ -1921,6 +2165,34 @@
             .reviews-summary {
                 grid-template-columns: 1fr;
                 text-align: center;
+            }
+            
+            /* Gallery responsive */
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+            
+            .modal-nav {
+                width: 50px;
+                height: 50px;
+                font-size: 1.5rem;
+            }
+            
+            .modal-prev {
+                left: -60px;
+            }
+            
+            .modal-next {
+                right: -60px;
+            }
+            
+            .modal-close {
+                top: -30px;
+                right: -30px;
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
             }
         }
 
@@ -2015,6 +2287,31 @@
             .reviewer-info {
                 width: 100%;
             }
+            
+            /* Gallery responsive */
+            .modal-nav {
+                position: fixed;
+                top: auto;
+                bottom: 20px;
+                transform: none;
+            }
+            
+            .modal-prev {
+                left: 20px;
+            }
+            
+            .modal-next {
+                right: 20px;
+            }
+            
+            .modal-close {
+                top: 20px;
+                right: 20px;
+            }
+            
+            .modal-info {
+                bottom: 80px;
+            }
         }
         
         @media (max-width: 576px) {
@@ -2106,6 +2403,50 @@
             .rating-badge {
                 padding: 6px 12px;
                 font-size: 1rem;
+            }
+            
+            /* Gallery responsive */
+            .gallery-item {
+                aspect-ratio: 3/2;
+            }
+            
+            .gallery-overlay {
+                padding: 20px;
+            }
+            
+            .gallery-content h3 {
+                font-size: 1.4rem;
+            }
+            
+            .gallery-content p {
+                font-size: 0.9rem;
+            }
+            
+            .modal-container {
+                max-width: 95%;
+            }
+            
+            .modal-nav {
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
+                bottom: 10px;
+            }
+            
+            .modal-prev {
+                left: 10px;
+            }
+            
+            .modal-next {
+                right: 10px;
+            }
+            
+            .modal-info h3 {
+                font-size: 1.4rem;
+            }
+            
+            .modal-info p {
+                font-size: 0.9rem;
             }
         }
         
@@ -2206,173 +2547,6 @@
             background-color: white;
         }
         
-        /* Gallery Carousel Styles */
-        .gallery-carousel {
-            position: relative;
-            max-width: 900px;
-            margin: 40px auto;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-        }
-
-        .carousel-track-container {
-            overflow: hidden;
-            border-radius: 20px;
-            position: relative;
-        }
-
-        .carousel-track {
-            display: flex;
-            transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-            height: 500px;
-        }
-
-        .carousel-slide {
-            min-width: 100%;
-            position: relative;
-            height: 100%;
-        }
-
-        .carousel-slide img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-        }
-
-        .carousel-slide .gallery-caption {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
-            color: white;
-            padding: 25px 30px;
-            transform: translateY(0);
-            opacity: 1;
-        }
-
-        .carousel-slide .gallery-caption h3 {
-            font-size: 1.8rem;
-            margin-bottom: 8px;
-            color: white;
-        }
-
-        .carousel-slide .gallery-caption p {
-            color: rgba(255, 255, 255, 0.9);
-            font-size: 1rem;
-        }
-
-        /* Navigation Buttons */
-        .carousel-btn {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(255, 255, 255, 0.9);
-            border: none;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            z-index: 10;
-            transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-            color: var(--primary);
-            font-size: 1.2rem;
-        }
-
-        .carousel-btn:hover {
-            background: white;
-            transform: translateY(-50%) scale(1.1);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-        }
-
-        .prev-btn {
-            left: 20px;
-        }
-
-        .next-btn {
-            right: 20px;
-        }
-
-        /* Dots Navigation */
-        .carousel-dots {
-            position: absolute;
-            bottom: 20px;
-            left: 0;
-            right: 0;
-            display: flex;
-            justify-content: center;
-            gap: 12px;
-            z-index: 10;
-        }
-
-        .carousel-dots .dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.5);
-            border: 2px solid rgba(255, 255, 255, 0.8);
-            cursor: pointer;
-            transition: all 0.3s ease;
-            padding: 0;
-        }
-
-        .carousel-dots .dot.active {
-            background: white;
-            transform: scale(1.2);
-            border-color: var(--primary);
-        }
-
-        .carousel-dots .dot:hover {
-            background: white;
-            transform: scale(1.1);
-        }
-
-        /* Auto-play Controls */
-        .carousel-controls {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            background: rgba(0, 0, 0, 0.6);
-            padding: 8px 15px;
-            border-radius: 50px;
-            z-index: 10;
-            backdrop-filter: blur(5px);
-        }
-
-        .control-btn {
-            background: transparent;
-            border: none;
-            color: white;
-            cursor: pointer;
-            font-size: 1rem;
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: background 0.3s;
-        }
-
-        .control-btn:hover {
-            background: rgba(255, 255, 255, 0.2);
-        }
-
-        .control-text {
-            color: white;
-            font-size: 0.8rem;
-            white-space: nowrap;
-        }
-        
         .map-container {
             width: 100%;
             height: 450px;
@@ -2434,48 +2608,10 @@
             line-height: 1.5;
         }
 
-        /* Responsive pour la map et carousel */
-        @media (max-width: 992px) {
-            .carousel-track {
-                height: 400px;
-            }
-            
-            .gallery-carousel {
-                max-width: 95%;
-            }
-        }
-
+        /* Responsive pour la map */
         @media (max-width: 768px) {
             .map-container {
                 height: 350px;
-            }
-            
-            .carousel-track {
-                height: 350px;
-            }
-            
-            .carousel-slide .gallery-caption {
-                padding: 15px 20px;
-            }
-            
-            .carousel-slide .gallery-caption h3 {
-                font-size: 1.4rem;
-            }
-            
-            .carousel-btn {
-                width: 40px;
-                height: 40px;
-                font-size: 1rem;
-            }
-            
-            .carousel-controls {
-                top: 10px;
-                right: 10px;
-                padding: 6px 12px;
-            }
-            
-            .control-text {
-                font-size: 0.7rem;
             }
             
             .map-info {
@@ -2486,26 +2622,6 @@
         @media (max-width: 576px) {
             .map-container {
                 height: 300px;
-            }
-            
-            .carousel-track {
-                height: 300px;
-            }
-            
-            .carousel-slide .gallery-caption h3 {
-                font-size: 1.2rem;
-            }
-            
-            .carousel-slide .gallery-caption p {
-                font-size: 0.9rem;
-            }
-            
-            .control-text {
-                display: none;
-            }
-            
-            .carousel-controls {
-                padding: 8px;
             }
             
             .map-info-item {
@@ -2826,65 +2942,96 @@
         </div>
     </section>
 
-    <!-- Gallery Section -->
+    <!-- NOUVELLE GALERIE STYLÉE -->
     <section class="gallery" id="gallery">
-        <div class="gallery-container">
+        <div class="container gallery-container">
             <div class="section-title">
                 <h2>Galleria del Nostro Studio</h2>
                 <p>Scopri il nostro ambiente moderno e accogliente, progettato per offrirti il massimo comfort durante le tue visite.</p>
             </div>
             
-            <!-- Carousel Container -->
-            <div class="gallery-carousel">
-                <div class="carousel-track-container">
-                    <div class="carousel-track">
-                        <div class="carousel-slide active">
-                            <img src="entre1.jpg" alt="Vista panoramica dello studio">
-                            <div class="gallery-caption">
-                                <h3>Sala Operatoria Moderna</h3>
-                                <p>Ambiente sterile e tecnologicamente avanzato</p>
-                            </div>
-                        </div>
-                        
-                        <div class="carousel-slide">
-                            <img src="entre2.jpg" width="100px">
-                            </div>
-                        </div>
-                        
-                        <div class="carousel-slide">
-                            <img src="entre3.jpg" width="100px">
-                            </div>
-                        </div>
-                        
-                        <div class="carousel-slide">
-                            <img src="entre4.jpg" width="100px">
-                            </div>
+            <div class="gallery-grid">
+                <!-- Image 1 -->
+                <div class="gallery-item" data-index="0">
+                    <img src="entre1.jpg" alt="Sala Operatoria Moderna" class="gallery-image">
+                    <div class="gallery-icon">
+                        <i class="fas fa-expand-alt"></i>
+                    </div>
+                    <div class="gallery-overlay">
+                        <div class="gallery-content">
+                            <h3>Sala Operatoria Moderna</h3>
+                            <p>Ambiente sterile e tecnologicamente avanzato con attrezzature all'avanguardia per trattamenti precisi e confortevoli.</p>
+                            <span class="gallery-tag">Area Trattamenti</span>
                         </div>
                     </div>
                 </div>
                 
-                <!-- Navigation Buttons -->
-                <button class="carousel-btn prev-btn">
-                    <i class="fas fa-chevron-left"></i>
-                </button>
-                <button class="carousel-btn next-btn">
-                    <i class="fas fa-chevron-right"></i>
-                </button>
-                
-                <!-- Dots Navigation -->
-                <div class="carousel-dots">
-                    <button class="dot active" data-slide="0"></button>
-                    <button class="dot" data-slide="1"></button>
-                    <button class="dot" data-slide="2"></button>
-                    <button class="dot" data-slide="3"></button>
+                <!-- Image 2 -->
+                <div class="gallery-item" data-index="1">
+                    <img src="entre2.jpg" alt="Sala d'attesa moderna" class="gallery-image">
+                    <div class="gallery-icon">
+                        <i class="fas fa-expand-alt"></i>
+                    </div>
+                    <div class="gallery-overlay">
+                        <div class="gallery-content">
+                            <h3>Sala d'Attesa Accogliente</h3>
+                            <p>Design moderno e comfort ottimale per rilassarsi prima della visita. Spazio luminoso e confortevole.</p>
+                            <span class="gallery-tag">Area Accoglienza</span>
+                        </div>
+                    </div>
                 </div>
                 
-                <!-- Auto-play controls -->
-                <div class="carousel-controls">
-                    <button class="control-btn" id="playPauseBtn">
-                        <i class="fas fa-pause"></i>
-                    </button>
-                    <span class="control-text"></span>
+                <!-- Image 3 -->
+                <div class="gallery-item" data-index="2">
+                    <img src="entre3.jpg" alt="Area reception" class="gallery-image">
+                    <div class="gallery-icon">
+                        <i class="fas fa-expand-alt"></i>
+                    </div>
+                    <div class="gallery-overlay">
+                        <div class="gallery-content">
+                            <h3>Area Reception Professionale</h3>
+                            <p>Accoglienza cordiale e organizzazione efficiente per garantirti un'esperienza senza stress dall'arrivo alla partenza.</p>
+                            <span class="gallery-tag">Reception</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Image 4 -->
+                <div class="gallery-item" data-index="3">
+                    <img src="entre4.jpg" alt="Spazio relax" class="gallery-image">
+                    <div class="gallery-icon">
+                        <i class="fas fa-expand-alt"></i>
+                    </div>
+                    <div class="gallery-overlay">
+                        <div class="gallery-content">
+                            <h3>Spazio Relax</h3>
+                            <p>Ambiente sereno e rilassante dove trovare tranquillità prima del trattamento. Design curato per il massimo benessere.</p>
+                            <span class="gallery-tag">Area Relax</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Modal pour les images en grand -->
+        <div class="gallery-modal" id="galleryModal">
+            <button class="modal-close" id="modalClose">
+                <i class="fas fa-times"></i>
+            </button>
+            
+            <button class="modal-nav modal-prev" id="modalPrev">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            
+            <button class="modal-nav modal-next" id="modalNext">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+            
+            <div class="modal-container">
+                <img class="modal-image" id="modalImage" src="" alt="">
+                <div class="modal-info">
+                    <h3 id="modalTitle"></h3>
+                    <p id="modalDescription"></p>
                 </div>
             </div>
         </div>
@@ -3005,7 +3152,7 @@
                             <span class="specialty-tag">Posturologia</span>
                             <span class="specialty-tag">Equilibrio</span>
                         </div>
-                        <p class="member-description">Osteopata professionista dedicato al benessere e all'equilibrio del corpo. Specializzato in approcci integrati per la salute orale e sistemica.</p>
+                        <p class="member-description">Osteopata professionista dedicato al benessere e all'equilibrio del corps. Specializzato in approcci integrati per la salute orale e sistemica.</p>
                         <div class="member-stats">
                             <div class="stat">
                                 <span class="stat-number"></span>
@@ -3035,7 +3182,7 @@
                             <span class="specialty-tag">Igiene Orale</span>
                             <span class="specialty-tag">Sbiancamento</span>
                         </div>
-                        <p class="member-description">Specializzata in prevenzione e igiene orale con approccio delicato e personalizzato. Esperta in tecniche di pulizia professionale e mantenimento della salute dentale.</p>
+                        <p class="member-description">Specializzata in prevenzione e igiene orale con approccio delicato e personalizzato. Experta in tecniche di pulizia professionale e mantenimento della salute dentale.</p>
                         <div class="member-stats">
                             <div class="stat">
                                 <span class="stat-number"></span>
@@ -3097,7 +3244,7 @@
             <div class="team-philosophy">
                 <div class="philosophy-content">
                     <h3><i class="fas fa-star"></i> La Nostra Filosofia di Team</h3>
-                    <p>Crediamo nella forza della collaborazione e nella sinergia tra diverse competenze professionali. Ogni membro del nostro team contribuisce con la propria esperienza e passione per offrire un servizio odontoiatrico completo, che considera non solo la salute orale ma anche il benessere generale del paziente.</p>
+                    <p>Crediamo nella forza della collaboratione e nella sinergia tra diverse competenze professionali. Ogni membro del nostro team contribuisce con la propria esperienza e passione per offrire un servizio odontoiatrico completo, che considera non solo la salute orale ma anche il benessere generale del paziente.</p>
                     <p>L'integrazione dell'osteopatia nel percorso di cura rappresenta il nostro approccio innovativo verso una medicina sempre più orientata alla persona nella sua totalità.</p>
                 </div>
                 <div class="philosophy-image">
@@ -3537,124 +3684,115 @@
             }, 100);
         });
         
-        // Gallery Carousel
-        function initGalleryCarousel() {
-            const track = document.querySelector('.carousel-track');
-            const slides = Array.from(track.children);
-            const nextButton = document.querySelector('.next-btn');
-            const prevButton = document.querySelector('.prev-btn');
-            const dots = document.querySelectorAll('.carousel-dots .dot');
-            const playPauseBtn = document.getElementById('playPauseBtn');
-            const controlText = document.querySelector('.control-text');
+        // Gallery Modal System
+        function initGallery() {
+            const galleryItems = document.querySelectorAll('.gallery-item');
+            const modal = document.getElementById('galleryModal');
+            const modalImage = document.getElementById('modalImage');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalDescription = document.getElementById('modalDescription');
+            const modalClose = document.getElementById('modalClose');
+            const modalPrev = document.getElementById('modalPrev');
+            const modalNext = document.getElementById('modalNext');
             
-            let currentSlide = 0;
-            let autoPlayInterval;
-            let isPlaying = true;
-            const slideInterval = 4000; // 4 secondes
+            let currentIndex = 0;
             
-            // Set initial slide positions
-            slides.forEach((slide, index) => {
-                slide.style.transform = `translateX(${index * 100}%)`;
-            });
-            
-            // Move to specific slide
-            function moveToSlide(slideIndex) {
-                track.style.transform = `translateX(-${slideIndex * 100}%)`;
-                currentSlide = slideIndex;
-                
-                // Update active dot
-                dots.forEach(dot => dot.classList.remove('active'));
-                dots[slideIndex].classList.add('active');
-            }
-            
-            // Next slide
-            function nextSlide() {
-                const nextIndex = currentSlide === slides.length - 1 ? 0 : currentSlide + 1;
-                moveToSlide(nextIndex);
-            }
-            
-            // Previous slide
-            function prevSlide() {
-                const prevIndex = currentSlide === 0 ? slides.length - 1 : currentSlide - 1;
-                moveToSlide(prevIndex);
-            }
-            
-            // Start auto-play
-            function startAutoPlay() {
-                autoPlayInterval = setInterval(nextSlide, slideInterval);
-                isPlaying = true;
-                playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
-                controlText.textContent = 'Auto-scorrimento attivo';
-            }
-            
-            // Pause auto-play
-            function pauseAutoPlay() {
-                clearInterval(autoPlayInterval);
-                isPlaying = false;
-                playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
-                controlText.textContent = 'Auto-scorrimento in pausa';
-            }
-            
-            // Event listeners
-            nextButton.addEventListener('click', () => {
-                nextSlide();
-                if (isPlaying) {
-                    pauseAutoPlay();
-                    setTimeout(startAutoPlay, 10000); // Restart after 10 seconds
+            // Données des images
+            const galleryData = [
+                {
+                    src: 'entre1.jpg',
+                    title: 'Sala Operatoria Moderna',
+                    description: 'Ambiente sterile e tecnologicamente avanzato con attrezzature all\'avanguardia per trattamenti precisi e confortevoli.'
+                },
+                {
+                    src: 'entre2.jpg',
+                    title: 'Sala d\'Attesa Accogliente',
+                    description: 'Design moderno e comfort ottimale per rilassarsi prima della visita. Spazio luminoso e confortevole.'
+                },
+                {
+                    src: 'entre3.jpg',
+                    title: 'Area Reception Professionale',
+                    description: 'Accoglienza cordiale e organizzazione efficiente per garantirti un\'esperienza senza stress dall\'arrivo alla partenza.'
+                },
+                {
+                    src: 'entre4.jpg',
+                    title: 'Spazio Relax',
+                    description: 'Ambiente sereno e rilassante dove trovare tranquillità prima del trattamento. Design curato per il massimo benessere.'
                 }
-            });
+            ];
             
-            prevButton.addEventListener('click', () => {
-                prevSlide();
-                if (isPlaying) {
-                    pauseAutoPlay();
-                    setTimeout(startAutoPlay, 10000); // Restart after 10 seconds
-                }
-            });
-            
-            // Dots navigation
-            dots.forEach((dot, index) => {
-                dot.addEventListener('click', () => {
-                    moveToSlide(index);
-                    if (isPlaying) {
-                        pauseAutoPlay();
-                        setTimeout(startAutoPlay, 10000); // Restart after 10 seconds
-                    }
+            // Ouvrir la modal
+            galleryItems.forEach((item, index) => {
+                item.addEventListener('click', () => {
+                    currentIndex = index;
+                    openModal();
                 });
             });
             
-            // Play/Pause button
-            playPauseBtn.addEventListener('click', () => {
-                if (isPlaying) {
-                    pauseAutoPlay();
-                } else {
-                    startAutoPlay();
-                }
+            function openModal() {
+                const data = galleryData[currentIndex];
+                modalImage.src = data.src;
+                modalImage.alt = data.title;
+                modalTitle.textContent = data.title;
+                modalDescription.textContent = data.description;
+                
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+                
+                // Animation d'entrée
+                setTimeout(() => {
+                    modalImage.style.transform = 'scale(1)';
+                    modalImage.style.opacity = '1';
+                }, 50);
+            }
+            
+            function closeModal() {
+                modal.classList.remove('active');
+                document.body.style.overflow = 'auto';
+                modalImage.style.transform = 'scale(0.9)';
+                modalImage.style.opacity = '0';
+            }
+            
+            function showNext() {
+                currentIndex = (currentIndex + 1) % galleryData.length;
+                openModal();
+            }
+            
+            function showPrev() {
+                currentIndex = (currentIndex - 1 + galleryData.length) % galleryData.length;
+                openModal();
+            }
+            
+            // Événements
+            modalClose.addEventListener('click', closeModal);
+            modalNext.addEventListener('click', showNext);
+            modalPrev.addEventListener('click', showPrev);
+            
+            // Fermer avec ESC
+            document.addEventListener('keydown', (e) => {
+                if (!modal.classList.contains('active')) return;
+                
+                if (e.key === 'Escape') closeModal();
+                if (e.key === 'ArrowRight') showNext();
+                if (e.key === 'ArrowLeft') showPrev();
             });
             
-            // Pause on hover
-            track.addEventListener('mouseenter', pauseAutoPlay);
-            track.addEventListener('mouseleave', () => {
-                if (isPlaying) {
-                    startAutoPlay();
-                }
+            // Fermer en cliquant sur l'arrière-plan
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) closeModal();
             });
             
-            // Touch/swipe support for mobile
+            // Navigation tactile
             let touchStartX = 0;
             let touchEndX = 0;
             
-            track.addEventListener('touchstart', e => {
+            modal.addEventListener('touchstart', (e) => {
                 touchStartX = e.changedTouches[0].screenX;
-                if (isPlaying) pauseAutoPlay();
             });
             
-            track.addEventListener('touchend', e => {
+            modal.addEventListener('touchend', (e) => {
                 touchEndX = e.changedTouches[0].screenX;
                 handleSwipe();
-                if (isPlaying) {
-                    setTimeout(startAutoPlay, 5000);
-                }
             });
             
             function handleSwipe() {
@@ -3663,21 +3801,18 @@
                 
                 if (Math.abs(diff) > swipeThreshold) {
                     if (diff > 0) {
-                        // Swipe left - next
-                        nextSlide();
+                        // Swipe gauche - suivant
+                        showNext();
                     } else {
-                        // Swipe right - previous
-                        prevSlide();
+                        // Swipe droite - précédent
+                        showPrev();
                     }
                 }
             }
-            
-            // Start auto-play initially
-            startAutoPlay();
         }
 
-        // Initialize carousel when page loads
-        document.addEventListener('DOMContentLoaded', initGalleryCarousel);
+        // Initialize gallery
+        document.addEventListener('DOMContentLoaded', initGallery);
 
         // Ajouter l'animation d'explosion au CSS
         const style = document.createElement('style');
