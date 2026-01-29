@@ -2190,7 +2190,236 @@
     padding: 80px 0;
     background-color: white;
 }
+/* Slide Auto */ 
+/* Gallery Carousel Styles */
+.gallery-carousel {
+    position: relative;
+    max-width: 900px;
+    margin: 40px auto;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
 
+.carousel-track-container {
+    overflow: hidden;
+    border-radius: 20px;
+    position: relative;
+}
+
+.carousel-track {
+    display: flex;
+    transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    height: 500px;
+}
+
+.carousel-slide {
+    min-width: 100%;
+    position: relative;
+    height: 100%;
+}
+
+.carousel-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.carousel-slide .gallery-caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+    color: white;
+    padding: 25px 30px;
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.carousel-slide .gallery-caption h3 {
+    font-size: 1.8rem;
+    margin-bottom: 8px;
+    color: white;
+}
+
+.carousel-slide .gallery-caption p {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 1rem;
+}
+
+/* Navigation Buttons */
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.9);
+    border: none;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 10;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    color: var(--primary);
+    font-size: 1.2rem;
+}
+
+.carousel-btn:hover {
+    background: white;
+    transform: translateY(-50%) scale(1.1);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.prev-btn {
+    left: 20px;
+}
+
+.next-btn {
+    right: 20px;
+}
+
+/* Dots Navigation */
+.carousel-dots {
+    position: absolute;
+    bottom: 20px;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    z-index: 10;
+}
+
+.carousel-dots .dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.5);
+    border: 2px solid rgba(255, 255, 255, 0.8);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    padding: 0;
+}
+
+.carousel-dots .dot.active {
+    background: white;
+    transform: scale(1.2);
+    border-color: var(--primary);
+}
+
+.carousel-dots .dot:hover {
+    background: white;
+    transform: scale(1.1);
+}
+
+/* Auto-play Controls */
+.carousel-controls {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(0, 0, 0, 0.6);
+    padding: 8px 15px;
+    border-radius: 50px;
+    z-index: 10;
+    backdrop-filter: blur(5px);
+}
+
+.control-btn {
+    background: transparent;
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-size: 1rem;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s;
+}
+
+.control-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.control-text {
+    color: white;
+    font-size: 0.8rem;
+    white-space: nowrap;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+    .carousel-track {
+        height: 400px;
+    }
+    
+    .gallery-carousel {
+        max-width: 95%;
+    }
+}
+
+@media (max-width: 768px) {
+    .carousel-track {
+        height: 350px;
+    }
+    
+    .carousel-slide .gallery-caption {
+        padding: 15px 20px;
+    }
+    
+    .carousel-slide .gallery-caption h3 {
+        font-size: 1.4rem;
+    }
+    
+    .carousel-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+    }
+    
+    .carousel-controls {
+        top: 10px;
+        right: 10px;
+        padding: 6px 12px;
+    }
+    
+    .control-text {
+        font-size: 0.7rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .carousel-track {
+        height: 300px;
+    }
+    
+    .carousel-slide .gallery-caption h3 {
+        font-size: 1.2rem;
+    }
+    
+    .carousel-slide .gallery-caption p {
+        font-size: 0.9rem;
+    }
+    
+    .control-text {
+        display: none;
+    }
+    
+    .carousel-controls {
+        padding: 8px;
+    }
+}
 .map-container {
     width: 100%;
     height: 450px;
@@ -2586,43 +2815,78 @@
         </div>
     </section>
 
-    <!-- Gallery Section -->
-    <section class="gallery" id="gallery">
-        <div class="gallery-container">
-            <div class="section-title">
-                <h2>Galleria del Nostro Studio</h2>
-                <p>Scopri il nostro ambiente moderno e accogliente, progettato per offrirti il massimo comfort durante le tue visite.</p>
+<!-- Gallery Section -->
+<section class="gallery" id="gallery">
+    <div class="gallery-container">
+        <div class="section-title">
+            <h2>Galleria del Nostro Studio</h2>
+            <p>Scopri il nostro ambiente moderno e accogliente, progettato per offrirti il massimo comfort durante le tue visite.</p>
+        </div>
+        
+        <!-- Carousel Container -->
+        <div class="gallery-carousel">
+            <div class="carousel-track-container">
+                <div class="carousel-track">
+                    <div class="carousel-slide active">
+                        <img src="entre1.jpg" alt="Vista panoramica dello studio">
+                        <div class="gallery-caption">
+                            <h3>Sala Operatoria Moderna</h3>
+                            <p>Ambiente sterile e tecnologicamente avanzato</p>
+                        </div>
+                    </div>
+                    
+                    <div class="carousel-slide">
+                        <img src="entre2.jpg" alt="Sala d'attesa moderna">
+                        <div class="gallery-caption">
+                            <h3>Sala d'Attesa Accogliente</h3>
+                            <p>Design moderno per il massimo comfort</p>
+                        </div>
+                    </div>
+                    
+                    <div class="carousel-slide">
+                        <img src="entre3.jpg" alt="Sala d'attesa moderna">
+                        <div class="gallery-caption">
+                            <h3>Area Reception</h3>
+                            <p>Accoglienza professionale e cordiale</p>
+                        </div>
+                    </div>
+                    
+                    <div class="carousel-slide">
+                        <img src="entre4.jpg" alt="Sala d'attesa moderna">
+                        <div class="gallery-caption">
+                            <h3>Spazio Relax</h3>
+                            <p>Ambiente sereno prima del trattamento</p>
+                        </div>
+                    </div>
+                </div>
             </div>
             
-            <div class="gallery-grid">
-                <div class="gallery-item">
-                    <img src="entre1.jpg" alt="Vista panoramica dello studio">
-                    <div class="gallery-caption">
-                        
-                    </div>
-                </div>
-                
-                <div class="gallery-item">
-                    <img src="entre2.jpg" alt="Sala d'attesa moderna">
-                    <div class="gallery-caption">
-                       
-                    </div>
-                </div>
-                <div class="gallery-item">
-                    <img src="entre3.jpg" alt="Sala d'attesa moderna">
-                    <div class="gallery-caption">
-                       
-                    </div>
-                </div>
-                <div class="gallery-item">
-                    <img src="entre4.jpg" alt="Sala d'attesa moderna">
-                    <div class="gallery-caption">
-                       
-                    </div>
-                </div>
+            <!-- Navigation Buttons -->
+            <button class="carousel-btn prev-btn">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <button class="carousel-btn next-btn">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+            
+            <!-- Dots Navigation -->
+            <div class="carousel-dots">
+                <button class="dot active" data-slide="0"></button>
+                <button class="dot" data-slide="1"></button>
+                <button class="dot" data-slide="2"></button>
+                <button class="dot" data-slide="3"></button>
+            </div>
+            
+            <!-- Auto-play controls -->
+            <div class="carousel-controls">
+                <button class="control-btn" id="playPauseBtn">
+                    <i class="fas fa-pause"></i>
+                </button>
+                <span class="control-text">Auto-scorrimento attivo</span>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
     <!-- Team Section -->
     <section class="team-section" id="team">
