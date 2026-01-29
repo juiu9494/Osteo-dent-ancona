@@ -47,190 +47,7 @@
             padding: 0 20px;
         }
 
-        /* Section Avant/Après */
-        .before-after-section {
-            padding: 100px 0 80px;
-            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .before-after-title {
-            text-align: center;
-            margin-bottom: 60px;
-        }
-
-        .before-after-title h2 {
-            font-size: 2.8rem;
-            color: var(--dark);
-            margin-bottom: 15px;
-            position: relative;
-            display: inline-block;
-        }
-
-        .before-after-title h2:after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 4px;
-            background: linear-gradient(90deg, var(--primary), var(--success));
-            border-radius: 2px;
-        }
-
-        .before-after-title p {
-            max-width: 700px;
-            margin: 25px auto 0;
-            font-size: 1.2rem;
-            color: var(--text);
-        }
-
-        .before-after-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-            align-items: center;
-            margin-bottom: 40px;
-        }
-
-        .comparison-card {
-            background: white;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            transition: all 0.4s ease;
-            position: relative;
-        }
-
-        .comparison-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-        }
-
-        .comparison-image {
-            width: 100%;
-            height: 400px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .comparison-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.8s ease;
-        }
-
-        .comparison-card:hover .comparison-image img {
-            transform: scale(1.05);
-        }
-
-        .comparison-label {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
-            color: white;
-            padding: 25px 30px;
-        }
-
-        .comparison-label h3 {
-            font-size: 1.8rem;
-            margin-bottom: 5px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .comparison-label p {
-            opacity: 0.9;
-            font-size: 1.1rem;
-        }
-
-        .before-label h3 i {
-            color: #f43f5e;
-        }
-
-        .after-label h3 i {
-            color: var(--success);
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-        }
-
-        .comparison-stats {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            margin-top: 30px;
-        }
-
-        .stat-card {
-            background: white;
-            padding: 25px;
-            border-radius: var(--radius);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            text-align: center;
-            transition: all 0.3s;
-            border-left: 4px solid var(--primary);
-        }
-
-        .stat-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-        }
-
-        .stat-card i {
-            font-size: 2.5rem;
-            color: var(--primary);
-            margin-bottom: 15px;
-        }
-
-        .stat-number {
-            font-size: 2.2rem;
-            font-weight: 700;
-            color: var(--dark);
-            display: block;
-            margin-bottom: 5px;
-        }
-
-        .stat-text {
-            color: var(--text);
-            font-size: 1rem;
-        }
-
-        .transformation-note {
-            text-align: center;
-            background: linear-gradient(135deg, var(--secondary), #e0f2fe);
-            padding: 30px;
-            border-radius: var(--radius);
-            margin-top: 50px;
-            border-left: 5px solid var(--success);
-        }
-
-        .transformation-note h3 {
-            font-size: 1.8rem;
-            color: var(--dark);
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-        }
-
-        .transformation-note p {
-            font-size: 1.1rem;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        /* Loading Screen - Ultra Stylée */
+        /* Loading Screen */
         .loading-screen {
             position: fixed;
             top: 0;
@@ -658,6 +475,408 @@
             transform: scale(1.05);
         }
 
+        /* Section Avant/Après */
+        .before-after-section {
+            padding: 100px 0 80px;
+            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .before-after-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .before-after-title h2 {
+            font-size: 2.8rem;
+            color: var(--dark);
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .before-after-title h2:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--success));
+            border-radius: 2px;
+        }
+
+        .before-after-title p {
+            max-width: 700px;
+            margin: 25px auto 0;
+            font-size: 1.2rem;
+            color: var(--text);
+        }
+
+        .before-after-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+
+        /* CARD PRIMA */
+        .comparison-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(14, 165, 233, 0.15);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            border: 2px solid transparent;
+        }
+
+        .comparison-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 30px 80px rgba(14, 165, 233, 0.25);
+            border-color: var(--primary);
+        }
+
+        .comparison-image {
+            width: 100%;
+            height: 550px;
+            position: relative;
+            overflow: hidden;
+            border-radius: 18px 18px 0 0;
+        }
+
+        .comparison-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .comparison-card:hover .comparison-image img {
+            transform: scale(1.1);
+        }
+
+        .comparison-label {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.9));
+            color: white;
+            padding: 30px 35px;
+        }
+
+        .comparison-label h3 {
+            font-size: 2rem;
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .comparison-label p {
+            opacity: 0.95;
+            font-size: 1.2rem;
+        }
+
+        .before-label h3 i {
+            color: #f43f5e;
+        }
+
+        .after-label h3 i {
+            color: var(--success);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        /* Badge per le immagini */
+        .image-badge {
+            position: absolute;
+            top: 25px;
+            right: 25px;
+            padding: 12px 25px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.2rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            z-index: 10;
+            animation: badgePulse 2s infinite;
+        }
+
+        .before-badge {
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+            color: white;
+        }
+
+        .after-badge {
+            background: linear-gradient(135deg, var(--success), #059669);
+            color: white;
+        }
+
+        @keyframes badgePulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        /* Separatore visivo */
+        .transformation-separator {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 60px 0 80px;
+            gap: 30px;
+        }
+
+        .separator-line {
+            width: 200px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), transparent);
+        }
+
+        .separator-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--primary), var(--success));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.8rem;
+            box-shadow: 0 10px 30px rgba(14, 165, 233, 0.4);
+            animation: arrowFloat 3s infinite ease-in-out;
+        }
+
+        @keyframes arrowFloat {
+            0%, 100% { transform: translateX(0); }
+            50% { transform: translateX(20px); }
+        }
+
+        /* Dettagli delle card */
+        .comparison-details {
+            display: flex;
+            justify-content: space-around;
+            padding: 25px;
+            background: white;
+            border-radius: 0 0 18px 18px;
+            border-top: 2px solid #f1f5f9;
+        }
+
+        .detail-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            text-align: center;
+        }
+
+        .detail-item i {
+            font-size: 2.5rem;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+
+        .before-card .detail-item i {
+            color: #ef4444;
+            background: linear-gradient(135deg, #fef2f2, #fee2e2);
+        }
+
+        .after-card .detail-item i {
+            color: var(--success);
+            background: linear-gradient(135deg, #f0fdf4, #dcfce7);
+        }
+
+        .detail-item span {
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        /* Statistiche migliorate */
+        .comparison-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 80px;
+        }
+
+        .stat-card {
+            position: relative;
+            overflow: hidden;
+            padding: 35px 25px;
+            border: none;
+            border-left: none;
+            background: linear-gradient(135deg, white, #f8fafc);
+            transition: all 0.4s ease;
+            text-align: center;
+            border-radius: var(--radius);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(14, 165, 233, 0.1), transparent);
+            transition: left 0.7s ease;
+        }
+
+        .stat-card:hover::before {
+            left: 100%;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(14, 165, 233, 0.2);
+        }
+
+        .stat-card i {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .stat-number {
+            font-size: 2.8rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary), var(--success));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .stat-text {
+            color: var(--text);
+            font-size: 1rem;
+        }
+
+        /* Testimonianza */
+        .testimonial-card {
+            background: linear-gradient(135deg, white, #f8fafc);
+            border-radius: 20px;
+            padding: 40px;
+            margin-top: 60px;
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 40px;
+            align-items: center;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+            border-left: 8px solid var(--success);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .testimonial-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200px;
+            height: 200px;
+            background: linear-gradient(135deg, rgba(14, 165, 233, 0.1), transparent);
+            border-radius: 50%;
+        }
+
+        .testimonial-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .testimonial-content i.fa-quote-left {
+            font-size: 3rem;
+            color: var(--primary);
+            opacity: 0.3;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .testimonial-content p {
+            font-size: 1.3rem;
+            line-height: 1.8;
+            font-style: italic;
+            margin-bottom: 20px;
+            color: var(--dark);
+        }
+
+        .testimonial-author {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .testimonial-author strong {
+            font-size: 1.2rem;
+            color: var(--dark);
+        }
+
+        .testimonial-author span {
+            color: var(--text);
+            font-size: 0.9rem;
+        }
+
+        .testimonial-rating {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .testimonial-rating i {
+            color: #fbbf24;
+            font-size: 1.8rem;
+        }
+
+        .testimonial-rating span {
+            font-weight: 700;
+            color: var(--dark);
+            font-size: 1.2rem;
+        }
+
+        .transformation-note {
+            text-align: center;
+            background: linear-gradient(135deg, var(--secondary), #e0f2fe);
+            padding: 30px;
+            border-radius: var(--radius);
+            margin-top: 50px;
+            border-left: 5px solid var(--success);
+        }
+
+        .transformation-note h3 {
+            font-size: 1.8rem;
+            color: var(--dark);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .transformation-note p {
+            font-size: 1.1rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
         /* Services */
         .services {
             padding: 100px 0;
@@ -794,64 +1013,624 @@
             margin-top: 5px;
         }
 
-        /* Team */
-        .team {
+        /* Team Section - Version Stylée */
+        .team-section {
             padding: 100px 0;
-            background-color: white;
+            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+            position: relative;
+            overflow: hidden;
         }
 
-        .team-grid {
+        .team-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(14, 165, 233, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            z-index: 1;
+        }
+
+        .team-showcase {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            margin-bottom: 80px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .team-member-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .team-member-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 25px 60px rgba(14, 165, 233, 0.15);
+        }
+
+        .member-image-container {
+            position: relative;
+            height: 300px;
+            overflow: hidden;
+        }
+
+        .member-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .team-member-card:hover .member-image {
+            transform: scale(1.1);
+        }
+
+        .image-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, transparent 60%, rgba(0, 0, 0, 0.7));
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            padding-bottom: 20px;
+        }
+
+        .team-member-card:hover .image-overlay {
+            opacity: 1;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            transform: translateY(20px);
+            opacity: 0;
+        }
+
+        .team-member-card:hover .social-icon {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .social-icon:nth-child(1) { transition-delay: 0.1s; }
+        .social-icon:nth-child(2) { transition-delay: 0.2s; }
+        .social-icon:nth-child(3) { transition-delay: 0.3s; }
+
+        .social-icon:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-5px);
+        }
+
+        .member-badge {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            padding: 8px 16px;
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            box-shadow: 0 5px 15px rgba(14, 165, 233, 0.3);
+            z-index: 3;
+        }
+
+        .member-badge i {
+            font-size: 1rem;
+        }
+
+        .member-info {
+            padding: 30px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .member-name {
+            font-size: 1.8rem;
+            color: var(--dark);
+            margin-bottom: 5px;
+            font-weight: 700;
+        }
+
+        .member-title {
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+
+        .member-specialties {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .specialty-tag {
+            background: var(--secondary);
+            color: var(--primary-dark);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            border: 1px solid rgba(14, 165, 233, 0.2);
+        }
+
+        .member-description {
+            color: var(--text);
+            line-height: 1.6;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        .member-stats {
+            display: flex;
+            gap: 20px;
+            padding-top: 15px;
+            border-top: 1px solid #f1f5f9;
+        }
+
+        .stat {
+            text-align: center;
+            flex: 1;
+        }
+
+        .stat-number {
+            display: block;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            font-size: 0.85rem;
+            color: var(--text);
+        }
+
+        /* Team Stats Section */
+        .team-stats-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
+            gap: 25px;
+            margin-bottom: 80px;
         }
 
-        .team-member {
-            text-align: center;
-            background-color: var(--light);
-            border-radius: var(--radius);
+        .team-stat-card {
+            background: white;
+            border-radius: 15px;
             padding: 30px;
-            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.05);
-            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            border-left: 4px solid var(--primary);
         }
 
-        .team-member:hover {
+        .team-stat-card:hover {
             transform: translateY(-5px);
-            box-shadow: var(--shadow);
+            box-shadow: 0 15px 40px rgba(14, 165, 233, 0.1);
         }
 
-        .member-photo {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            margin: 0 auto 20px;
+        .team-stat-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.8rem;
+            flex-shrink: 0;
+        }
+
+        .team-stat-content h4 {
+            font-size: 1.2rem;
+            color: var(--dark);
+            margin-bottom: 8px;
+        }
+
+        .team-stat-content p {
+            color: var(--text);
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        /* Team Philosophy */
+        .team-philosophy {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            border-radius: 20px;
             overflow: hidden;
-            border: 5px solid var(--secondary);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            box-shadow: 0 20px 60px rgba(14, 165, 233, 0.2);
         }
 
-        .member-photo img {
+        .philosophy-content {
+            padding: 50px;
+            color: white;
+        }
+
+        .philosophy-content h3 {
+            font-size: 2rem;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .philosophy-content h3 i {
+            color: #fbbf24;
+        }
+
+        .philosophy-content p {
+            margin-bottom: 20px;
+            line-height: 1.7;
+            opacity: 0.95;
+        }
+
+        .philosophy-image {
+            height: 100%;
+        }
+
+        .philosophy-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* Reviews Section */
+        .reviews-section {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #f8fafc 0%, #e0f2fe 100%);
+            position: relative;
+        }
+
+        .reviews-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .reviews-title h2 {
+            font-size: 2.8rem;
+            color: var(--dark);
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .reviews-title h2:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--success));
+            border-radius: 2px;
+        }
+
+        .reviews-title p {
+            max-width: 700px;
+            margin: 25px auto 0;
+            font-size: 1.2rem;
+            color: var(--text);
+        }
+
+        .reviews-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .review-card {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .review-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 60px rgba(14, 165, 233, 0.15);
+        }
+
+        .review-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary), var(--success));
+        }
+
+        .review-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 25px;
+        }
+
+        .reviewer-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .reviewer-avatar {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            overflow: hidden;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.8rem;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .reviewer-avatar img {
             width: 100%;
             height: 100%;
             object-fit: cover;
         }
 
-        .team-member h3 {
-            font-size: 1.4rem;
+        .reviewer-details h4 {
+            font-size: 1.3rem;
+            color: var(--dark);
             margin-bottom: 5px;
+        }
+
+        .review-date {
+            color: var(--text);
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+
+        .review-rating {
+            display: flex;
+            gap: 5px;
+            margin-top: 5px;
+        }
+
+        .review-rating i {
+            color: #fbbf24;
+            font-size: 1.3rem;
+        }
+
+        .all-stars {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .all-stars i {
+            color: #fbbf24;
+            font-size: 1.1rem;
+        }
+
+        .rating-badge {
+            background: linear-gradient(135deg, var(--success), #059669);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            box-shadow: 0 5px 15px rgba(16, 185, 129, 0.3);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .review-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .review-content i.fa-quote-left {
+            font-size: 2rem;
+            color: var(--primary);
+            opacity: 0.2;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .review-text {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: var(--text);
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        .review-highlight {
+            background: linear-gradient(135deg, rgba(14, 165, 233, 0.1), rgba(16, 185, 129, 0.1));
+            padding: 15px 20px;
+            border-radius: 12px;
+            margin-top: 20px;
+            border-left: 4px solid var(--primary);
+            font-weight: 600;
             color: var(--dark);
         }
 
-        .team-member p {
-            color: var(--primary);
-            margin-bottom: 10px;
-            font-weight: 500;
+        .reviews-summary {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+            margin-top: 60px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            align-items: center;
         }
 
-        .team-member .specialty {
-            font-size: 0.9rem;
+        .summary-rating {
+            text-align: center;
+            padding: 20px;
+            background: linear-gradient(135deg, var(--secondary), #e0f2fe);
+            border-radius: 15px;
+        }
+
+        .average-rating {
+            font-size: 4rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary), var(--success));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .total-reviews {
             color: var(--text);
-            margin-top: 5px;
-            line-height: 1.4;
+            font-size: 1.1rem;
+        }
+
+        .stars-distribution {
+            flex-grow: 1;
+        }
+
+        .star-row {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 10px;
+        }
+
+        .star-row span {
+            color: var(--text);
+            font-size: 0.9rem;
+            min-width: 80px;
+        }
+
+        .star-bar {
+            flex-grow: 1;
+            height: 10px;
+            background: #e2e8f0;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .star-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #fbbf24, #f59e0b);
+            border-radius: 5px;
+        }
+
+        .summary-cta {
+            text-align: center;
+        }
+
+        .summary-cta h3 {
+            font-size: 1.5rem;
+            color: var(--dark);
+            margin-bottom: 15px;
+        }
+
+        /* Gallery Section */
+        .gallery {
+            padding: 100px 0;
+            background-color: white;
+        }
+
+        .gallery-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .gallery-item {
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.5s;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+            color: white;
+            padding: 20px;
+            transform: translateY(100%);
+            transition: transform 0.3s;
+        }
+
+        .gallery-item:hover .gallery-caption {
+            transform: translateY(0);
         }
 
         /* Contact & WhatsApp Booking */
@@ -1080,84 +1859,38 @@
             font-size: 0.9rem;
         }
 
-        /* Gallery Section */
-        .gallery {
-            padding: 100px 0;
-            background-color: white;
-        }
-
-        .gallery-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
-        }
-
-        .gallery-item {
-            border-radius: var(--radius);
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            transition: all 0.3s;
-            position: relative;
-        }
-
-        .gallery-item:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-        }
-
-        .gallery-item img {
-            width: 100%;
-            height: 300px;
-            object-fit: cover;
-            display: block;
-            transition: transform 0.5s;
-        }
-
-        .gallery-item:hover img {
-            transform: scale(1.1);
-        }
-
-        .gallery-caption {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
-            color: white;
-            padding: 20px;
-            transform: translateY(100%);
-            transition: transform 0.3s;
-        }
-
-        .gallery-item:hover .gallery-caption {
-            transform: translateY(0);
-        }
-
         /* Responsive */
-        @media (max-width: 992px) {
-            .before-after-container {
-                grid-template-columns: 1fr;
-                gap: 30px;
+        @media (max-width: 1200px) {
+            .comparison-image {
+                height: 500px !important;
             }
             
-            .hero-container, .about-container, .contact-container {
+            .team-showcase {
+                grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            }
+            
+            .reviews-container {
+                grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            }
+        }
+
+        @media (max-width: 992px) {
+            .before-after-container,
+            .hero-container,
+            .about-container,
+            .contact-container,
+            .team-philosophy,
+            .reviews-summary {
                 grid-template-columns: 1fr;
                 gap: 40px;
             }
             
-            .hero-content h1 {
-                font-size: 2.8rem;
+            .comparison-image {
+                height: 450px !important;
             }
             
-            .comparison-image {
-                height: 350px;
+            .hero-content h1 {
+                font-size: 2.8rem;
             }
             
             .comparison-stats {
@@ -1166,6 +1899,20 @@
             
             .gallery-grid {
                 grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            }
+            
+            .member-image-container {
+                height: 280px;
+            }
+            
+            .philosophy-image {
+                height: 300px;
+                order: -1;
+            }
+            
+            .reviews-summary {
+                grid-template-columns: 1fr;
+                text-align: center;
             }
         }
 
@@ -1190,15 +1937,16 @@
                 display: block;
             }
             
-            .before-after-title h2 {
-                font-size: 2.2rem;
-            }
-            
-            .hero-content h1 {
+            .before-after-title h2,
+            .hero-content h1,
+            .reviews-title h2 {
                 font-size: 2.3rem;
             }
             
-            .features, .whatsapp-features, .comparison-stats {
+            .features,
+            .whatsapp-features,
+            .comparison-stats,
+            .team-stats-container {
                 grid-template-columns: 1fr;
             }
             
@@ -1222,7 +1970,9 @@
                 display: none;
             }
             
-            .gallery-grid {
+            .gallery-grid,
+            .team-showcase,
+            .reviews-container {
                 grid-template-columns: 1fr;
             }
             
@@ -1230,8 +1980,118 @@
                 font-size: 1.5rem;
             }
             
-            .transformation-note {
+            .transformation-note,
+            .review-card,
+            .reviews-summary {
                 padding: 20px;
+            }
+            
+            .member-image-container {
+                height: 250px;
+            }
+            
+            .member-info {
+                padding: 25px;
+            }
+            
+            .member-name {
+                font-size: 1.6rem;
+            }
+            
+            .review-header {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .reviewer-info {
+                width: 100%;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .comparison-image {
+                height: 350px !important;
+            }
+            
+            .image-badge {
+                padding: 8px 15px;
+                font-size: 1rem;
+                top: 15px;
+                right: 15px;
+            }
+            
+            .comparison-details {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .detail-item {
+                flex: 1 0 100%;
+                flex-direction: row;
+                justify-content: flex-start;
+                gap: 15px;
+            }
+            
+            .transformation-separator {
+                gap: 15px;
+                margin: 30px 0;
+            }
+            
+            .separator-line {
+                width: 60px;
+            }
+            
+            .separator-icon {
+                width: 50px;
+                height: 50px;
+                font-size: 1.3rem;
+            }
+            
+            .testimonial-card {
+                grid-template-columns: 1fr;
+                gap: 20px;
+                padding: 30px;
+            }
+            
+            .team-stats-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .team-stat-card {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .member-specialties {
+                justify-content: center;
+            }
+            
+            .member-stats {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .philosophy-content {
+                padding: 30px;
+            }
+            
+            .philosophy-content h3 {
+                font-size: 1.7rem;
+            }
+            
+            .reviewer-avatar {
+                width: 60px;
+                height: 60px;
+                font-size: 1.5rem;
+            }
+            
+            .reviewer-details h4 {
+                font-size: 1.1rem;
+            }
+            
+            .rating-badge {
+                padding: 6px 12px;
+                font-size: 1rem;
             }
         }
         
@@ -1239,6 +2099,91 @@
             .logo-text {
                 display: flex;
             }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideUpFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes floatIn {
+            0% {
+                opacity: 0;
+                transform: translateY(20px) scale(0.95);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .comparison-card {
+            animation: slideUpFadeIn 0.8s ease-out forwards;
+        }
+
+        .comparison-card:nth-child(2) {
+            animation-delay: 0.3s;
+        }
+
+        .team-member-card {
+            animation: fadeInUp 0.6s ease-out forwards;
+            opacity: 0;
+        }
+
+        .team-member-card:nth-child(1) { animation-delay: 0.1s; }
+        .team-member-card:nth-child(2) { animation-delay: 0.2s; }
+        .team-member-card:nth-child(3) { animation-delay: 0.3s; }
+        .team-member-card:nth-child(4) { animation-delay: 0.4s; }
+        .team-member-card:nth-child(5) { animation-delay: 0.5s; }
+
+        .review-card {
+            animation: floatIn 0.6s ease-out forwards;
+            opacity: 0;
+        }
+
+        .review-card:nth-child(1) { animation-delay: 0.1s; }
+        .review-card:nth-child(2) { animation-delay: 0.2s; }
+        .review-card:nth-child(3) { animation-delay: 0.3s; }
+
+        /* Special Effects */
+        .team-member-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, transparent, rgba(14, 165, 233, 0.1), transparent);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            pointer-events: none;
+            border-radius: 20px;
+        }
+
+        .team-member-card:hover::after {
+            opacity: 1;
+        }
+
+        .review-card:hover {
+            transform: translateY(-10px);
         }
     </style>
 </head>
@@ -1292,8 +2237,7 @@
             <a href="#" class="logo">
                 <img src="logo.png" alt="OsteoDent Logo" class="logo-img">
                 <div class="logo-text">
-                    <span class="logo-main">OsteoDent</span>
-                    <span class="logo-sub">Studio Dentistico Ancona</span>
+                   
                 </div>
             </a>
             
@@ -1308,6 +2252,7 @@
                 <li><a href="#about">Chi Siamo</a></li>
                 <li><a href="#team">Il Team</a></li>
                 <li><a href="#gallery">Galleria</a></li>
+                <li><a href="#reviews">Recensioni</a></li>
                 <li><a href="#contatti">Contatti</a></li>
                 <li><a href="https://wa.me/3703073990?text=Ciao,%20vorrei%20prenotare%20una%20visita%20presso%20il%20vostro%20studio%20dentistico" class="nav-cta" target="_blank">
                     <i class="fab fa-whatsapp"></i> Prenota
@@ -1316,36 +2261,102 @@
         </div>
     </header>
 
-    <!-- Nouvelle Section Trasformazioni Straordinarie -->
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container hero-container">
+            <div class="hero-content">
+                <h1>Il tuo sorriso, la nostra priorità</h1>
+                <p>Nello Studio Dentistico OsteoDent, combiniamo tecnologia all'avanguardia con un approccio personalizzato per garantire la salute e la bellezza del tuo sorriso.</p>
+                <p>Lo studio integra la collaborazione di un osteopata nel percorso di cura del paziente, adottando un approccio multidisciplinare che favorisce l'equilibrio funzionale del corpo e contribuisce al benessere generale, in sinergia con i trattamenti odontoiatrici.</p>
+                <div class="hero-buttons">
+                    <a href="https://wa.me/3703073990?text=Ciao,%20vorrei%20prenotare%20una%20visita%20presso%20il%20vostro%20studio%20dentistico" class="btn btn-whatsapp" target="_blank">
+                        <i class="fab fa-whatsapp"></i> Prenota via WhatsApp
+                    </a>
+                    <a href="#servizi" class="btn btn-secondary">I Nostri Servizi</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="https://lh3.googleusercontent.com/gps-cs-s/AHVAweqoCMb95T1auoouFmbPscOZbPEOgs1lPqLDQbSnEDg6Qcs3rcC8176DJdabnzqxtGmm1xHyo2_4jvN0ZH0o85aLHW-iUgXrg__j8uOqrjXw7WTGXv3QvMoc-yjnlZlqhLapoW6Y=s1360-w1360-h1020-rw" alt="Studio Dentistico OsteoDent">
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Avant/Après -->
     <section class="before-after-section" id="transformations">
         <div class="container">
             <div class="before-after-title">
                 <h2>Trasformazioni Straordinarie</h2>
-                <p>Guarda come trasformiamo i sorrisi dei nostri pazienti con risultati naturali</p>
+                <p>Guarda come trasformiamo i sorrisi dei nostri pazienti con risultati naturali e duraturi</p>
             </div>
             
             <div class="before-after-container">
-                <div class="comparison-card">
+                <!-- CARD PRIMA -->
+                <div class="comparison-card before-card">
                     <div class="comparison-image">
                         <img src="avant1.jpg" alt="Prima del trattamento - Denti da riparare">
                         <div class="comparison-label before-label">
                             <h3><i class="fas fa-exclamation-triangle"></i> Prima del Trattamento</h3>
                             <p>Problemi dentali complessi che compromettono funzione ed estetica</p>
                         </div>
+                        <div class="image-badge before-badge">
+                            <span>PRIMA</span>
+                        </div>
+                    </div>
+                    <div class="comparison-details">
+                        <div class="detail-item">
+                            <i class="fas fa-times-circle"></i>
+                            <span>Carie multiple</span>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fas fa-times-circle"></i>
+                            <span>Disallineamento</span>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fas fa-times-circle"></i>
+                            <span>Denti danneggiati</span>
+                        </div>
                     </div>
                 </div>
                 
-                <div class="comparison-card">
+                <!-- CARD DOPO -->
+                <div class="comparison-card after-card">
                     <div class="comparison-image">
                         <img src="apres1.jpg" alt="Dopo il trattamento - Sorriso perfetto">
                         <div class="comparison-label after-label">
                             <h3><i class="fas fa-star"></i> Dopo il Nostro Lavoro</h3>
                             <p>Trasformazione completa con risultati estetici e funzionali eccezionali</p>
                         </div>
+                        <div class="image-badge after-badge">
+                            <span>DOPO</span>
+                        </div>
+                    </div>
+                    <div class="comparison-details">
+                        <div class="detail-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Denti perfetti</span>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Allineamento corretto</span>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Colore naturale</span>
+                        </div>
                     </div>
                 </div>
             </div>
             
+            <!-- Separatore visivo -->
+            <div class="transformation-separator">
+                <div class="separator-line"></div>
+                <div class="separator-icon">
+                    <i class="fas fa-arrow-right"></i>
+                </div>
+                <div class="separator-line"></div>
+            </div>
+            
+            <!-- Statistiche migliorate -->
             <div class="comparison-stats">
                 <div class="stat-card">
                     <i class="fas fa-smile-beam"></i>
@@ -1367,35 +2378,13 @@
                 
                 <div class="stat-card">
                     <i class="fas fa-shield-alt"></i>
-                    <span class="stat-number">Garantito</span>
-                    <span class="stat-text">Risultati Durevoli</span>
+                    <span class="stat-number">10 Anni</span>
+                    <span class="stat-text">Garanzia sui Lavori</span>
                 </div>
             </div>
             
-            <div class="transformation-note">
-                <h3><i class="fas fa-magic"></i> La Nostra Filosofia</h3>
-                <p>Crediamo che ogni paziente meriti un sorriso sano e bello. Utilizziamo tecnologie all'avanguardia e materiali di alta qualità per ottenere trasformazioni naturali e durature che cambiano la vita dei nostri pazienti.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="container hero-container">
-            <div class="hero-content">
-                <h1>Il tuo sorriso, la nostra priorità</h1>
-                <p>Nello Studio Dentistico OsteoDent, combiniamo tecnologia all'avanguardia con un approccio personalizzato per garantire la salute e la bellezza del tuo sorriso.</p>
-                <p>Lo studio integra la collaborazione di un osteopata nel percorso di cura del paziente, adottando un approccio multidisciplinare che favorisce l'equilibrio funzionale del corpo e contribuisce al benessere generale, in sinergia con i trattamenti odontoiatrici.</p>
-                <div class="hero-buttons">
-                    <a href="https://wa.me/3703073990?text=Ciao,%20vorrei%20prenotare%20una%20visita%20presso%20il%20vostro%20studio%20dentistico" class="btn btn-whatsapp" target="_blank">
-                        <i class="fab fa-whatsapp"></i> Prenota via WhatsApp
-                    </a>
-                    <a href="#servizi" class="btn btn-secondary">I Nostri Servizi</a>
-                </div>
-            </div>
-            <div class="hero-image">
-                <img src="https://lh3.googleusercontent.com/gps-cs-s/AHVAweqoCMb95T1auoouFmbPscOZbPEOgs1lPqLDQbSnEDg6Qcs3rcC8176DJdabnzqxtGmm1xHyo2_4jvN0ZH0o85aLHW-iUgXrg__j8uOqrjXw7WTGXv3QvMoc-yjnlZlqhLapoW6Y=s1360-w1360-h1020-rw" alt="Studio Dentistico OsteoDent">
-            </div>
+            <!-- Testimonianza -->
+          
         </div>
     </section>
 
@@ -1452,9 +2441,8 @@
                     <div class="service-icon">
                         <i class="fas fa-smile-beam"></i>
                     </div>
-                    <h3>Protesi e Ortodonzia </h3>
-                    <p>Specializzati in protesi dentarie e trattamenti di ortodonzia, offriamo soluzioni personalizzate
-                    per migliorare il sorriso e la salute orale dei nostri pazienti</p>
+                    <h3>Protesi e Ortodonzia</h3>
+                    <p>Specializzati in protesi dentarie e trattamenti di ortodonzia, offriamo soluzioni personalizzate per migliorare il sorriso e la salute orale dei nostri pazienti.</p>
                 </div>
             </div>
         </div>
@@ -1471,7 +2459,6 @@
             <div class="about-content">
                 <h2>Il Nostro Approccio Moderno alla Cura Dentale</h2>
                 <p>Da oltre 30 anni, il nostro studio si impegna a offrire cure dentali di eccellenza in un ambiente accogliente e tecnologico. Crediamo che ogni paziente meriti un trattamento personalizzato e un'assistenza di alta qualità.</p>
-        
                 
                 <div class="features">
                     <div class="feature">
@@ -1520,95 +2507,438 @@
             
             <div class="gallery-grid">
                 <div class="gallery-item">
-                    <img src="dent1.jpg" alt="Vista panoramica dello studio">
+                    <img src="entre1.jpg" alt="Vista panoramica dello studio">
                     <div class="gallery-caption">
                         
                     </div>
                 </div>
                 
                 <div class="gallery-item">
-                    <img src="dent2.jpg" alt="Sala d'attesa moderna">
+                    <img src="entre2.jpg" alt="Sala d'attesa moderna">
                     <div class="gallery-caption">
                        
                     </div>
                 </div>
                 <div class="gallery-item">
-                    <img src="dent3.jpg" alt="Sala d'attesa moderna">
+                    <img src="entre3.jpg" alt="Sala d'attesa moderna">
                     <div class="gallery-caption">
                        
                     </div>
                 </div>
                 <div class="gallery-item">
-                    <img src="dent4.jpg" alt="Sala d'attesa moderna">
+                    <img src="entre4.jpg" alt="Sala d'attesa moderna">
                     <div class="gallery-caption">
                        
-                    </div>
-                </div>
-                <div class="gallery-item">
-                    <img src="dent4.jpg" alt="Sala d'attesa moderna">
-                    <div class="gallery-caption">
-                       
-                    </div>
-                </div>
-                <div class="gallery-item">
-                    <img src="piece1.jpg" alt="Sala d'attesa moderna">
-                    <div class="gallery-caption">
-                       
-                    </div>
-                </div>
-                <div class="gallery-item">
-                    <img src="https://lh3.googleusercontent.com/p/AF1QipPmMnQijRhjr1HSnbXvN-oAzc5sNwpYY1KK_aa1=s1360-w1360-h1020-rw" alt="Cabina odontoiatrica">
-                    <div class="gallery-caption">
-                        
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Team -->
-    <section class="team" id="team">
+    <!-- Team Section -->
+    <section class="team-section" id="team">
         <div class="container">
             <div class="section-title">
                 <h2>Il Nostro Team di Specialisti</h2>
-                <p>I nostri professionisti combinano esperienza, competenza e passione per offrire le migliori cure dentali possibili.</p>
+                <p>Un gruppo di professionisti esperti e appassionati, uniti dalla missione di offrire cure dentali di eccellenza con un approccio umano e personalizzato.</p>
             </div>
             
-            <div class="team-grid">
-                <div class="team-member">
-                    <div class="member-photo">
-                        <img src="img3.jpg" width="50px">
+            <div class="team-showcase">
+                <!-- Team Member 1 -->
+                <div class="team-member-card">
+                    <div class="member-image-container">
+                        <img src="img3.jpg" alt="Maria Chiara Brugnami" class="member-image">
+                        <div class="image-overlay">
+                        </div>
+                        <div class="member-badge">
+                            <i class="fas fa-stethoscope"></i>
+                            <span>Fondatrice</span>
+                        </div>
                     </div>
-                    <h3> Maria Chiara Brugnami</h3>
-                    <p>Odontoiatra e Specialista</p>
-                    <div class="specialty">Specializzata in protesi dentali, pedodonzia, endodonzia, conservativa e implantologia</div>
+                    <div class="member-info">
+                        <h3 class="member-name">Maria Chiara Brugnami</h3>
+                        <p class="member-title">Odontoiatra e Specialista</p>
+                        <div class="member-specialties">
+                            <span class="specialty-tag">Protesi Dentali</span>
+                            <span class="specialty-tag">Pedodonzia</span>
+                            <span class="specialty-tag">Implantologia</span>
+                        </div>
+                        <p class="member-description">Specializzata in protesi dentali, pedodonzia, endodonzia, conservativa e implantologia. Con oltre 30 anni di esperienza nel settore odontoiatrico.</p>
+                        <div class="member-stats">
+                            <div class="stat">
+                                <span class="stat-number">30+</span>
+                                <span class="stat-label">Anni Esperienza</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-number">5000+</span>
+                                <span class="stat-label">Pazienti</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 
-                <div class="team-member">
-                    <div class="member-photo">
-                        <img src="img1.jpg" alt="Elena Conti">
+                <!-- Team Member 2 -->
+                <div class="team-member-card">
+                    <div class="member-image-container">
+                        <img src="img1.jpg" alt="Elena Conti" class="member-image">
+                        <div class="image-overlay">
+                        </div>
+                        <div class="member-badge">
+                            <i class="fas fa-hands-helping"></i>
+                            <span>Assistente</span>
+                        </div>
                     </div>
-                    <h3>Elena Conti</h3>
-                    <p>Assistente alla Poltrona</p>
-                    <div class="specialty">Assistente esperta con competenze nell'assistenza clinica, gestione del paziente e preparazione strumenti.</div>
+                    <div class="member-info">
+                        <h3 class="member-name">Elena Conti</h3>
+                        <p class="member-title">Assistente alla Poltrona</p>
+                        <div class="member-specialties">
+                            <span class="specialty-tag">Assistenza Clinica</span>
+                            <span class="specialty-tag">Gestione Pazienti</span>
+                            <span class="specialty-tag">Strumentazione</span>
+                        </div>
+                        <p class="member-description">Assistente esperta con competenze specializzate nell'assistenza clinica, gestione del paziente e preparazione degli strumenti odontoiatrici.</p>
+                        <div class="member-stats">
+                            <div class="stat">
+                                <span class="stat-number"></span>
+                                <span class="stat-label"></span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-number"></span>
+                                <span class="stat-label"></span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 
-                <div class="team-member">
-                    <div class="member-photo">
-                        <img src="img2.jpg" alt="Elisa Bronzini">
+                <!-- Team Member 3 -->
+                <div class="team-member-card">
+                    <div class="member-image-container">
+                        <img src="img2.jpg" alt="Elisa Bronzini" class="member-image">
+                        <div class="image-overlay">
+                        </div>
+                        <div class="member-badge">
+                            <i class="fas fa-clipboard-check"></i>
+                            <span>Coordinatrice</span>
+                        </div>
                     </div>
-                    <h3>Elisa Bronzini</h3>
-                    <p>Coordinatrice Sanitaria</p>
-                    <div class="specialty">Gestisce l'organizzazione e il personale da oltre 30 anni per garantire efficienza e qualità del servizio.</div>
+                    <div class="member-info">
+                        <h3 class="member-name">Elisa Bronzini</h3>
+                        <p class="member-title">Coordinatrice Sanitaria</p>
+                        <div class="member-specialties">
+                            <span class="specialty-tag">Organizzazione</span>
+                            <span class="specialty-tag">Gestione Team</span>
+                            <span class="specialty-tag">Qualità Servizio</span>
+                        </div>
+                        <p class="member-description">Gestisce l'organizzazione e il personale da oltre 30 anni, garantendo efficienza, qualità del servizio e un'esperienza eccellente per ogni paziente.</p>
+                        <div class="member-stats">
+                            <div class="stat">
+                                <span class="stat-number"></span>
+                                <span class="stat-label"></span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-number"></span>
+                                <span class="stat-label"></span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 
-                <div class="team-member">
-                    <div class="member-photo">
-                        <img src="img4.jpg" alt="Stefania Pascucci">
+                <!-- Team Member 4 -->
+                <div class="team-member-card">
+                    <div class="member-image-container">
+                        <img src="img5.jpg" alt="Francesco Sparabombe" class="member-image">
+                        <div class="image-overlay">
+                        </div>
+                        <div class="member-badge">
+                            <i class="fas fa-hands"></i>
+                            <span>Osteopata</span>
+                        </div>
                     </div>
-                    <h3>Stefania Pascucci</h3>
-                    <p>Igienista Dentale</p>
-                    <div class="specialty">Specializzata in prevenzione e igiene orale con approccio delicato e personalizzato.</div>
+                    <div class="member-info">
+                        <h3 class="member-name">Francesco Sparabombe</h3>
+                        <p class="member-title">Osteopata</p>
+                        <div class="member-specialties">
+                            <span class="specialty-tag">Osteopatia</span>
+                            <span class="specialty-tag">Posturologia</span>
+                            <span class="specialty-tag">Equilibrio</span>
+                        </div>
+                        <p class="member-description">Osteopata professionista dedicato al benessere e all'equilibrio del corpo. Specializzato in approcci integrati per la salute orale e sistemica.</p>
+                        <div class="member-stats">
+                            <div class="stat">
+                                <span class="stat-number"></span>
+                                <span class="stat-label"></span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-number"></span>
+                                <span class="stat-label"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Team Member 5 -->
+                <div class="team-member-card">
+                    <div class="member-image-container">
+                        <img src="img4.jpg" alt="Stefania Pascucci" class="member-image">
+                        <div class="image-overlay">
+                        </div>
+                        <div class="member-badge">
+                            <i class="fas fa-spray-can"></i>
+                            <span>Igienista</span>
+                        </div>
+                    </div>
+                    <div class="member-info">
+                        <h3 class="member-name">Stefania Pascucci</h3>
+                        <p class="member-title">Igienista Dentale</p>
+                        <div class="member-specialties">
+                            <span class="specialty-tag">Prevenzione</span>
+                            <span class="specialty-tag">Igiene Orale</span>
+                            <span class="specialty-tag">Sbiancamento</span>
+                        </div>
+                        <p class="member-description">Specializzata in prevenzione e igiene orale con approccio delicato e personalizzato. Esperta in tecniche di pulizia professionale e mantenimento della salute dentale.</p>
+                        <div class="member-stats">
+                            <div class="stat">
+                                <span class="stat-number"></span>
+                                <span class="stat-label"></span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-number"></span>
+                                <span class="stat-label"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Team Stats -->
+            <div class="team-stats-container">
+                <div class="team-stat-card">
+                    <div class="team-stat-icon">
+                        <i class="fas fa-user-md"></i>
+                    </div>
+                    <div class="team-stat-content">
+                        <h4>Team Multidisciplinare</h4>
+                        <p>5 specialisti con competenze integrate per una cura completa</p>
+                    </div>
+                </div>
+                
+                <div class="team-stat-card">
+                    <div class="team-stat-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="team-stat-content">
+                        <h4>Esperienza Cumulativa</h4>
+                        <p>Oltre 120 anni di esperienza combinata nel settore</p>
+                    </div>
+                </div>
+                
+                <div class="team-stat-card">
+                    <div class="team-stat-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <div class="team-stat-content">
+                        <h4>Formazione Continua</h4>
+                        <p>Aggiornamento costante sulle ultime tecnologie e tecniche</p>
+                    </div>
+                </div>
+                
+                <div class="team-stat-card">
+                    <div class="team-stat-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <div class="team-stat-content">
+                        <h4>Approccio Umano</h4>
+                        <p>Attenzione personalizzata per ogni singolo paziente</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Team Philosophy -->
+            <div class="team-philosophy">
+                <div class="philosophy-content">
+                    <h3><i class="fas fa-star"></i> La Nostra Filosofia di Team</h3>
+                    <p>Crediamo nella forza della collaborazione e nella sinergia tra diverse competenze professionali. Ogni membro del nostro team contribuisce con la propria esperienza e passione per offrire un servizio odontoiatrico completo, che considera non solo la salute orale ma anche il benessere generale del paziente.</p>
+                    <p>L'integrazione dell'osteopatia nel percorso di cura rappresenta il nostro approccio innovativo verso una medicina sempre più orientata alla persona nella sua totalità.</p>
+                </div>
+                <div class="philosophy-image">
+                    <img src="insieme.jpg" alt="Il Team di OsteoDent insieme">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reviews Section -->
+    <section class="reviews-section" id="reviews">
+        <div class="container">
+            <div class="reviews-title">
+                <h2>Cosa Dicono i Nostri Pazienti</h2>
+                <p>La soddisfazione dei nostri pazienti è la nostra migliore ricompensa. Scopri le esperienze di chi ha scelto OsteoDent per il proprio sorriso.</p>
+            </div>
+            
+            <div class="reviews-container">
+                <!-- Review 1 -->
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="reviewer-info">
+                            <div class="reviewer-avatar">
+                                <span>FD</span>
+                            </div>
+                            <div class="reviewer-details">
+                                <h4>Florina Danila</h4>
+                                <div class="review-date"></div>
+                                <div class="review-rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="rating-badge">
+                            <span>5.0</span>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="review-content">
+                        <i class="fas fa-quote-left"></i>
+                        <p class="review-text">Grazie mille al studio osteo dent, sono persone con esperienza lavorano con il cuore. Raccomando con tutta la mia sincerità. Mi hanno messo i miei denti a posto grazie a tutto lo staff. Oggi posso sorridere senza vergognarmi dei miei denti. Complimenti alla dottoressa, mi ha fatto un bellissimo lavoro. Grazie anche a te Elisa di tutto.</p>
+                        
+                        <div class="review-highlight">
+                            "Oggi posso sorridere senza vergognarmi dei miei denti"
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Review 2 -->
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="reviewer-info">
+                            <div class="reviewer-avatar">
+                                <span>FP</span>
+                            </div>
+                            <div class="reviewer-details">
+                                <h4>F. P.</h4>
+                                <div class="review-date"></div>
+                                <div class="review-rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="rating-badge">
+                            <span>5.0</span>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="review-content">
+                        <i class="fas fa-quote-left"></i>
+                        <p class="review-text">Molto brave, competenti, gentili e disponibili. Ho risolto un problema che avevo da anni in modo rapido e professionale. L'ambiente è accogliente e il personale è sempre sorridente e disponibile. Consiglio assolutamente questo studio a chiunque abbia bisogno di cure dentali.</p>
+                        
+                        <div class="review-highlight">
+                            "Molto brave, competenti, gentili e disponibili"
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Review 3 -->
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="reviewer-info">
+                            <div class="reviewer-avatar">
+                                <span>AM</span>
+                            </div>
+                            <div class="reviewer-details">
+                                <h4>Andrea Mastroianni</h4>
+                                <div class="review-date"></div>
+                                <div class="review-rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="rating-badge">
+                            <span>5.0</span>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="review-content">
+                        <i class="fas fa-quote-left"></i>
+                        <p class="review-text">5 stelle meritatissime! Professionalità assoluta, attenzione al dettaglio e una cura per il paziente che raramente si trova. Ho fatto un impianto e il risultato è stato eccellente. Il prezzo è onesto e il servizio è di altissima qualità. Tornerò sicuramente e lo consiglierò a tutti i miei amici e familiari.</p>
+                        
+                        <div class="review-highlight">
+                            "Professionalità assoluta e attenzione al dettaglio"
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Reviews Summary -->
+            <div class="reviews-summary">
+                <div class="summary-rating">
+                    <span class="average-rating">5.0</span>
+                    <div class="all-stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <div class="total-reviews"></div>
+                </div>
+                
+                <div class="stars-distribution">
+                    <div class="star-row">
+                        <span>5 stelle</span>
+                        <div class="star-bar">
+                            <div class="star-fill" style="width: 100%"></div>
+                        </div>
+                        <span>100%</span>
+                    </div>
+                    <div class="star-row">
+                        <span>4 stelle</span>
+                        <div class="star-bar">
+                            <div class="star-fill" style="width: 0%"></div>
+                        </div>
+                        <span>0%</span>
+                    </div>
+                    <div class="star-row">
+                        <span>3 stelle</span>
+                        <div class="star-bar">
+                            <div class="star-fill" style="width: 0%"></div>
+                        </div>
+                        <span>0%</span>
+                    </div>
+                    <div class="star-row">
+                        <span>2 stelle</span>
+                        <div class="star-bar">
+                            <div class="star-fill" style="width: 0%"></div>
+                        </div>
+                        <span>0%</span>
+                    </div>
+                    <div class="star-row">
+                        <span>1 stella</span>
+                        <div class="star-bar">
+                            <div class="star-fill" style="width: 0%"></div>
+                        </div>
+                        <span>0%</span>
+                    </div>
+                </div>
+                
+                <div class="summary-cta">
+                    <h3>Unisciti ai nostri pazienti soddisfatti!</h3>
+                    <a href="https://wa.me/3703073990?text=Ciao,%20vorrei%20prenotare%20una%20visita%20presso%20il%20vostro%20studio%20dentistico" class="btn btn-whatsapp" target="_blank">
+                        <i class="fab fa-whatsapp"></i> Prenota la tua visita
+                    </a>
                 </div>
             </div>
         </div>
@@ -1726,6 +3056,7 @@
                         <li><a href="#about">Chi Siamo</a></li>
                         <li><a href="#team">Il Team</a></li>
                         <li><a href="#gallery">Galleria</a></li>
+                        <li><a href="#reviews">Recensioni</a></li>
                         <li><a href="#contatti">Contatti</a></li>
                     </ul>
                 </div>
@@ -1772,7 +3103,7 @@
     </footer>
 
     <script>
-        // Loading screen - Version ultra stylée
+        // Loading screen
         window.addEventListener('load', function() {
             // Simuler un chargement progressif
             let progress = 0;
