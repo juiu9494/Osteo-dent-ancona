@@ -1013,7 +1013,7 @@
             margin-top: 5px;
         }
 
-        /* Team Section - Version Stylée */
+        /* Team Section - Version Stylée - MODIFIÉ */
         .team-section {
             padding: 100px 0;
             background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
@@ -1059,21 +1059,23 @@
             box-shadow: 0 25px 60px rgba(14, 165, 233, 0.15);
         }
 
+        /* MODIFICATION: Images d'équipe plus grandes */
         .member-image-container {
             position: relative;
-            height: 300px;
+            height: 450px; /* Augmenté de 300px à 450px */
             overflow: hidden;
         }
 
         .member-image {
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            object-fit: cover; /* Changé à 'cover' pour mieux remplir */
+            object-position: top center; /* Centre le visage en haut */
             transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .team-member-card:hover .member-image {
-            transform: scale(1.1);
+            transform: scale(1.05);
         }
 
         .image-overlay {
@@ -1872,6 +1874,11 @@
             .reviews-container {
                 grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             }
+            
+            /* MODIFICATION pour responsive */
+            .member-image-container {
+                height: 400px;
+            }
         }
 
         @media (max-width: 992px) {
@@ -1901,8 +1908,9 @@
                 grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             }
             
+            /* MODIFICATION pour responsive */
             .member-image-container {
-                height: 280px;
+                height: 350px;
             }
             
             .philosophy-image {
@@ -1986,8 +1994,9 @@
                 padding: 20px;
             }
             
+            /* MODIFICATION pour responsive mobile */
             .member-image-container {
-                height: 500px;
+                height: 450px;
             }
             
             .member-info {
@@ -2077,6 +2086,11 @@
             
             .philosophy-content h3 {
                 font-size: 1.7rem;
+            }
+            
+            /* MODIFICATION pour très petits écrans */
+            .member-image-container {
+                height: 400px;
             }
             
             .reviewer-avatar {
@@ -2185,324 +2199,321 @@
         .review-card:hover {
             transform: translateY(-10px);
         }
+        
         /* Map Section */
-.map-section {
-    padding: 80px 0;
-    background-color: white;
-}
-/* Slide Auto */ 
-/* Gallery Carousel Styles */
-.gallery-carousel {
-    position: relative;
-    max-width: 900px;
-    margin: 40px auto;
-    border-radius: 20px;
-    overflow: hidden;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-}
+        .map-section {
+            padding: 80px 0;
+            background-color: white;
+        }
+        
+        /* Gallery Carousel Styles */
+        .gallery-carousel {
+            position: relative;
+            max-width: 900px;
+            margin: 40px auto;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
 
-.carousel-track-container {
-    overflow: hidden;
-    border-radius: 20px;
-    position: relative;
-}
+        .carousel-track-container {
+            overflow: hidden;
+            border-radius: 20px;
+            position: relative;
+        }
 
-.carousel-track {
-    display: flex;
-    transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-    height: 500px;
-}
+        .carousel-track {
+            display: flex;
+            transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            height: 500px;
+        }
 
-.carousel-slide {
-    min-width: 100%;
-    position: relative;
-    height: 100%;
-}
+        .carousel-slide {
+            min-width: 100%;
+            position: relative;
+            height: 100%;
+        }
 
-.carousel-slide img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-}
+        .carousel-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
 
-.carousel-slide .gallery-caption {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
-    color: white;
-    padding: 25px 30px;
-    transform: translateY(0);
-    opacity: 1;
-}
+        .carousel-slide .gallery-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+            color: white;
+            padding: 25px 30px;
+            transform: translateY(0);
+            opacity: 1;
+        }
 
-.carousel-slide .gallery-caption h3 {
-    font-size: 1.8rem;
-    margin-bottom: 8px;
-    color: white;
-}
+        .carousel-slide .gallery-caption h3 {
+            font-size: 1.8rem;
+            margin-bottom: 8px;
+            color: white;
+        }
 
-.carousel-slide .gallery-caption p {
-    color: rgba(255, 255, 255, 0.9);
-    font-size: 1rem;
-}
+        .carousel-slide .gallery-caption p {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1rem;
+        }
 
-/* Navigation Buttons */
-.carousel-btn {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: rgba(255, 255, 255, 0.9);
-    border: none;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    z-index: 10;
-    transition: all 0.3s ease;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-    color: var(--primary);
-    font-size: 1.2rem;
-}
+        /* Navigation Buttons */
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 10;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            color: var(--primary);
+            font-size: 1.2rem;
+        }
 
-.carousel-btn:hover {
-    background: white;
-    transform: translateY(-50%) scale(1.1);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-}
+        .carousel-btn:hover {
+            background: white;
+            transform: translateY(-50%) scale(1.1);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
 
-.prev-btn {
-    left: 20px;
-}
+        .prev-btn {
+            left: 20px;
+        }
 
-.next-btn {
-    right: 20px;
-}
+        .next-btn {
+            right: 20px;
+        }
 
-/* Dots Navigation */
-.carousel-dots {
-    position: absolute;
-    bottom: 20px;
-    left: 0;
-    right: 0;
-    display: flex;
-    justify-content: center;
-    gap: 12px;
-    z-index: 10;
-}
+        /* Dots Navigation */
+        .carousel-dots {
+            position: absolute;
+            bottom: 20px;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            z-index: 10;
+        }
 
-.carousel-dots .dot {
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.5);
-    border: 2px solid rgba(255, 255, 255, 0.8);
-    cursor: pointer;
-    transition: all 0.3s ease;
-    padding: 0;
-}
+        .carousel-dots .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            border: 2px solid rgba(255, 255, 255, 0.8);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            padding: 0;
+        }
 
-.carousel-dots .dot.active {
-    background: white;
-    transform: scale(1.2);
-    border-color: var(--primary);
-}
+        .carousel-dots .dot.active {
+            background: white;
+            transform: scale(1.2);
+            border-color: var(--primary);
+        }
 
-.carousel-dots .dot:hover {
-    background: white;
-    transform: scale(1.1);
-}
+        .carousel-dots .dot:hover {
+            background: white;
+            transform: scale(1.1);
+        }
 
-/* Auto-play Controls */
-.carousel-controls {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    background: rgba(0, 0, 0, 0.6);
-    padding: 8px 15px;
-    border-radius: 50px;
-    z-index: 10;
-    backdrop-filter: blur(5px);
-}
+        /* Auto-play Controls */
+        .carousel-controls {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(0, 0, 0, 0.6);
+            padding: 8px 15px;
+            border-radius: 50px;
+            z-index: 10;
+            backdrop-filter: blur(5px);
+        }
 
-.control-btn {
-    background: transparent;
-    border: none;
-    color: white;
-    cursor: pointer;
-    font-size: 1rem;
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: background 0.3s;
-}
+        .control-btn {
+            background: transparent;
+            border: none;
+            color: white;
+            cursor: pointer;
+            font-size: 1rem;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s;
+        }
 
-.control-btn:hover {
-    background: rgba(255, 255, 255, 0.2);
-}
+        .control-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
 
-.control-text {
-    color: white;
-    font-size: 0.8rem;
-    white-space: nowrap;
-}
+        .control-text {
+            color: white;
+            font-size: 0.8rem;
+            white-space: nowrap;
+        }
+        
+        .map-container {
+            width: 100%;
+            height: 450px;
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            margin-bottom: 30px;
+        }
 
-/* Responsive */
-@media (max-width: 992px) {
-    .carousel-track {
-        height: 400px;
-    }
-    
-    .gallery-carousel {
-        max-width: 95%;
-    }
-}
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
 
-@media (max-width: 768px) {
-    .carousel-track {
-        height: 350px;
-    }
-    
-    .carousel-slide .gallery-caption {
-        padding: 15px 20px;
-    }
-    
-    .carousel-slide .gallery-caption h3 {
-        font-size: 1.4rem;
-    }
-    
-    .carousel-btn {
-        width: 40px;
-        height: 40px;
-        font-size: 1rem;
-    }
-    
-    .carousel-controls {
-        top: 10px;
-        right: 10px;
-        padding: 6px 12px;
-    }
-    
-    .control-text {
-        font-size: 0.7rem;
-    }
-}
+        .map-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
 
-@media (max-width: 576px) {
-    .carousel-track {
-        height: 300px;
-    }
-    
-    .carousel-slide .gallery-caption h3 {
-        font-size: 1.2rem;
-    }
-    
-    .carousel-slide .gallery-caption p {
-        font-size: 0.9rem;
-    }
-    
-    .control-text {
-        display: none;
-    }
-    
-    .carousel-controls {
-        padding: 8px;
-    }
-}
-.map-container {
-    width: 100%;
-    height: 450px;
-    border-radius: var(--radius);
-    overflow: hidden;
-    box-shadow: var(--shadow);
-    margin-bottom: 30px;
-}
+        .map-info-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+            padding: 25px;
+            background: var(--secondary);
+            border-radius: var(--radius);
+            transition: all 0.3s ease;
+        }
 
-.map-container iframe {
-    width: 100%;
-    height: 100%;
-    border: none;
-}
+        .map-info-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
 
-.map-info {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
-    margin-top: 40px;
-}
+        .map-info-item i {
+            background-color: var(--primary);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            flex-shrink: 0;
+        }
 
-.map-info-item {
-    display: flex;
-    align-items: flex-start;
-    gap: 20px;
-    padding: 25px;
-    background: var(--secondary);
-    border-radius: var(--radius);
-    transition: all 0.3s ease;
-}
+        .map-info-item h4 {
+            font-size: 1.2rem;
+            margin-bottom: 8px;
+            color: var(--dark);
+        }
 
-.map-info-item:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-}
+        .map-info-item p {
+            color: var(--text);
+            line-height: 1.5;
+        }
 
-.map-info-item i {
-    background-color: var(--primary);
-    color: white;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.3rem;
-    flex-shrink: 0;
-}
+        /* Responsive pour la map et carousel */
+        @media (max-width: 992px) {
+            .carousel-track {
+                height: 400px;
+            }
+            
+            .gallery-carousel {
+                max-width: 95%;
+            }
+        }
 
-.map-info-item h4 {
-    font-size: 1.2rem;
-    margin-bottom: 8px;
-    color: var(--dark);
-}
+        @media (max-width: 768px) {
+            .map-container {
+                height: 350px;
+            }
+            
+            .carousel-track {
+                height: 350px;
+            }
+            
+            .carousel-slide .gallery-caption {
+                padding: 15px 20px;
+            }
+            
+            .carousel-slide .gallery-caption h3 {
+                font-size: 1.4rem;
+            }
+            
+            .carousel-btn {
+                width: 40px;
+                height: 40px;
+                font-size: 1rem;
+            }
+            
+            .carousel-controls {
+                top: 10px;
+                right: 10px;
+                padding: 6px 12px;
+            }
+            
+            .control-text {
+                font-size: 0.7rem;
+            }
+            
+            .map-info {
+                grid-template-columns: 1fr;
+            }
+        }
 
-.map-info-item p {
-    color: var(--text);
-    line-height: 1.5;
-}
-
-/* Responsive pour la map */
-@media (max-width: 768px) {
-    .map-container {
-        height: 350px;
-    }
-    
-    .map-info {
-        grid-template-columns: 1fr;
-    }
-}
-
-@media (max-width: 576px) {
-    .map-container {
-        height: 300px;
-    }
-    
-    .map-info-item {
-        flex-direction: column;
-        text-align: center;
-        align-items: center;
-    }
-}
+        @media (max-width: 576px) {
+            .map-container {
+                height: 300px;
+            }
+            
+            .carousel-track {
+                height: 300px;
+            }
+            
+            .carousel-slide .gallery-caption h3 {
+                font-size: 1.2rem;
+            }
+            
+            .carousel-slide .gallery-caption p {
+                font-size: 0.9rem;
+            }
+            
+            .control-text {
+                display: none;
+            }
+            
+            .carousel-controls {
+                padding: 8px;
+            }
+            
+            .map-info-item {
+                flex-direction: column;
+                text-align: center;
+                align-items: center;
+            }
+        }
     </style>
 </head>
 <body>
@@ -2555,7 +2566,7 @@
             <a href="#" class="logo">
                 <img src="logo.png" alt="OsteoDent Logo" class="logo-img">
                 <div class="logo-text">
-                   
+                    <!-- Logo text removed as requested -->
                 </div>
             </a>
             
@@ -2702,7 +2713,7 @@
             </div>
             
             <!-- Testimonianza -->
-          
+            <!-- Removed as requested -->
         </div>
     </section>
 
@@ -2815,80 +2826,80 @@
         </div>
     </section>
 
-<!-- Gallery Section -->
-<section class="gallery" id="gallery">
-    <div class="gallery-container">
-        <div class="section-title">
-            <h2>Galleria del Nostro Studio</h2>
-            <p>Scopri il nostro ambiente moderno e accogliente, progettato per offrirti il massimo comfort durante le tue visite.</p>
-        </div>
-        
-        <!-- Carousel Container -->
-        <div class="gallery-carousel">
-            <div class="carousel-track-container">
-                <div class="carousel-track">
-                    <div class="carousel-slide active">
-                        <img src="entre1.jpg" alt="Vista panoramica dello studio">
-                        <div class="gallery-caption">
-                            <h3>Sala Operatoria Moderna</h3>
-                            <p>Ambiente sterile e tecnologicamente avanzato</p>
+    <!-- Gallery Section -->
+    <section class="gallery" id="gallery">
+        <div class="gallery-container">
+            <div class="section-title">
+                <h2>Galleria del Nostro Studio</h2>
+                <p>Scopri il nostro ambiente moderno e accogliente, progettato per offrirti il massimo comfort durante le tue visite.</p>
+            </div>
+            
+            <!-- Carousel Container -->
+            <div class="gallery-carousel">
+                <div class="carousel-track-container">
+                    <div class="carousel-track">
+                        <div class="carousel-slide active">
+                            <img src="entre1.jpg" alt="Vista panoramica dello studio">
+                            <div class="gallery-caption">
+                                <h3>Sala Operatoria Moderna</h3>
+                                <p>Ambiente sterile e tecnologicamente avanzato</p>
+                            </div>
                         </div>
-                    </div>
-                    
-                    <div class="carousel-slide">
-                        <img src="entre2.jpg" alt="Sala d'attesa moderna">
-                        <div class="gallery-caption">
-                            <h3>Sala d'Attesa Accogliente</h3>
-                            <p>Design moderno per il massimo comfort</p>
+                        
+                        <div class="carousel-slide">
+                            <img src="entre2.jpg" alt="Sala d'attesa moderna">
+                            <div class="gallery-caption">
+                                <h3>Sala d'Attesa Accogliente</h3>
+                                <p>Design moderno per il massimo comfort</p>
+                            </div>
                         </div>
-                    </div>
-                    
-                    <div class="carousel-slide">
-                        <img src="entre3.jpg" alt="Sala d'attesa moderna">
-                        <div class="gallery-caption">
-                            <h3>Area Reception</h3>
-                            <p>Accoglienza professionale e cordiale</p>
+                        
+                        <div class="carousel-slide">
+                            <img src="entre3.jpg" alt="Sala d'attesa moderna">
+                            <div class="gallery-caption">
+                                <h3>Area Reception</h3>
+                                <p>Accoglienza professionale e cordiale</p>
+                            </div>
                         </div>
-                    </div>
-                    
-                    <div class="carousel-slide">
-                        <img src="entre4.jpg" alt="Sala d'attesa moderna">
-                        <div class="gallery-caption">
-                            <h3>Spazio Relax</h3>
-                            <p>Ambiente sereno prima del trattamento</p>
+                        
+                        <div class="carousel-slide">
+                            <img src="entre4.jpg" alt="Sala d'attesa moderna">
+                            <div class="gallery-caption">
+                                <h3>Spazio Relax</h3>
+                                <p>Ambiente sereno prima del trattamento</p>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            
-            <!-- Navigation Buttons -->
-            <button class="carousel-btn prev-btn">
-                <i class="fas fa-chevron-left"></i>
-            </button>
-            <button class="carousel-btn next-btn">
-                <i class="fas fa-chevron-right"></i>
-            </button>
-            
-            <!-- Dots Navigation -->
-            <div class="carousel-dots">
-                <button class="dot active" data-slide="0"></button>
-                <button class="dot" data-slide="1"></button>
-                <button class="dot" data-slide="2"></button>
-                <button class="dot" data-slide="3"></button>
-            </div>
-            
-            <!-- Auto-play controls -->
-            <div class="carousel-controls">
-                <button class="control-btn" id="playPauseBtn">
-                    <i class="fas fa-pause"></i>
+                
+                <!-- Navigation Buttons -->
+                <button class="carousel-btn prev-btn">
+                    <i class="fas fa-chevron-left"></i>
                 </button>
-                <span class="control-text"></span>
+                <button class="carousel-btn next-btn">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+                
+                <!-- Dots Navigation -->
+                <div class="carousel-dots">
+                    <button class="dot active" data-slide="0"></button>
+                    <button class="dot" data-slide="1"></button>
+                    <button class="dot" data-slide="2"></button>
+                    <button class="dot" data-slide="3"></button>
+                </div>
+                
+                <!-- Auto-play controls -->
+                <div class="carousel-controls">
+                    <button class="control-btn" id="playPauseBtn">
+                        <i class="fas fa-pause"></i>
+                    </button>
+                    <span class="control-text"></span>
+                </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
-    <!-- Team Section -->
+    <!-- Team Section - MODIFIÉ avec images plus grandes -->
     <section class="team-section" id="team">
         <div class="container">
             <div class="section-title">
@@ -2897,13 +2908,13 @@
             </div>
             
             <div class="team-showcase">
-                <!-- Team Member 1 -->
+                <!-- Team Member 1 - Image agrandie -->
                 <div class="team-member-card">
                     <div class="member-image-container">
                         <img src="img3.jpg" alt="Maria Chiara Brugnami" class="member-image">
                         <div class="image-overlay">
+                            <!-- Social links removed as requested -->
                         </div>
-                       
                     </div>
                     <div class="member-info">
                         <h3 class="member-name">Maria Chiara Brugnami</h3>
@@ -2927,13 +2938,13 @@
                     </div>
                 </div>
                 
-                <!-- Team Member 2 -->
+                <!-- Team Member 2 - Image agrandie -->
                 <div class="team-member-card">
                     <div class="member-image-container">
                         <img src="img1.jpg" alt="Elena Conti" class="member-image">
                         <div class="image-overlay">
+                            <!-- Social links removed as requested -->
                         </div>
-                        
                     </div>
                     <div class="member-info">
                         <h3 class="member-name">Elena Conti</h3>
@@ -2957,11 +2968,12 @@
                     </div>
                 </div>
                 
-                <!-- Team Member 3 -->
+                <!-- Team Member 3 - Image agrandie -->
                 <div class="team-member-card">
                     <div class="member-image-container">
                         <img src="img2.jpg" alt="Elisa Bronzini" class="member-image">
                         <div class="image-overlay">
+                            <!-- Social links removed as requested -->
                         </div>
                     </div>
                     <div class="member-info">
@@ -2986,11 +2998,12 @@
                     </div>
                 </div>
                 
-                <!-- Team Member 4 -->
+                <!-- Team Member 4 - Image agrandie -->
                 <div class="team-member-card">
                     <div class="member-image-container">
                         <img src="img5.jpg" alt="Francesco Sparabombe" class="member-image">
                         <div class="image-overlay">
+                            <!-- Social links removed as requested -->
                         </div>
                     </div>
                     <div class="member-info">
@@ -3015,11 +3028,12 @@
                     </div>
                 </div>
                 
-                <!-- Team Member 5 -->
+                <!-- Team Member 5 - Image agrandie -->
                 <div class="team-member-card">
                     <div class="member-image-container">
                         <img src="img4.jpg" alt="Stefania Pascucci" class="member-image">
                         <div class="image-overlay">
+                            <!-- Social links removed as requested -->
                         </div>
                     </div>
                     <div class="member-info">
@@ -3369,39 +3383,41 @@
             </div>
         </div>
     </section>
+    
     <!-- Map Section -->
-<section class="map-section">
-    <div class="container">
-        <div class="section-title">
-            <h2>Dove Siamo</h2>
-            <p>Trovaci facilmente nella nostra posizione centrale ad Ancona</p>
-        </div>
-        <div class="map-container">
-            <iframe 
-                src="https://www.google.com/maps/embed?pb=!4v1769706840366!6m8!1m7!1se46ZYP6G0YTQgfIQLqofqg!2m2!1d43.6071116568084!2d13.51139420578692!3f187.10753396098053!4f3.200941769841563!5f0.7820865974627469"
-                allowfullscreen
-                loading="lazy"
-                referrerpolicy="no-referrer-when-downgrade">
-            </iframe>
-        </div>
-        <div class="map-info">
-            <div class="map-info-item">
-                <i class="fas fa-map-marker-alt"></i>
-                <div>
-                    <h4>Indirizzo</h4>
-                    <p>Via Martiri della Resistenza 10, 60125 Ancona</p>
+    <section class="map-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Dove Siamo</h2>
+                <p>Trovaci facilmente nella nostra posizione centrale ad Ancona</p>
+            </div>
+            <div class="map-container">
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!4v1769706840366!6m8!1m7!1se46ZYP6G0YTQgfIQLqofqg!2m2!1d43.6071116568084!2d13.51139420578692!3f187.10753396098053!4f3.200941769841563!5f0.7820865974627469"
+                    allowfullscreen
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
+            <div class="map-info">
+                <div class="map-info-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <div>
+                        <h4>Indirizzo</h4>
+                        <p>Via Martiri della Resistenza 10, 60125 Ancona</p>
+                    </div>
+                </div>
+                <div class="map-info-item">
+                    <i class="fas fa-directions"></i>
+                    <div>
+                        <h4>Come Raggiungerci</h4>
+                        <p>Parcheggio disponibile nelle vicinanze. Accessibile con mezzi pubblici.</p>
+                    </div>
                 </div>
             </div>
-            <div class="map-info-item">
-                <i class="fas fa-directions"></i>
-                <div>
-                    <h4>Come Raggiungerci</h4>
-                    <p>Parcheggio disponibile nelle vicinanze. Accessibile con mezzi pubblici.</p>
-                </div>
-            </div>
         </div>
-    </div>
     </section>
+
     <!-- Footer -->
     <footer>
         <div class="container">
@@ -3529,147 +3545,148 @@
                 }
             }, 100);
         });
+        
         // Gallery Carousel
-function initGalleryCarousel() {
-    const track = document.querySelector('.carousel-track');
-    const slides = Array.from(track.children);
-    const nextButton = document.querySelector('.next-btn');
-    const prevButton = document.querySelector('.prev-btn');
-    const dots = document.querySelectorAll('.carousel-dots .dot');
-    const playPauseBtn = document.getElementById('playPauseBtn');
-    const controlText = document.querySelector('.control-text');
-    
-    let currentSlide = 0;
-    let autoPlayInterval;
-    let isPlaying = true;
-    const slideInterval = 4000; // 4 secondes
-    
-    // Set initial slide positions
-    slides.forEach((slide, index) => {
-        slide.style.transform = `translateX(${index * 100}%)`;
-    });
-    
-    // Move to specific slide
-    function moveToSlide(slideIndex) {
-        track.style.transform = `translateX(-${slideIndex * 100}%)`;
-        currentSlide = slideIndex;
-        
-        // Update active dot
-        dots.forEach(dot => dot.classList.remove('active'));
-        dots[slideIndex].classList.add('active');
-    }
-    
-    // Next slide
-    function nextSlide() {
-        const nextIndex = currentSlide === slides.length - 1 ? 0 : currentSlide + 1;
-        moveToSlide(nextIndex);
-    }
-    
-    // Previous slide
-    function prevSlide() {
-        const prevIndex = currentSlide === 0 ? slides.length - 1 : currentSlide - 1;
-        moveToSlide(prevIndex);
-    }
-    
-    // Start auto-play
-    function startAutoPlay() {
-        autoPlayInterval = setInterval(nextSlide, slideInterval);
-        isPlaying = true;
-        playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
-        controlText.textContent = 'Auto-scorrimento attivo';
-    }
-    
-    // Pause auto-play
-    function pauseAutoPlay() {
-        clearInterval(autoPlayInterval);
-        isPlaying = false;
-        playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
-        controlText.textContent = 'Auto-scorrimento in pausa';
-    }
-    
-    // Event listeners
-    nextButton.addEventListener('click', () => {
-        nextSlide();
-        if (isPlaying) {
-            pauseAutoPlay();
-            setTimeout(startAutoPlay, 10000); // Restart after 10 seconds
-        }
-    });
-    
-    prevButton.addEventListener('click', () => {
-        prevSlide();
-        if (isPlaying) {
-            pauseAutoPlay();
-            setTimeout(startAutoPlay, 10000); // Restart after 10 seconds
-        }
-    });
-    
-    // Dots navigation
-    dots.forEach((dot, index) => {
-        dot.addEventListener('click', () => {
-            moveToSlide(index);
-            if (isPlaying) {
-                pauseAutoPlay();
-                setTimeout(startAutoPlay, 10000); // Restart after 10 seconds
+        function initGalleryCarousel() {
+            const track = document.querySelector('.carousel-track');
+            const slides = Array.from(track.children);
+            const nextButton = document.querySelector('.next-btn');
+            const prevButton = document.querySelector('.prev-btn');
+            const dots = document.querySelectorAll('.carousel-dots .dot');
+            const playPauseBtn = document.getElementById('playPauseBtn');
+            const controlText = document.querySelector('.control-text');
+            
+            let currentSlide = 0;
+            let autoPlayInterval;
+            let isPlaying = true;
+            const slideInterval = 4000; // 4 secondes
+            
+            // Set initial slide positions
+            slides.forEach((slide, index) => {
+                slide.style.transform = `translateX(${index * 100}%)`;
+            });
+            
+            // Move to specific slide
+            function moveToSlide(slideIndex) {
+                track.style.transform = `translateX(-${slideIndex * 100}%)`;
+                currentSlide = slideIndex;
+                
+                // Update active dot
+                dots.forEach(dot => dot.classList.remove('active'));
+                dots[slideIndex].classList.add('active');
             }
-        });
-    });
-    
-    // Play/Pause button
-    playPauseBtn.addEventListener('click', () => {
-        if (isPlaying) {
-            pauseAutoPlay();
-        } else {
-            startAutoPlay();
-        }
-    });
-    
-    // Pause on hover
-    track.addEventListener('mouseenter', pauseAutoPlay);
-    track.addEventListener('mouseleave', () => {
-        if (isPlaying) {
-            startAutoPlay();
-        }
-    });
-    
-    // Touch/swipe support for mobile
-    let touchStartX = 0;
-    let touchEndX = 0;
-    
-    track.addEventListener('touchstart', e => {
-        touchStartX = e.changedTouches[0].screenX;
-        if (isPlaying) pauseAutoPlay();
-    });
-    
-    track.addEventListener('touchend', e => {
-        touchEndX = e.changedTouches[0].screenX;
-        handleSwipe();
-        if (isPlaying) {
-            setTimeout(startAutoPlay, 5000);
-        }
-    });
-    
-    function handleSwipe() {
-        const swipeThreshold = 50;
-        const diff = touchStartX - touchEndX;
-        
-        if (Math.abs(diff) > swipeThreshold) {
-            if (diff > 0) {
-                // Swipe left - next
+            
+            // Next slide
+            function nextSlide() {
+                const nextIndex = currentSlide === slides.length - 1 ? 0 : currentSlide + 1;
+                moveToSlide(nextIndex);
+            }
+            
+            // Previous slide
+            function prevSlide() {
+                const prevIndex = currentSlide === 0 ? slides.length - 1 : currentSlide - 1;
+                moveToSlide(prevIndex);
+            }
+            
+            // Start auto-play
+            function startAutoPlay() {
+                autoPlayInterval = setInterval(nextSlide, slideInterval);
+                isPlaying = true;
+                playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
+                controlText.textContent = 'Auto-scorrimento attivo';
+            }
+            
+            // Pause auto-play
+            function pauseAutoPlay() {
+                clearInterval(autoPlayInterval);
+                isPlaying = false;
+                playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
+                controlText.textContent = 'Auto-scorrimento in pausa';
+            }
+            
+            // Event listeners
+            nextButton.addEventListener('click', () => {
                 nextSlide();
-            } else {
-                // Swipe right - previous
+                if (isPlaying) {
+                    pauseAutoPlay();
+                    setTimeout(startAutoPlay, 10000); // Restart after 10 seconds
+                }
+            });
+            
+            prevButton.addEventListener('click', () => {
                 prevSlide();
+                if (isPlaying) {
+                    pauseAutoPlay();
+                    setTimeout(startAutoPlay, 10000); // Restart after 10 seconds
+                }
+            });
+            
+            // Dots navigation
+            dots.forEach((dot, index) => {
+                dot.addEventListener('click', () => {
+                    moveToSlide(index);
+                    if (isPlaying) {
+                        pauseAutoPlay();
+                        setTimeout(startAutoPlay, 10000); // Restart after 10 seconds
+                    }
+                });
+            });
+            
+            // Play/Pause button
+            playPauseBtn.addEventListener('click', () => {
+                if (isPlaying) {
+                    pauseAutoPlay();
+                } else {
+                    startAutoPlay();
+                }
+            });
+            
+            // Pause on hover
+            track.addEventListener('mouseenter', pauseAutoPlay);
+            track.addEventListener('mouseleave', () => {
+                if (isPlaying) {
+                    startAutoPlay();
+                }
+            });
+            
+            // Touch/swipe support for mobile
+            let touchStartX = 0;
+            let touchEndX = 0;
+            
+            track.addEventListener('touchstart', e => {
+                touchStartX = e.changedTouches[0].screenX;
+                if (isPlaying) pauseAutoPlay();
+            });
+            
+            track.addEventListener('touchend', e => {
+                touchEndX = e.changedTouches[0].screenX;
+                handleSwipe();
+                if (isPlaying) {
+                    setTimeout(startAutoPlay, 5000);
+                }
+            });
+            
+            function handleSwipe() {
+                const swipeThreshold = 50;
+                const diff = touchStartX - touchEndX;
+                
+                if (Math.abs(diff) > swipeThreshold) {
+                    if (diff > 0) {
+                        // Swipe left - next
+                        nextSlide();
+                    } else {
+                        // Swipe right - previous
+                        prevSlide();
+                    }
+                }
             }
+            
+            // Start auto-play initially
+            startAutoPlay();
         }
-    }
-    
-    // Start auto-play initially
-    startAutoPlay();
-}
 
-// Initialize carousel when page loads
-document.addEventListener('DOMContentLoaded', initGalleryCarousel);
+        // Initialize carousel when page loads
+        document.addEventListener('DOMContentLoaded', initGalleryCarousel);
 
         // Ajouter l'animation d'explosion au CSS
         const style = document.createElement('style');
