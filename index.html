@@ -519,11 +519,11 @@
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 40px;
-            align-items: center;
+            align-items: stretch;
             margin-bottom: 40px;
         }
 
-        /* CARD PRIMA */
+        /* CARD PRIMA - MODIFIÉE */
         .comparison-card {
             background: white;
             border-radius: 20px;
@@ -532,6 +532,8 @@
             transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
             border: 2px solid transparent;
+            display: flex;
+            flex-direction: column;
         }
 
         .comparison-card:hover {
@@ -542,10 +544,10 @@
 
         .comparison-image {
             width: 100%;
-            height: 550px;
+            height: 450px;
             position: relative;
             overflow: hidden;
-            border-radius: 18px 18px 0 0;
+            flex-shrink: 0;
         }
 
         .comparison-image img {
@@ -559,44 +561,7 @@
             transform: scale(1.1);
         }
 
-        .comparison-label {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(transparent, rgba(0, 0, 0, 0.9));
-            color: white;
-            padding: 30px 35px;
-        }
-
-        .comparison-label h3 {
-            font-size: 2rem;
-            margin-bottom: 5px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .comparison-label p {
-            opacity: 0.95;
-            font-size: 1.2rem;
-        }
-
-        .before-label h3 i {
-            color: #f43f5e;
-        }
-
-        .after-label h3 i {
-            color: var(--success);
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-        }
-
-        /* Badge per le immagini */
+        /* Badge pour les images */
         .image-badge {
             position: absolute;
             top: 25px;
@@ -625,6 +590,42 @@
         @keyframes badgePulse {
             0%, 100% { transform: scale(1); }
             50% { transform: scale(1.05); }
+        }
+
+        /* TEXTE SOUS L'IMAGE - NOUVEAU STYLE */
+        .comparison-label {
+            padding: 30px 35px;
+            background: white;
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        .comparison-label h3 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--dark);
+        }
+
+        .comparison-label p {
+            color: var(--text);
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        .before-label h3 i {
+            color: #f43f5e;
+        }
+
+        .after-label h3 i {
+            color: var(--success);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
         }
 
         /* Separatore visivo */
@@ -1013,7 +1014,7 @@
             margin-top: 5px;
         }
 
-        /* Team Section - Version Stylée - MODIFIÉ */
+        /* Team Section */
         .team-section {
             padding: 100px 0;
             background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
@@ -1059,18 +1060,17 @@
             box-shadow: 0 25px 60px rgba(14, 165, 233, 0.15);
         }
 
-        /* MODIFICATION: Images d'équipe plus grandes */
         .member-image-container {
             position: relative;
-            height: 450px; /* Augmenté de 300px à 450px */
+            height: 450px;
             overflow: hidden;
         }
 
         .member-image {
             width: 100%;
             height: 100%;
-            object-fit: cover; /* Changé à 'cover' pour mieux remplir */
-            object-position: top center; /* Centre le visage en haut */
+            object-fit: cover;
+            object-position: top center;
             transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
@@ -1223,7 +1223,6 @@
             color: var(--text);
         }
 
-        /* Team Stats Section */
         .team-stats-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -1273,7 +1272,6 @@
             line-height: 1.5;
         }
 
-        /* Team Philosophy */
         .team-philosophy {
             background: linear-gradient(135deg, var(--primary), var(--primary-dark));
             border-radius: 20px;
@@ -1575,7 +1573,7 @@
             margin-bottom: 15px;
         }
 
-        /* Gallery Section - NOUVELLE VERSION STYLÉE */
+        /* Gallery Section */
         .gallery {
             padding: 100px 0;
             background-color: white;
@@ -1619,7 +1617,6 @@
             margin-top: 40px;
         }
 
-        /* Nouveau design de galerie */
         .gallery-item {
             position: relative;
             border-radius: 20px;
@@ -1638,6 +1635,8 @@
         .gallery-item:nth-child(2) { animation-delay: 0.2s; }
         .gallery-item:nth-child(3) { animation-delay: 0.3s; }
         .gallery-item:nth-child(4) { animation-delay: 0.4s; }
+        .gallery-item:nth-child(5) { animation-delay: 0.5s; }
+        .gallery-item:nth-child(6) { animation-delay: 0.6s; }
 
         @keyframes galleryItemAppear {
             to {
@@ -1921,7 +1920,6 @@
             box-shadow: 0 5px 10px rgba(0, 0, 0, 0.05);
         }
 
-        /* WhatsApp Booking Section */
         .whatsapp-booking {
             background-color: white;
             padding: 40px;
@@ -2008,7 +2006,6 @@
             flex-shrink: 0;
         }
 
-        /* WhatsApp Float */
         .whatsapp-float {
             position: fixed;
             bottom: 30px;
@@ -2104,10 +2101,77 @@
             font-size: 0.9rem;
         }
 
+        /* Map Section */
+        .map-section {
+            padding: 80px 0;
+            background-color: white;
+        }
+        
+        .map-container {
+            width: 100%;
+            height: 450px;
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            margin-bottom: 30px;
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .map-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .map-info-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+            padding: 25px;
+            background: var(--secondary);
+            border-radius: var(--radius);
+            transition: all 0.3s ease;
+        }
+
+        .map-info-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .map-info-item i {
+            background-color: var(--primary);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            flex-shrink: 0;
+        }
+
+        .map-info-item h4 {
+            font-size: 1.2rem;
+            margin-bottom: 8px;
+            color: var(--dark);
+        }
+
+        .map-info-item p {
+            color: var(--text);
+            line-height: 1.5;
+        }
+
         /* Responsive */
         @media (max-width: 1200px) {
             .comparison-image {
-                height: 500px !important;
+                height: 400px !important;
             }
             
             .team-showcase {
@@ -2118,12 +2182,10 @@
                 grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             }
             
-            /* MODIFICATION pour responsive */
             .member-image-container {
                 height: 400px;
             }
             
-            /* Gallery responsive */
             .gallery-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
@@ -2141,7 +2203,7 @@
             }
             
             .comparison-image {
-                height: 450px !important;
+                height: 400px !important;
             }
             
             .hero-content h1 {
@@ -2152,7 +2214,6 @@
                 grid-template-columns: repeat(2, 1fr);
             }
             
-            /* MODIFICATION pour responsive */
             .member-image-container {
                 height: 350px;
             }
@@ -2167,7 +2228,6 @@
                 text-align: center;
             }
             
-            /* Gallery responsive */
             .gallery-grid {
                 grid-template-columns: repeat(2, 1fr);
                 gap: 20px;
@@ -2266,7 +2326,6 @@
                 padding: 20px;
             }
             
-            /* MODIFICATION pour responsive mobile */
             .member-image-container {
                 height: 450px;
             }
@@ -2288,7 +2347,6 @@
                 width: 100%;
             }
             
-            /* Gallery responsive */
             .modal-nav {
                 position: fixed;
                 top: auto;
@@ -2312,11 +2370,19 @@
             .modal-info {
                 bottom: 80px;
             }
+
+            .map-container {
+                height: 350px;
+            }
+            
+            .map-info {
+                grid-template-columns: 1fr;
+            }
         }
         
         @media (max-width: 576px) {
             .comparison-image {
-                height: 350px !important;
+                height: 300px !important;
             }
             
             .image-badge {
@@ -2385,7 +2451,6 @@
                 font-size: 1.7rem;
             }
             
-            /* MODIFICATION pour très petits écrans */
             .member-image-container {
                 height: 400px;
             }
@@ -2405,7 +2470,6 @@
                 font-size: 1rem;
             }
             
-            /* Gallery responsive */
             .gallery-item {
                 aspect-ratio: 3/2;
             }
@@ -2447,6 +2511,16 @@
             
             .modal-info p {
                 font-size: 0.9rem;
+            }
+
+            .map-container {
+                height: 300px;
+            }
+            
+            .map-info-item {
+                flex-direction: column;
+                text-align: center;
+                align-items: center;
             }
         }
         
@@ -2518,7 +2592,6 @@
         .review-card:nth-child(2) { animation-delay: 0.2s; }
         .review-card:nth-child(3) { animation-delay: 0.3s; }
 
-        /* Special Effects */
         .team-member-card::after {
             content: '';
             position: absolute;
@@ -2539,96 +2612,6 @@
 
         .review-card:hover {
             transform: translateY(-10px);
-        }
-        
-        /* Map Section */
-        .map-section {
-            padding: 80px 0;
-            background-color: white;
-        }
-        
-        .map-container {
-            width: 100%;
-            height: 450px;
-            border-radius: var(--radius);
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            margin-bottom: 30px;
-        }
-
-        .map-container iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-
-        .map-info {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
-        }
-
-        .map-info-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 20px;
-            padding: 25px;
-            background: var(--secondary);
-            border-radius: var(--radius);
-            transition: all 0.3s ease;
-        }
-
-        .map-info-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-        }
-
-        .map-info-item i {
-            background-color: var(--primary);
-            color: white;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.3rem;
-            flex-shrink: 0;
-        }
-
-        .map-info-item h4 {
-            font-size: 1.2rem;
-            margin-bottom: 8px;
-            color: var(--dark);
-        }
-
-        .map-info-item p {
-            color: var(--text);
-            line-height: 1.5;
-        }
-
-        /* Responsive pour la map */
-        @media (max-width: 768px) {
-            .map-container {
-                height: 350px;
-            }
-            
-            .map-info {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        @media (max-width: 576px) {
-            .map-container {
-                height: 300px;
-            }
-            
-            .map-info-item {
-                flex-direction: column;
-                text-align: center;
-                align-items: center;
-            }
         }
     </style>
 </head>
@@ -2726,92 +2709,27 @@
         </div>
     </section>
 
-    <!-- Section Avant/Après -->
-        <section class="before-after-section" id="transformations">
-        <div class="container">
-            <div class="before-after-title">
-                <h2>Trasformazioni Straordinarie</h2>
-                <p>Guarda come trasformiamo i sorrisi dei nostri pazienti con risultati naturali.</p>
-            </div>
-            
-            <div class="before-after-container">
-                <!-- CARD PRIMA -->
-                <div class="comparison-card before-card">
-                    <div class="comparison-image">
-                        <img src="avant1.jpg" alt="Prima del trattamento - Denti da riparare">
-                        <div class="comparison-label before-label">
-                            <h3><i class="fas fa-exclamation-triangle"></i> Prima del Trattamento</h3>
-                            <p>Problemi dentali complessi che compromettono funzione ed estetica</p>
-                        </div>
-                        <div class="image-badge before-badge">
-                            <span>PRIMA</span>
-                        </div>
-                    </div>
-                    <div class="comparison-details">
-                        <div class="detail-item">
-                            <i class="fas fa-times-circle"></i>
-                            <span>Carie multiple</span>
-                        </div>
-                        <div class="detail-item">
-                            <i class="fas fa-times-circle"></i>
-                            <span>Disallineamento</span>
-                        </div>
-                        <div class="detail-item">
-                            <i class="fas fa-times-circle"></i>
-                            <span>Denti danneggiati</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- CARD DOPO -->
-                <div class="comparison-card after-card">
-                    <div class="comparison-image">
-                        <img src="apres1.jpg" alt="Dopo il trattamento - Sorriso perfetto">
-                        <div class="comparison-label after-label">
-                            <h3><i class="fas fa-star"></i> Dopo il Nostro Lavoro</h3>
-                            <p>Trasformazione completa con risultati estetici e funzionali eccezionali</p>
-                        </div>
-                        <div class="image-badge after-badge">
-                            <span>DOPO</span>
-                        </div>
-                    </div>
-                    <div class="comparison-details">
-                        <div class="detail-item">
-                            <i class="fas fa-check-circle"></i>
-                            <span>Denti perfetti</span>
-                        </div>
-                        <div class="detail-item">
-                            <i class="fas fa-check-circle"></i>
-                            <span>Allineamento corretto</span>
-                        </div>
-                        <div class="detail-item">
-                            <i class="fas fa-check-circle"></i>
-                            <span>Colore naturale</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Section Avant/Après -->
+    <!-- Section Avant/Après UNIQUE et CORRECTE -->
     <section class="before-after-section" id="transformations">
         <div class="container">
             <div class="before-after-title">
+                <h2>Trasformazioni Straordinarie</h2>
                 <p>Guarda una trasformazione recente del 2026: come valorizziamo il sorriso dei nostri pazienti con risultati naturali.</p>
             </div>
             
             <div class="before-after-container">
-                <!-- CARD PRIMA -->
+                <!-- CARD PRIMA - texte SOUS l'image -->
                 <div class="comparison-card before-card">
                     <div class="comparison-image">
                         <img src="prima.jpg" alt="Prima del trattamento - Denti da riparare">
-                        <div class="comparison-label before-label">
-                            <h3><i class="fas fa-exclamation-triangle"></i> Prima del Trattamento</h3>
-                            <p>A volte sorridere non è così semplice.
-Questa paziente convive con la parodontite e con il disagio di non sentirsi a proprio agio nel mostrare il suo sorriso.
-Abbiamo iniziato da qui.    </p>
-                        </div>
                         <div class="image-badge before-badge">
                             <span>PRIMA</span>
                         </div>
+                    </div>
+                    <!-- TEXTE DÉPLACÉ ICI - SOUS L'IMAGE -->
+                    <div class="comparison-label before-label">
+                        <h3><i class="fas fa-exclamation-triangle"></i> Prima del Trattamento</h3>
+                        <p>A volte sorridere non è così semplice. Questa paziente convive con la parodontite e con il disagio di non sentirsi a proprio agio nel mostrare il suo sorriso. Abbiamo iniziato da qui.</p>
                     </div>
                     <div class="comparison-details">
                         <div class="detail-item">
@@ -2829,18 +2747,18 @@ Abbiamo iniziato da qui.    </p>
                     </div>
                 </div>
                 
-                <!-- CARD DOPO -->
+                <!-- CARD DOPO - texte SOUS l'image -->
                 <div class="comparison-card after-card">
                     <div class="comparison-image">
                         <img src="dopo.jpg" alt="Dopo il trattamento - Sorriso perfetto">
-                        <div class="comparison-label after-label">
-                            <h3><i class="fas fa-star"></i> Dopo il Nostro Lavoro</h3>
-                            <p>Abbiamo proceduto con un provvisorio per restituire subito estetica e sicurezza. 
-                            È solo un primo passo, ma è quello che cambia tutto. Seguiteci!</p>
-                        </div>
                         <div class="image-badge after-badge">
                             <span>DOPO</span>
                         </div>
+                    </div>
+                    <!-- TEXTE DÉPLACÉ ICI - SOUS L'IMAGE -->
+                    <div class="comparison-label after-label">
+                        <h3><i class="fas fa-star"></i> Dopo il Nostro Lavoro</h3>
+                        <p>Abbiamo proceduto con un provvisorio per restituire subito estetica e sicurezza. È solo un primo passo, ma è quello che cambia tutto. Seguiteci!</p>
                     </div>
                     <div class="comparison-details">
                         <div class="detail-item">
@@ -2858,7 +2776,6 @@ Abbiamo iniziato da qui.    </p>
                     </div>
                 </div>
             </div>
-            
             
             <!-- Separatore visivo -->
             <div class="transformation-separator">
@@ -2895,9 +2812,6 @@ Abbiamo iniziato da qui.    </p>
                     <span class="stat-text">Garanzia sui Lavori</span>
                 </div>
             </div>
-            
-            <!-- Testimonianza -->
-            <!-- Removed as requested -->
         </div>
     </section>
 
@@ -3019,67 +2933,55 @@ Abbiamo iniziato da qui.    </p>
             </div>
             
             <div class="gallery-grid">
-                <!-- Image 1 -->
                 <div class="gallery-item" data-index="0">
                     <img src="entre1.jpg" alt="Area reception" class="gallery-image">
-                   
                     <div class="gallery-overlay">
                         <div class="gallery-content">
-                          
                         </div>
                     </div>
                 </div>
                 
-                <!-- Image 2 -->
                 <div class="gallery-item" data-index="1">
                     <img src="entre2.jpg" alt="Sala d'attesa moderna" class="gallery-image">
                     <div class="gallery-overlay">
                         <div class="gallery-content">
-                           
                         </div>
                     </div>
                 </div>
                 
-                <!-- Image 3 -->
                 <div class="gallery-item" data-index="2">
                     <img src="entre3.jpg" alt="Area reception" class="gallery-image">
                     <div class="gallery-overlay">
                         <div class="gallery-content">
-                          
                         </div>
                     </div>
                 </div>
-                <div class="gallery-item" data-index="2">
+                <div class="gallery-item" data-index="3">
                     <img src="entre5.jpg" alt="Area reception" class="gallery-image">
                     <div class="gallery-overlay">
                         <div class="gallery-content">
-                          
                         </div>
                     </div>
                 </div>
-                <div class="gallery-item" data-index="2">
+                <div class="gallery-item" data-index="4">
                     <img src="entre6.jpg" alt="Area reception" class="gallery-image">
                     <div class="gallery-overlay">
                         <div class="gallery-content">
-                          
                         </div>
                     </div>
                 </div>
-                <div class="gallery-item" data-index="2">
+                <div class="gallery-item" data-index="5">
                     <img src="entre7.jpg" alt="Area reception" class="gallery-image">
                     <div class="gallery-overlay">
                         <div class="gallery-content">
-                          
                         </div>
                     </div>
                 </div>
                 
-                <!-- Image 4 -->
-                <div class="gallery-item" data-index="3">
+                <div class="gallery-item" data-index="6">
                     <img src="entre4.jpg" alt="Sala Operatoria Moderna" class="gallery-image">
                     <div class="gallery-overlay">
                         <div class="gallery-content">
-                          
                         </div>
                     </div>
                 </div>
@@ -3087,7 +2989,7 @@ Abbiamo iniziato da qui.    </p>
         </div>
     </section>
 
-    <!-- Team Section - MODIFIÉ avec images plus grandes -->
+    <!-- Team Section -->
     <section class="team-section" id="team">
         <div class="container">
             <div class="section-title">
@@ -3096,17 +2998,14 @@ Abbiamo iniziato da qui.    </p>
             </div>
             
             <div class="team-showcase">
-                <!-- Team Member 1 - Image agrandie -->
                 <div class="team-member-card">
                     <div class="member-image-container">
                         <img src="img3.jpg" alt="Maria Chiara Brugnami" class="member-image">
-                        <div class="image-overlay">
-                            <!-- Social links removed as requested -->
-                        </div>
+                        <div class="image-overlay"></div>
                     </div>
                     <div class="member-info">
                         <h3 class="member-name">Maria Chiara Brugnami</h3>
-                        <p class="member-title">Odontoiatra </p>
+                        <p class="member-title">Odontoiatra</p>
                         <div class="member-specialties">
                             <span class="specialty-tag">Protesi Dentali</span>
                             <span class="specialty-tag">Pedodonzia</span>
@@ -3126,13 +3025,10 @@ Abbiamo iniziato da qui.    </p>
                     </div>
                 </div>
                 
-                <!-- Team Member 2 - Image agrandie -->
                 <div class="team-member-card">
                     <div class="member-image-container">
                         <img src="img1.jpg" alt="Elena Conti" class="member-image">
-                        <div class="image-overlay">
-                            <!-- Social links removed as requested -->
-                        </div>
+                        <div class="image-overlay"></div>
                     </div>
                     <div class="member-info">
                         <h3 class="member-name">Elena Conti</h3>
@@ -3156,13 +3052,10 @@ Abbiamo iniziato da qui.    </p>
                     </div>
                 </div>
                 
-                <!-- Team Member 3 - Image agrandie -->
                 <div class="team-member-card">
                     <div class="member-image-container">
                         <img src="img2.jpg" alt="Elisa Bronzini" class="member-image">
-                        <div class="image-overlay">
-                            <!-- Social links removed as requested -->
-                        </div>
+                        <div class="image-overlay"></div>
                     </div>
                     <div class="member-info">
                         <h3 class="member-name">Elisa Bronzini</h3>
@@ -3186,13 +3079,10 @@ Abbiamo iniziato da qui.    </p>
                     </div>
                 </div>
                 
-                <!-- Team Member 4 - Image agrandie -->
                 <div class="team-member-card">
                     <div class="member-image-container">
                         <img src="img5.jpg" alt="Francesco Sparabombe" class="member-image">
-                        <div class="image-overlay">
-                            <!-- Social links removed as requested -->
-                        </div>
+                        <div class="image-overlay"></div>
                     </div>
                     <div class="member-info">
                         <h3 class="member-name">Francesco Sparabombe</h3>
@@ -3216,13 +3106,10 @@ Abbiamo iniziato da qui.    </p>
                     </div>
                 </div>
                 
-                <!-- Team Member 5 - Image agrandie -->
                 <div class="team-member-card">
                     <div class="member-image-container">
                         <img src="img4.jpg" alt="Stefania Pascucci" class="member-image">
-                        <div class="image-overlay">
-                            <!-- Social links removed as requested -->
-                        </div>
+                        <div class="image-overlay"></div>
                     </div>
                     <div class="member-info">
                         <h3 class="member-name">Stefania Pascucci</h3>
@@ -3247,7 +3134,6 @@ Abbiamo iniziato da qui.    </p>
                 </div>
             </div>
             
-            <!-- Team Stats -->
             <div class="team-stats-container">
                 <div class="team-stat-card">
                     <div class="team-stat-icon">
@@ -3290,7 +3176,6 @@ Abbiamo iniziato da qui.    </p>
                 </div>
             </div>
             
-            <!-- Team Philosophy -->
             <div class="team-philosophy">
                 <div class="philosophy-content">
                     <h3><i class="fas fa-star"></i> La Nostra Filosofia di Team</h3>
@@ -3313,7 +3198,6 @@ Abbiamo iniziato da qui.    </p>
             </div>
             
             <div class="reviews-container">
-                <!-- Review 1 -->
                 <div class="review-card">
                     <div class="review-header">
                         <div class="reviewer-info">
@@ -3348,7 +3232,6 @@ Abbiamo iniziato da qui.    </p>
                     </div>
                 </div>
                 
-                <!-- Review 2 -->
                 <div class="review-card">
                     <div class="review-header">
                         <div class="reviewer-info">
@@ -3383,7 +3266,6 @@ Abbiamo iniziato da qui.    </p>
                     </div>
                 </div>
                 
-                <!-- Review 3 -->
                 <div class="review-card">
                     <div class="review-header">
                         <div class="reviewer-info">
@@ -3419,7 +3301,6 @@ Abbiamo iniziato da qui.    </p>
                 </div>
             </div>
             
-            <!-- Reviews Summary -->
             <div class="reviews-summary">
                 <div class="summary-rating">
                     <span class="average-rating">5.0</span>
@@ -3660,7 +3541,6 @@ Abbiamo iniziato da qui.    </p>
     <script>
         // Loading screen
         window.addEventListener('load', function() {
-            // Simuler un chargement progressif
             let progress = 0;
             const progressBar = document.querySelector('.loading-progress-bar');
             const interval = setInterval(function() {
@@ -3669,12 +3549,10 @@ Abbiamo iniziato da qui.    </p>
                     progress = 100;
                     clearInterval(interval);
                     
-                    // Animation de fin avec délai
                     setTimeout(function() {
                         const loadingScreen = document.getElementById('loadingScreen');
                         loadingScreen.classList.add('fade-out');
                         
-                        // Ajouter une animation de particules de fin
                         const particles = document.createElement('div');
                         particles.style.position = 'fixed';
                         particles.style.top = '0';
@@ -3685,7 +3563,6 @@ Abbiamo iniziato da qui.    </p>
                         particles.style.pointerEvents = 'none';
                         document.body.appendChild(particles);
                         
-                        // Créer des particules d'explosion
                         for (let i = 0; i < 50; i++) {
                             const particle = document.createElement('div');
                             particle.style.position = 'absolute';
@@ -3708,7 +3585,6 @@ Abbiamo iniziato da qui.    </p>
                             particles.appendChild(particle);
                         }
                         
-                        // Supprimer l'écran de chargement après l'animation
                         setTimeout(function() {
                             loadingScreen.style.display = 'none';
                             particles.remove();
@@ -3731,31 +3607,16 @@ Abbiamo iniziato da qui.    </p>
             
             let currentIndex = 0;
             
-            // Données des images
             const galleryData = [
-                {
-                    src: 'entre1.jpg',
-                    title: 'Sala Operatoria Moderna',
-                    description: 'Ambiente sterile e tecnologicamente avanzato con attrezzature all\'avanguardia per trattamenti precisi e confortevoli.'
-                },
-                {
-                    src: 'entre2.jpg',
-                    title: 'Sala d\'Attesa Accogliente',
-                    description: 'Design moderno e comfort ottimale per rilassarsi prima della visita. Spazio luminoso e confortevole.'
-                },
-                {
-                    src: 'entre3.jpg',
-                    title: 'Area Reception Professionale',
-                    description: 'Accoglienza cordiale e organizzazione efficiente per garantirti un\'esperienza senza stress dall\'arrivo alla partenza.'
-                },
-                {
-                    src: 'entre4.jpg',
-                    title: 'Spazio Relax',
-                    description: 'Ambiente sereno e rilassante dove trovare tranquillità prima del trattamento. Design curato per il massimo benessere.'
-                }
+                { src: 'entre1.jpg', title: 'Sala Operatoria Moderna', description: 'Ambiente sterile e tecnologicamente avanzato con attrezzature all\'avanguardia per trattamenti precisi e confortevoli.' },
+                { src: 'entre2.jpg', title: 'Sala d\'Attesa Accogliente', description: 'Design moderno e comfort ottimale per rilassarsi prima della visita. Spazio luminoso e confortevole.' },
+                { src: 'entre3.jpg', title: 'Area Reception Professionale', description: 'Accoglienza cordiale e organizzazione efficiente per garantirti un\'esperienza senza stress dall\'arrivo alla partenza.' },
+                { src: 'entre5.jpg', title: 'Studio Dentistico', description: 'Ambiente moderno con attrezzature all\'avanguardia.' },
+                { src: 'entre6.jpg', title: 'Studio Dentistico', description: 'Spazi accoglienti e tecnologicamente avanzati.' },
+                { src: 'entre7.jpg', title: 'Studio Dentistico', description: 'Professionalità e comfort in ogni dettaglio.' },
+                { src: 'entre4.jpg', title: 'Spazio Relax', description: 'Ambiente sereno e rilassante dove trovare tranquillità prima del trattamento. Design curato per il massimo benessere.' }
             ];
             
-            // Ouvrir la modal
             galleryItems.forEach((item, index) => {
                 item.addEventListener('click', () => {
                     currentIndex = index;
@@ -3773,7 +3634,6 @@ Abbiamo iniziato da qui.    </p>
                 modal.classList.add('active');
                 document.body.style.overflow = 'hidden';
                 
-                // Animation d'entrée
                 setTimeout(() => {
                     modalImage.style.transform = 'scale(1)';
                     modalImage.style.opacity = '1';
@@ -3797,26 +3657,21 @@ Abbiamo iniziato da qui.    </p>
                 openModal();
             }
             
-            // Événements
             modalClose.addEventListener('click', closeModal);
             modalNext.addEventListener('click', showNext);
             modalPrev.addEventListener('click', showPrev);
             
-            // Fermer avec ESC
             document.addEventListener('keydown', (e) => {
                 if (!modal.classList.contains('active')) return;
-                
                 if (e.key === 'Escape') closeModal();
                 if (e.key === 'ArrowRight') showNext();
                 if (e.key === 'ArrowLeft') showPrev();
             });
             
-            // Fermer en cliquant sur l'arrière-plan
             modal.addEventListener('click', (e) => {
                 if (e.target === modal) closeModal();
             });
             
-            // Navigation tactile
             let touchStartX = 0;
             let touchEndX = 0;
             
@@ -3826,54 +3681,58 @@ Abbiamo iniziato da qui.    </p>
             
             modal.addEventListener('touchend', (e) => {
                 touchEndX = e.changedTouches[0].screenX;
-                handleSwipe();
-            });
-            
-            function handleSwipe() {
                 const swipeThreshold = 50;
                 const diff = touchStartX - touchEndX;
                 
                 if (Math.abs(diff) > swipeThreshold) {
-                    if (diff > 0) {
-                        // Swipe gauche - suivant
-                        showNext();
-                    } else {
-                        // Swipe droite - précédent
-                        showPrev();
-                    }
+                    if (diff > 0) showNext();
+                    else showPrev();
                 }
-            }
+            });
         }
-
-        // Initialize gallery
+        
+        // Create modal HTML
+        const modalHTML = `
+            <div class="gallery-modal" id="galleryModal">
+                <div class="modal-container">
+                    <button class="modal-close" id="modalClose">
+                        <i class="fas fa-times"></i>
+                    </button>
+                    <button class="modal-nav modal-prev" id="modalPrev">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button class="modal-nav modal-next" id="modalNext">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                    <img class="modal-image" id="modalImage" alt="Gallery image">
+                    <div class="modal-info">
+                        <h3 id="modalTitle"></h3>
+                        <p id="modalDescription"></p>
+                    </div>
+                </div>
+            </div>
+        `;
+        
+        document.body.insertAdjacentHTML('beforeend', modalHTML);
+        
         document.addEventListener('DOMContentLoaded', initGallery);
-
-        // Ajouter l'animation d'explosion au CSS
+        
         const style = document.createElement('style');
         style.textContent = `
             @keyframes explode {
-                0% {
-                    transform: translate(0, 0);
-                    opacity: 0.8;
-                }
-                100% {
-                    transform: translate(var(--end-x), var(--end-y));
-                    opacity: 0;
-                }
+                0% { transform: translate(0, 0); opacity: 0.8; }
+                100% { transform: translate(var(--end-x), var(--end-y)); opacity: 0; }
             }
         `;
         document.head.appendChild(style);
-
-        // Mobile menu toggle
+        
         const mobileToggle = document.getElementById('mobileToggle');
         const navLinks = document.getElementById('navLinks');
         const header = document.getElementById('mainHeader');
         let lastScrollTop = 0;
-
+        
         mobileToggle.addEventListener('click', () => {
             navLinks.classList.toggle('active');
-            
-            // Change icon
             const icon = mobileToggle.querySelector('i');
             if (navLinks.classList.contains('active')) {
                 icon.classList.remove('fa-bars');
@@ -3883,40 +3742,30 @@ Abbiamo iniziato da qui.    </p>
                 icon.classList.add('fa-bars');
             }
         });
-
-        // Hide/show header on scroll
+        
         window.addEventListener('scroll', function() {
             let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-            
             if (scrollTop > lastScrollTop && scrollTop > 100) {
-                // Scrolling down
                 header.classList.add('hidden');
             } else {
-                // Scrolling up
                 header.classList.remove('hidden');
             }
-            
             lastScrollTop = scrollTop;
         });
         
-        // Smooth scrolling for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
-                
                 const targetId = this.getAttribute('href');
                 if (targetId === '#') return;
-                
                 const targetElement = document.querySelector(targetId);
                 if (targetElement) {
-                    // Close mobile menu if open
                     if (navLinks.classList.contains('active')) {
                         navLinks.classList.remove('active');
                         const icon = mobileToggle.querySelector('i');
                         icon.classList.remove('fa-times');
                         icon.classList.add('fa-bars');
                     }
-                    
                     window.scrollTo({
                         top: targetElement.offsetTop - 80,
                         behavior: 'smooth'
@@ -3924,23 +3773,17 @@ Abbiamo iniziato da qui.    </p>
                 }
             });
         });
-
-        // WhatsApp message enhancement
+        
         document.querySelectorAll('.btn-whatsapp, .whatsapp-float, .nav-cta').forEach(button => {
             button.addEventListener('click', function(e) {
-                if (this.getAttribute('href') && this.getAttribute('href').includes('wa.me')) {
-                    // Optional: Track WhatsApp clicks
-                    console.log('WhatsApp booking clicked');
-                }
+                console.log('WhatsApp booking clicked');
             });
         });
-
-        // Ajout d'un effet de parallaxe pour la section avant/après
+        
         window.addEventListener('scroll', function() {
             const beforeAfterSection = document.querySelector('.before-after-section');
             const scrolled = window.pageYOffset;
             const rate = scrolled * -0.5;
-            
             if (beforeAfterSection && scrolled < beforeAfterSection.offsetHeight) {
                 beforeAfterSection.style.backgroundPosition = `center ${rate}px`;
             }
