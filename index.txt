@@ -1,0 +1,3802 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OsteoDent Ancona</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0ea5e9;
+            --primary-dark: #0284c7;
+            --secondary: #f0f9ff;
+            --accent: #f59e0b;
+            --text: #334155;
+            --light: #f8fafc;
+            --dark: #1e293b;
+            --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            --radius: 8px;
+            --whatsapp: #25D366;
+            --success: #10b981;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            line-height: 1.3;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Loading Screen */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 50%, #0c4a6e 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 1.2s cubic-bezier(0.77, 0, 0.175, 1), visibility 1.2s;
+            overflow: hidden;
+        }
+
+        .loading-screen.fade-out {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .loading-background {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(255,255,255,0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255,255,255,0.1) 0%, transparent 50%);
+            animation: float 20s infinite alternate ease-in-out;
+        }
+
+        @keyframes float {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            100% { transform: translate(-30px, -30px) rotate(1deg); }
+        }
+
+        .loading-logo-container {
+            position: relative;
+            z-index: 2;
+            margin-bottom: 50px;
+            perspective: 1000px;
+        }
+
+        .loading-logo {
+            height: 180px;
+            width: auto;
+            filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.3));
+            animation: logoFloat 3s infinite ease-in-out, logoGlow 2s infinite alternate;
+            transform-style: preserve-3d;
+        }
+
+        @keyframes logoFloat {
+            0%, 100% { transform: translateY(0) rotateX(0deg) rotateY(0deg); }
+            50% { transform: translateY(-20px) rotateX(5deg) rotateY(5deg); }
+        }
+
+        @keyframes logoGlow {
+            0% { filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.3)) brightness(1); }
+            100% { filter: drop-shadow(0 15px 30px rgba(255, 255, 255, 0.4)) brightness(1.2); }
+        }
+
+        .loading-spinner-container {
+            position: relative;
+            width: 120px;
+            height: 120px;
+            margin-bottom: 40px;
+        }
+
+        .loading-spinner-outer {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border: 3px solid transparent;
+            border-top: 3px solid rgba(255, 255, 255, 0.8);
+            border-right: 3px solid rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            animation: spin 2s linear infinite;
+        }
+
+        .loading-spinner-middle {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            width: 90px;
+            height: 90px;
+            border: 2px solid transparent;
+            border-top: 2px solid rgba(255, 255, 255, 0.6);
+            border-left: 2px solid rgba(255, 255, 255, 0.4);
+            border-radius: 50%;
+            animation: spinReverse 1.5s linear infinite;
+        }
+
+        .loading-spinner-inner {
+            position: absolute;
+            top: 30px;
+            left: 30px;
+            width: 60px;
+            height: 60px;
+            border: 1px solid transparent;
+            border-top: 1px solid rgba(255, 255, 255, 0.9);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        .loading-particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+            animation: particles 3s infinite ease-in-out;
+        }
+
+        .particle:nth-child(1) { top: 20%; left: 20%; animation-delay: 0s; }
+        .particle:nth-child(2) { top: 60%; left: 80%; animation-delay: 0.5s; }
+        .particle:nth-child(3) { top: 80%; left: 40%; animation-delay: 1s; }
+        .particle:nth-child(4) { top: 30%; left: 70%; animation-delay: 1.5s; }
+        .particle:nth-child(5) { top: 70%; left: 30%; animation-delay: 2s; }
+        .particle:nth-child(6) { top: 40%; left: 90%; animation-delay: 2.5s; }
+        .particle:nth-child(7) { top: 90%; left: 10%; animation-delay: 3s; }
+
+        @keyframes particles {
+            0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.8; }
+            50% { transform: translate(20px, -20px) scale(1.5); opacity: 0.4; }
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes spinReverse {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(-360deg); }
+        }
+
+        .loading-text-container {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+        }
+
+        .loading-text {
+            font-size: 2rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 15px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            position: relative;
+            display: inline-block;
+        }
+
+        .loading-text::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, white, transparent);
+            animation: underline 2s infinite ease-in-out;
+        }
+
+        @keyframes underline {
+            0%, 100% { transform: scaleX(0.3); opacity: 0.5; }
+            50% { transform: scaleX(1); opacity: 1; }
+        }
+
+        .loading-subtext {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1.1rem;
+            margin-top: 10px;
+            animation: fadeInOut 2s infinite alternate;
+        }
+
+        @keyframes fadeInOut {
+            0% { opacity: 0.6; }
+            100% { opacity: 1; }
+        }
+
+        .loading-progress {
+            width: 200px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 2px;
+            margin-top: 30px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .loading-progress-bar {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, #25D366, #0ea5e9);
+            border-radius: 2px;
+            animation: progress 2s ease-in-out infinite;
+            box-shadow: 0 0 10px rgba(37, 211, 102, 0.5);
+        }
+
+        @keyframes progress {
+            0% { width: 0%; left: 0; }
+            50% { width: 100%; left: 0; }
+            100% { width: 0%; left: 100%; }
+        }
+
+        .loading-dots {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            background: white;
+            border-radius: 50%;
+            animation: dots 1.5s infinite ease-in-out;
+        }
+
+        .dot:nth-child(1) { animation-delay: 0s; }
+        .dot:nth-child(2) { animation-delay: 0.2s; }
+        .dot:nth-child(3) { animation-delay: 0.4s; }
+        .dot:nth-child(4) { animation-delay: 0.6s; }
+
+        @keyframes dots {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.5); opacity: 1; }
+        }
+
+        /* Header */
+        header {
+            background-color: white;
+            box-shadow: var(--shadow);
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            transform: translateY(0);
+            transition: transform 0.3s ease;
+        }
+
+        header.hidden {
+            transform: translateY(-100%);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .logo-img {
+            height: 60px;
+            width: auto;
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .logo-main {
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        .logo-sub {
+            font-size: 0.9rem;
+            font-weight: 400;
+            color: var(--text);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: color 0.3s;
+            font-size: 1rem;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-cta {
+            background-color: var(--whatsapp);
+            color: white;
+            padding: 10px 24px;
+            border-radius: 50px;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-cta:hover {
+            background-color: #128C7E;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3);
+        }
+
+        .mobile-toggle {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--primary);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding-top: 140px;
+            padding-bottom: 80px;
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .hero-content h1 {
+            font-size: 3.2rem;
+            margin-bottom: 20px;
+            color: var(--dark);
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            color: var(--text);
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 15px 30px;
+            border-radius: var(--radius);
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            text-align: center;
+        }
+
+        .btn-whatsapp {
+            background-color: var(--whatsapp);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .btn-whatsapp:hover {
+            background-color: #128C7E;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(37, 211, 102, 0.3);
+        }
+
+        .btn-secondary {
+            background-color: white;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--secondary);
+            transform: translateY(-3px);
+        }
+
+        .hero-image {
+           width: 100%;
+           position: relative;
+           border-radius: var(--radius);
+           overflow: hidden;
+           box-shadow: var(--shadow);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.5s;
+        }
+
+        .hero-image:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Section Avant/Après */
+        .before-after-section {
+            padding: 100px 0 80px;
+            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .before-after-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .before-after-title h2 {
+            font-size: 2.8rem;
+            color: var(--dark);
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .before-after-title h2:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--success));
+            border-radius: 2px;
+        }
+
+        .before-after-title p {
+            max-width: 700px;
+            margin: 25px auto 0;
+            font-size: 1.2rem;
+            color: var(--text);
+        }
+
+        .before-after-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: stretch;
+            margin-bottom: 40px;
+        }
+
+        /* CARD PRIMA - MODIFIÉE */
+        .comparison-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(14, 165, 233, 0.15);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            border: 2px solid transparent;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .comparison-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 30px 80px rgba(14, 165, 233, 0.25);
+            border-color: var(--primary);
+        }
+
+        .comparison-image {
+            width: 100%;
+            height: 450px;
+            position: relative;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .comparison-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .comparison-card:hover .comparison-image img {
+            transform: scale(1.1);
+        }
+
+        /* Badge pour les images */
+        .image-badge {
+            position: absolute;
+            top: 25px;
+            right: 25px;
+            padding: 12px 25px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.2rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            z-index: 10;
+            animation: badgePulse 2s infinite;
+        }
+
+        .before-badge {
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+            color: white;
+        }
+
+        .after-badge {
+            background: linear-gradient(135deg, var(--success), #059669);
+            color: white;
+        }
+
+        @keyframes badgePulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        /* TEXTE SOUS L'IMAGE - NOUVEAU STYLE */
+        .comparison-label {
+            padding: 30px 35px;
+            background: white;
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        .comparison-label h3 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--dark);
+        }
+
+        .comparison-label p {
+            color: var(--text);
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        .before-label h3 i {
+            color: #f43f5e;
+        }
+
+        .after-label h3 i {
+            color: var(--success);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        /* Separatore visivo */
+        .transformation-separator {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 60px 0 80px;
+            gap: 30px;
+        }
+
+        .separator-line {
+            width: 200px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), transparent);
+        }
+
+        .separator-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--primary), var(--success));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.8rem;
+            box-shadow: 0 10px 30px rgba(14, 165, 233, 0.4);
+            animation: arrowFloat 3s infinite ease-in-out;
+        }
+
+        @keyframes arrowFloat {
+            0%, 100% { transform: translateX(0); }
+            50% { transform: translateX(20px); }
+        }
+
+        /* Dettagli delle card */
+        .comparison-details {
+            display: flex;
+            justify-content: space-around;
+            padding: 25px;
+            background: white;
+            border-radius: 0 0 18px 18px;
+            border-top: 2px solid #f1f5f9;
+        }
+
+        .detail-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            text-align: center;
+        }
+
+        .detail-item i {
+            font-size: 2.5rem;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+
+        .before-card .detail-item i {
+            color: #ef4444;
+            background: linear-gradient(135deg, #fef2f2, #fee2e2);
+        }
+
+        .after-card .detail-item i {
+            color: var(--success);
+            background: linear-gradient(135deg, #f0fdf4, #dcfce7);
+        }
+
+        .detail-item span {
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        /* Statistiche migliorate */
+        .comparison-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 80px;
+        }
+
+        .stat-card {
+            position: relative;
+            overflow: hidden;
+            padding: 35px 25px;
+            border: none;
+            border-left: none;
+            background: linear-gradient(135deg, white, #f8fafc);
+            transition: all 0.4s ease;
+            text-align: center;
+            border-radius: var(--radius);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(14, 165, 233, 0.1), transparent);
+            transition: left 0.7s ease;
+        }
+
+        .stat-card:hover::before {
+            left: 100%;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(14, 165, 233, 0.2);
+        }
+
+        .stat-card i {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .stat-number {
+            font-size: 2.8rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary), var(--success));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .stat-text {
+            color: var(--text);
+            font-size: 1rem;
+        }
+
+        /* Testimonianza */
+        .testimonial-card {
+            background: linear-gradient(135deg, white, #f8fafc);
+            border-radius: 20px;
+            padding: 40px;
+            margin-top: 60px;
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 40px;
+            align-items: center;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+            border-left: 8px solid var(--success);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .testimonial-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200px;
+            height: 200px;
+            background: linear-gradient(135deg, rgba(14, 165, 233, 0.1), transparent);
+            border-radius: 50%;
+        }
+
+        .testimonial-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .testimonial-content i.fa-quote-left {
+            font-size: 3rem;
+            color: var(--primary);
+            opacity: 0.3;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .testimonial-content p {
+            font-size: 1.3rem;
+            line-height: 1.8;
+            font-style: italic;
+            margin-bottom: 20px;
+            color: var(--dark);
+        }
+
+        .testimonial-author {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .testimonial-author strong {
+            font-size: 1.2rem;
+            color: var(--dark);
+        }
+
+        .testimonial-author span {
+            color: var(--text);
+            font-size: 0.9rem;
+        }
+
+        .testimonial-rating {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .testimonial-rating i {
+            color: #fbbf24;
+            font-size: 1.8rem;
+        }
+
+        .testimonial-rating span {
+            font-weight: 700;
+            color: var(--dark);
+            font-size: 1.2rem;
+        }
+
+        .transformation-note {
+            text-align: center;
+            background: linear-gradient(135deg, var(--secondary), #e0f2fe);
+            padding: 30px;
+            border-radius: var(--radius);
+            margin-top: 50px;
+            border-left: 5px solid var(--success);
+        }
+
+        .transformation-note h3 {
+            font-size: 1.8rem;
+            color: var(--dark);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .transformation-note p {
+            font-size: 1.1rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Services */
+        .services {
+            padding: 100px 0;
+            background-color: white;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--dark);
+            margin-bottom: 15px;
+        }
+
+        .section-title p {
+            max-width: 600px;
+            margin: 0 auto;
+            color: var(--text);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background-color: var(--light);
+            border-radius: var(--radius);
+            padding: 40px 30px;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
+            text-align: center;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow);
+        }
+
+        .service-icon {
+            background-color: var(--secondary);
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            color: var(--primary);
+            font-size: 2rem;
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+
+        /* About */
+        .about {
+            padding: 100px 0;
+            background-color: var(--secondary);
+        }
+
+        .about-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .about-image {
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            position: relative;
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.8s ease;
+        }
+
+        .about-image:hover img {
+            transform: scale(1.05);
+        }
+
+        .image-label {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 10px 20px;
+            border-radius: var(--radius);
+            font-size: 0.9rem;
+            font-weight: 600;
+            backdrop-filter: blur(5px);
+        }
+
+        .about-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: var(--dark);
+        }
+
+        .about-content p {
+            margin-bottom: 25px;
+        }
+
+        .features {
+            margin-top: 30px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .feature {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+        }
+
+        .feature i {
+            color: var(--primary);
+            font-size: 1.3rem;
+            margin-top: 5px;
+        }
+
+        /* Team Section */
+        .team-section {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .team-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(14, 165, 233, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            z-index: 1;
+        }
+
+        .team-showcase {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            margin-bottom: 80px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .team-member-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .team-member-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 25px 60px rgba(14, 165, 233, 0.15);
+        }
+
+        .member-image-container {
+            position: relative;
+            height: 450px;
+            overflow: hidden;
+        }
+
+        .member-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: top center;
+            transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .team-member-card:hover .member-image {
+            transform: scale(1.05);
+        }
+
+        .image-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, transparent 60%, rgba(0, 0, 0, 0.7));
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            padding-bottom: 20px;
+        }
+
+        .team-member-card:hover .image-overlay {
+            opacity: 1;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            transform: translateY(20px);
+            opacity: 0;
+        }
+
+        .team-member-card:hover .social-icon {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .social-icon:nth-child(1) { transition-delay: 0.1s; }
+        .social-icon:nth-child(2) { transition-delay: 0.2s; }
+        .social-icon:nth-child(3) { transition-delay: 0.3s; }
+
+        .social-icon:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-5px);
+        }
+
+        .member-badge {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            padding: 8px 16px;
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            box-shadow: 0 5px 15px rgba(14, 165, 233, 0.3);
+            z-index: 3;
+        }
+
+        .member-badge i {
+            font-size: 1rem;
+        }
+
+        .member-info {
+            padding: 30px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .member-name {
+            font-size: 1.8rem;
+            color: var(--dark);
+            margin-bottom: 5px;
+            font-weight: 700;
+        }
+
+        .member-title {
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+
+        .member-specialties {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .specialty-tag {
+            background: var(--secondary);
+            color: var(--primary-dark);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            border: 1px solid rgba(14, 165, 233, 0.2);
+        }
+
+        .member-description {
+            color: var(--text);
+            line-height: 1.6;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        .member-stats {
+            display: flex;
+            gap: 20px;
+            padding-top: 15px;
+            border-top: 1px solid #f1f5f9;
+        }
+
+        .stat {
+            text-align: center;
+            flex: 1;
+        }
+
+        .stat-number {
+            display: block;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            font-size: 0.85rem;
+            color: var(--text);
+        }
+
+        .team-stats-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-bottom: 80px;
+        }
+
+        .team-stat-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            border-left: 4px solid var(--primary);
+        }
+
+        .team-stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(14, 165, 233, 0.1);
+        }
+
+        .team-stat-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.8rem;
+            flex-shrink: 0;
+        }
+
+        .team-stat-content h4 {
+            font-size: 1.2rem;
+            color: var(--dark);
+            margin-bottom: 8px;
+        }
+
+        .team-stat-content p {
+            color: var(--text);
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .team-philosophy {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            border-radius: 20px;
+            overflow: hidden;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            box-shadow: 0 20px 60px rgba(14, 165, 233, 0.2);
+        }
+
+        .philosophy-content {
+            padding: 50px;
+            color: white;
+        }
+
+        .philosophy-content h3 {
+            font-size: 2rem;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .philosophy-content h3 i {
+            color: #fbbf24;
+        }
+
+        .philosophy-content p {
+            margin-bottom: 20px;
+            line-height: 1.7;
+            opacity: 0.95;
+        }
+
+        .philosophy-image {
+            height: 100%;
+        }
+
+        .philosophy-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* Reviews Section */
+        .reviews-section {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #f8fafc 0%, #e0f2fe 100%);
+            position: relative;
+        }
+
+        .reviews-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .reviews-title h2 {
+            font-size: 2.8rem;
+            color: var(--dark);
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .reviews-title h2:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--success));
+            border-radius: 2px;
+        }
+
+        .reviews-title p {
+            max-width: 700px;
+            margin: 25px auto 0;
+            font-size: 1.2rem;
+            color: var(--text);
+        }
+
+        .reviews-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .review-card {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .review-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 60px rgba(14, 165, 233, 0.15);
+        }
+
+        .review-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary), var(--success));
+        }
+
+        .review-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 25px;
+        }
+
+        .reviewer-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .reviewer-avatar {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            overflow: hidden;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.8rem;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .reviewer-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .reviewer-details h4 {
+            font-size: 1.3rem;
+            color: var(--dark);
+            margin-bottom: 5px;
+        }
+
+        .review-date {
+            color: var(--text);
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+
+        .review-rating {
+            display: flex;
+            gap: 5px;
+            margin-top: 5px;
+        }
+
+        .review-rating i {
+            color: #fbbf24;
+            font-size: 1.3rem;
+        }
+
+        .all-stars {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .all-stars i {
+            color: #fbbf24;
+            font-size: 1.1rem;
+        }
+
+        .rating-badge {
+            background: linear-gradient(135deg, var(--success), #059669);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            box-shadow: 0 5px 15px rgba(16, 185, 129, 0.3);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .review-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .review-content i.fa-quote-left {
+            font-size: 2rem;
+            color: var(--primary);
+            opacity: 0.2;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .review-text {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: var(--text);
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        .review-highlight {
+            background: linear-gradient(135deg, rgba(14, 165, 233, 0.1), rgba(16, 185, 129, 0.1));
+            padding: 15px 20px;
+            border-radius: 12px;
+            margin-top: 20px;
+            border-left: 4px solid var(--primary);
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .reviews-summary {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+            margin-top: 60px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            align-items: center;
+        }
+
+        .summary-rating {
+            text-align: center;
+            padding: 20px;
+            background: linear-gradient(135deg, var(--secondary), #e0f2fe);
+            border-radius: 15px;
+        }
+
+        .average-rating {
+            font-size: 4rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary), var(--success));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .total-reviews {
+            color: var(--text);
+            font-size: 1.1rem;
+        }
+
+        .stars-distribution {
+            flex-grow: 1;
+        }
+
+        .star-row {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 10px;
+        }
+
+        .star-row span {
+            color: var(--text);
+            font-size: 0.9rem;
+            min-width: 80px;
+        }
+
+        .star-bar {
+            flex-grow: 1;
+            height: 10px;
+            background: #e2e8f0;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .star-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #fbbf24, #f59e0b);
+            border-radius: 5px;
+        }
+
+        .summary-cta {
+            text-align: center;
+        }
+
+        .summary-cta h3 {
+            font-size: 1.5rem;
+            color: var(--dark);
+            margin-bottom: 15px;
+        }
+
+        /* Gallery Section */
+        .gallery {
+            padding: 100px 0;
+            background-color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .gallery::before {
+            content: '';
+            position: absolute;
+            top: -100px;
+            left: -100px;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(14, 165, 233, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            z-index: 1;
+        }
+
+        .gallery::after {
+            content: '';
+            position: absolute;
+            bottom: -100px;
+            right: -100px;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(16, 185, 129, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            z-index: 1;
+        }
+
+        .gallery-container {
+            position: relative;
+            z-index: 2;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            aspect-ratio: 4/3;
+            background: var(--dark);
+            cursor: pointer;
+            transform: translateY(30px);
+            opacity: 0;
+            animation: galleryItemAppear 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+
+        .gallery-item:nth-child(1) { animation-delay: 0.1s; }
+        .gallery-item:nth-child(2) { animation-delay: 0.2s; }
+        .gallery-item:nth-child(3) { animation-delay: 0.3s; }
+        .gallery-item:nth-child(4) { animation-delay: 0.4s; }
+        .gallery-item:nth-child(5) { animation-delay: 0.5s; }
+        .gallery-item:nth-child(6) { animation-delay: 0.6s; }
+
+        @keyframes galleryItemAppear {
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-15px) scale(1.03);
+            box-shadow: 0 25px 60px rgba(14, 165, 233, 0.25);
+        }
+
+        .gallery-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            filter: brightness(0.9);
+        }
+
+        .gallery-item:hover .gallery-image {
+            transform: scale(1.15);
+            filter: brightness(1);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to bottom, 
+                transparent 0%,
+                transparent 60%,
+                rgba(0, 0, 0, 0.9) 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 30px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .gallery-icon {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            font-size: 1.5rem;
+            transform: scale(0);
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            z-index: 10;
+        }
+
+        .gallery-item:hover .gallery-icon {
+            transform: scale(1);
+        }
+
+        .gallery-icon:hover {
+            background: var(--primary);
+            color: white;
+            transform: scale(1.1) rotate(90deg);
+        }
+
+        .gallery-content {
+            transform: translateY(100%);
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1) 0.2s;
+        }
+
+        .gallery-item:hover .gallery-content {
+            transform: translateY(0);
+        }
+
+        .gallery-content h3 {
+            font-size: 1.8rem;
+            color: white;
+            margin-bottom: 10px;
+            font-weight: 700;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .gallery-content p {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1rem;
+            line-height: 1.5;
+            margin-bottom: 15px;
+        }
+
+        .gallery-tag {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        /* Gallery Modal */
+        .gallery-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            backdrop-filter: blur(10px);
+        }
+
+        .gallery-modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-container {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+            width: auto;
+            height: auto;
+        }
+
+        .modal-image {
+            max-width: 100%;
+            max-height: 80vh;
+            object-fit: contain;
+            border-radius: 10px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+            transform: scale(0.9);
+            opacity: 0;
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .gallery-modal.active .modal-image {
+            transform: scale(1);
+            opacity: 1;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: -40px;
+            right: -40px;
+            width: 50px;
+            height: 50px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: var(--dark);
+            cursor: pointer;
+            transition: all 0.3s;
+            border: none;
+            z-index: 10;
+        }
+
+        .modal-close:hover {
+            background: var(--primary);
+            color: white;
+            transform: rotate(90deg);
+        }
+
+        .modal-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.9);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            color: var(--dark);
+            cursor: pointer;
+            transition: all 0.3s;
+            border: none;
+            z-index: 10;
+        }
+
+        .modal-nav:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .modal-prev {
+            left: -80px;
+        }
+
+        .modal-next {
+            right: -80px;
+        }
+
+        .modal-info {
+            position: absolute;
+            bottom: -60px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            color: white;
+            padding: 15px;
+        }
+
+        .modal-info h3 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            color: white;
+        }
+
+        .modal-info p {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1.1rem;
+        }
+
+        /* Contact & WhatsApp Booking */
+        .contact {
+            padding: 100px 0;
+            background-color: var(--secondary);
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .contact-info h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: var(--dark);
+        }
+
+        .contact-details {
+            margin-top: 30px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .contact-item i {
+            background-color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            font-size: 1.2rem;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .whatsapp-booking {
+            background-color: white;
+            padding: 40px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .whatsapp-booking::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--whatsapp), #128C7E);
+        }
+
+        .whatsapp-booking h3 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+
+        .whatsapp-booking p {
+            margin-bottom: 25px;
+            color: var(--text);
+        }
+
+        .whatsapp-features {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-bottom: 30px;
+            text-align: left;
+        }
+
+        .whatsapp-feature {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.9rem;
+        }
+
+        .whatsapp-feature i {
+            color: var(--whatsapp);
+            font-size: 1.1rem;
+        }
+
+        .booking-steps {
+            background-color: var(--light);
+            padding: 25px;
+            border-radius: var(--radius);
+            margin-bottom: 30px;
+            text-align: left;
+        }
+
+        .booking-steps h4 {
+            margin-bottom: 15px;
+            color: var(--dark);
+            text-align: center;
+        }
+
+        .step {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .step-number {
+            background-color: var(--primary);
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: var(--whatsapp);
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.4);
+            z-index: 999;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            background-color: #128C7E;
+            box-shadow: 0 8px 20px rgba(37, 211, 102, 0.5);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 70px 0 30px;
+        }
+
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+
+        .footer-col h3 {
+            font-size: 1.3rem;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-col h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background-color: var(--primary);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: #cbd5e1;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .footer-contact li {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .footer-contact i {
+            color: var(--primary);
+            margin-top: 3px;
+            flex-shrink: 0;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #334155;
+            color: #cbd5e1;
+            font-size: 0.9rem;
+        }
+
+        /* Map Section */
+        .map-section {
+            padding: 80px 0;
+            background-color: white;
+        }
+        
+        .map-container {
+            width: 100%;
+            height: 450px;
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            margin-bottom: 30px;
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .map-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .map-info-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+            padding: 25px;
+            background: var(--secondary);
+            border-radius: var(--radius);
+            transition: all 0.3s ease;
+        }
+
+        .map-info-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .map-info-item i {
+            background-color: var(--primary);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            flex-shrink: 0;
+        }
+
+        .map-info-item h4 {
+            font-size: 1.2rem;
+            margin-bottom: 8px;
+            color: var(--dark);
+        }
+
+        .map-info-item p {
+            color: var(--text);
+            line-height: 1.5;
+        }
+
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .comparison-image {
+                height: 400px !important;
+            }
+            
+            .team-showcase {
+                grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            }
+            
+            .reviews-container {
+                grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            }
+            
+            .member-image-container {
+                height: 400px;
+            }
+            
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 992px) {
+            .before-after-container,
+            .hero-container,
+            .about-container,
+            .contact-container,
+            .team-philosophy,
+            .reviews-summary {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            .comparison-image {
+                height: 400px !important;
+            }
+            
+            .hero-content h1 {
+                font-size: 2.8rem;
+            }
+            
+            .comparison-stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .member-image-container {
+                height: 350px;
+            }
+            
+            .philosophy-image {
+                height: 300px;
+                order: -1;
+            }
+            
+            .reviews-summary {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+            
+            .modal-nav {
+                width: 50px;
+                height: 50px;
+                font-size: 1.5rem;
+            }
+            
+            .modal-prev {
+                left: -60px;
+            }
+            
+            .modal-next {
+                right: -60px;
+            }
+            
+            .modal-close {
+                top: -30px;
+                right: -30px;
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: white;
+                flex-direction: column;
+                padding: 20px;
+                box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .mobile-toggle {
+                display: block;
+            }
+            
+            .before-after-title h2,
+            .hero-content h1,
+            .reviews-title h2 {
+                font-size: 2.3rem;
+            }
+            
+            .features,
+            .whatsapp-features,
+            .comparison-stats,
+            .team-stats-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+            }
+            
+            .btn {
+                width: 100%;
+            }
+            
+            .whatsapp-float {
+                bottom: 20px;
+                right: 20px;
+                width: 50px;
+                height: 50px;
+                font-size: 1.7rem;
+            }
+            
+            .logo-text {
+                display: none;
+            }
+            
+            .gallery-grid,
+            .team-showcase,
+            .reviews-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .comparison-label h3 {
+                font-size: 1.5rem;
+            }
+            
+            .transformation-note,
+            .review-card,
+            .reviews-summary {
+                padding: 20px;
+            }
+            
+            .member-image-container {
+                height: 450px;
+            }
+            
+            .member-info {
+                padding: 25px;
+            }
+            
+            .member-name {
+                font-size: 1.6rem;
+            }
+            
+            .review-header {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .reviewer-info {
+                width: 100%;
+            }
+            
+            .modal-nav {
+                position: fixed;
+                top: auto;
+                bottom: 20px;
+                transform: none;
+            }
+            
+            .modal-prev {
+                left: 20px;
+            }
+            
+            .modal-next {
+                right: 20px;
+            }
+            
+            .modal-close {
+                top: 20px;
+                right: 20px;
+            }
+            
+            .modal-info {
+                bottom: 80px;
+            }
+
+            .map-container {
+                height: 350px;
+            }
+            
+            .map-info {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .comparison-image {
+                height: 300px !important;
+            }
+            
+            .image-badge {
+                padding: 8px 15px;
+                font-size: 1rem;
+                top: 15px;
+                right: 15px;
+            }
+            
+            .comparison-details {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .detail-item {
+                flex: 1 0 100%;
+                flex-direction: row;
+                justify-content: flex-start;
+                gap: 15px;
+            }
+            
+            .transformation-separator {
+                gap: 15px;
+                margin: 30px 0;
+            }
+            
+            .separator-line {
+                width: 60px;
+            }
+            
+            .separator-icon {
+                width: 50px;
+                height: 50px;
+                font-size: 1.3rem;
+            }
+            
+            .testimonial-card {
+                grid-template-columns: 1fr;
+                gap: 20px;
+                padding: 30px;
+            }
+            
+            .team-stats-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .team-stat-card {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .member-specialties {
+                justify-content: center;
+            }
+            
+            .member-stats {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .philosophy-content {
+                padding: 30px;
+            }
+            
+            .philosophy-content h3 {
+                font-size: 1.7rem;
+            }
+            
+            .member-image-container {
+                height: 400px;
+            }
+            
+            .reviewer-avatar {
+                width: 60px;
+                height: 60px;
+                font-size: 1.5rem;
+            }
+            
+            .reviewer-details h4 {
+                font-size: 1.1rem;
+            }
+            
+            .rating-badge {
+                padding: 6px 12px;
+                font-size: 1rem;
+            }
+            
+            .gallery-item {
+                aspect-ratio: 3/2;
+            }
+            
+            .gallery-overlay {
+                padding: 20px;
+            }
+            
+            .gallery-content h3 {
+                font-size: 1.4rem;
+            }
+            
+            .gallery-content p {
+                font-size: 0.9rem;
+            }
+            
+            .modal-container {
+                max-width: 95%;
+            }
+            
+            .modal-nav {
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
+                bottom: 10px;
+            }
+            
+            .modal-prev {
+                left: 10px;
+            }
+            
+            .modal-next {
+                right: 10px;
+            }
+            
+            .modal-info h3 {
+                font-size: 1.4rem;
+            }
+            
+            .modal-info p {
+                font-size: 0.9rem;
+            }
+
+            .map-container {
+                height: 300px;
+            }
+            
+            .map-info-item {
+                flex-direction: column;
+                text-align: center;
+                align-items: center;
+            }
+        }
+        
+        @media (min-width: 769px) {
+            .logo-text {
+                display: flex;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideUpFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes floatIn {
+            0% {
+                opacity: 0;
+                transform: translateY(20px) scale(0.95);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .comparison-card {
+            animation: slideUpFadeIn 0.8s ease-out forwards;
+        }
+
+        .comparison-card:nth-child(2) {
+            animation-delay: 0.3s;
+        }
+
+        .team-member-card {
+            animation: fadeInUp 0.6s ease-out forwards;
+            opacity: 0;
+        }
+
+        .team-member-card:nth-child(1) { animation-delay: 0.1s; }
+        .team-member-card:nth-child(2) { animation-delay: 0.2s; }
+        .team-member-card:nth-child(3) { animation-delay: 0.3s; }
+        .team-member-card:nth-child(4) { animation-delay: 0.4s; }
+        .team-member-card:nth-child(5) { animation-delay: 0.5s; }
+
+        .review-card {
+            animation: floatIn 0.6s ease-out forwards;
+            opacity: 0;
+        }
+
+        .review-card:nth-child(1) { animation-delay: 0.1s; }
+        .review-card:nth-child(2) { animation-delay: 0.2s; }
+        .review-card:nth-child(3) { animation-delay: 0.3s; }
+
+        .team-member-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, transparent, rgba(14, 165, 233, 0.1), transparent);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            pointer-events: none;
+            border-radius: 20px;
+        }
+
+        .team-member-card:hover::after {
+            opacity: 1;
+        }
+
+        .review-card:hover {
+            transform: translateY(-10px);
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Screen Ultra Stylée -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loading-background"></div>
+        <div class="loading-particles">
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+        </div>
+        
+        <div class="loading-logo-container">
+            <img src="logo.png" alt="OsteoDent Logo" class="loading-logo">
+        </div>
+        
+        <div class="loading-spinner-container">
+            <div class="loading-spinner-outer"></div>
+            <div class="loading-spinner-middle"></div>
+            <div class="loading-spinner-inner"></div>
+        </div>
+        
+        <div class="loading-text-container">
+            <div class="loading-text">OsteoDent Ancona</div>
+            <div class="loading-subtext"></div>
+            <div class="loading-progress">
+                <div class="loading-progress-bar"></div>
+            </div>
+            <div class="loading-dots">
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- WhatsApp Float -->
+    <a href="https://wa.me/3703073990?text=Ciao,%20vorrei%20prenotare%20una%20visita%20presso%20il%20vostro%20studio%20dentistico" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Header -->
+    <header id="mainHeader">
+        <div class="container nav-container">
+            <a href="#" class="logo">
+                <img src="logo.png" alt="OsteoDent Logo" class="logo-img">
+                <div class="logo-text">
+                    <!-- Logo text removed as requested -->
+                </div>
+            </a>
+            
+            <div class="mobile-toggle" id="mobileToggle">
+                <i class="fas fa-bars"></i>
+            </div>
+            
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#transformations">Trasformazioni</a></li>
+                <li><a href="#servizi">Servizi</a></li>
+                <li><a href="#about">Chi Siamo</a></li>
+                <li><a href="#team">Il Team</a></li>
+                <li><a href="#gallery">Galleria</a></li>
+                <li><a href="#reviews">Recensioni</a></li>
+                <li><a href="#contatti">Contatti</a></li>
+                <li><a href="https://wa.me/3703073990?text=Ciao,%20vorrei%20prenotare%20una%20visita%20presso%20il%20vostro%20studio%20dentistico" class="nav-cta" target="_blank">
+                    <i class="fab fa-whatsapp"></i> Prenota
+                </a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container hero-container">
+            <div class="hero-content">
+                <h1>Il tuo sorriso, la nostra priorità</h1>
+                <p>Nello Studio Dentistico OsteoDent, combiniamo tecnologia all'avanguardia con un approccio personalizzato per garantire la salute e la bellezza del tuo sorriso.</p>
+                <p>Lo studio integra la collaborazione di un osteopata nel percorso di cura del paziente, adottando un approccio multidisciplinare che favorisce l'equilibrio funzionale del corpo e contribuisce al benessere generale, in sinergia con i trattamenti odontoiatrici.</p>
+                <div class="hero-buttons">
+                    <a href="https://wa.me/3703073990?text=Ciao,%20vorrei%20prenotare%20una%20visita%20presso%20il%20vostro%20studio%20dentistico" class="btn btn-whatsapp" target="_blank">
+                        <i class="fab fa-whatsapp"></i> Prenota via WhatsApp
+                    </a>
+                    <a href="#servizi" class="btn btn-secondary">I Nostri Servizi</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="negozio.jpg">
+            </div>
+        </div>
+    </section>
+  <!-- Section Avant/Après UNIQUE et CORRECTE -->
+    <section class="before-after-section" id="transformations">
+        <div class="container">
+            <div class="before-after-title">
+                <h2>Trasformazioni Straordinarie</h2>
+                <p>Guarda una trasformazione recente del 2026: come valorizziamo il sorriso dei nostri pazienti con risultati naturali.</p>
+            </div>
+            
+            <div class="before-after-container">
+                <!-- CARD PRIMA - texte SOUS l'image -->
+                <div class="comparison-card before-card">
+                    <div class="comparison-image">
+                        <img src="prima.jpg" alt="Prima del trattamento - Denti da riparare">
+                        <div class="image-badge before-badge">
+                            <span>PRIMA</span>
+                        </div>
+                    </div>
+                    <!-- TEXTE DÉPLACÉ ICI - SOUS L'IMAGE -->
+                    <div class="comparison-label before-label">
+                        <h3><i class="fas fa-exclamation-triangle"></i> Prima del Trattamento</h3>
+                        <p>A volte sorridere non è così semplice. Questa paziente convive con la parodontite e con il disagio di non sentirsi a proprio agio nel mostrare il suo sorriso. Abbiamo iniziato da qui.</p>
+                    </div>
+                    <div class="comparison-details">
+                        <div class="detail-item">
+                            <i class="fas fa-times-circle"></i>
+                          
+                        </div>
+                        <div class="detail-item">
+                            <i class="fas fa-times-circle"></i>
+                            <span>Disallineamento</span>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fas fa-times-circle"></i>
+                            <span>Denti danneggiati</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- CARD DOPO - texte SOUS l'image -->
+                <div class="comparison-card after-card">
+                    <div class="comparison-image">
+                        <img src="dopo.jpg" alt="Dopo il trattamento - Sorriso perfetto">
+                        <div class="image-badge after-badge">
+                            <span>DOPO</span>
+                        </div>
+                    </div>
+                    <!-- TEXTE DÉPLACÉ ICI - SOUS L'IMAGE -->
+                    <div class="comparison-label after-label">
+                        <h3><i class="fas fa-star"></i> Dopo il Nostro Lavoro</h3>
+                        <p>Abbiamo proceduto con un provvisorio per restituire subito estetica e sicurezza. È solo un primo passo, ma è quello che cambia tutto. Seguiteci!</p>
+                    </div>
+                    <div class="comparison-details">
+                        <div class="detail-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Denti perfetti</span>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Allineamento corretto</span>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Colore naturale</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+  
+            
+            <!-- Separatore visivo -->
+            <div class="transformation-separator">
+                <div class="separator-line"></div>
+                <div class="separator-icon">
+                    <i class="fas fa-arrow-right"></i>
+                </div>
+                <div class="separator-line"></div>
+            </div>
+            
+            <!-- Statistiche migliorate -->
+            <div class="comparison-stats">
+                <div class="stat-card">
+                    <i class="fas fa-smile-beam"></i>
+                    <span class="stat-number">100%</span>
+                    <span class="stat-text">Soddisfazione Pazienti</span>
+                </div>
+                
+                <div class="stat-card">
+                    <i class="fas fa-award"></i>
+                    <span class="stat-number">30+</span>
+                    <span class="stat-text">Anni di Esperienza</span>
+                </div>
+                
+                <div class="stat-card">
+                    <i class="fas fa-user-check"></i>
+                    <span class="stat-number">5000+</span>
+                    <span class="stat-text">Sorrisi Trasformati</span>
+                </div>
+                
+                <div class="stat-card">
+                    <i class="fas fa-shield-alt"></i>
+                    <span class="stat-number">10 Anni</span>
+                    <span class="stat-text">Garanzia sui Lavori</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Servizi -->
+    <section class="services" id="servizi">
+        <div class="container">
+            <div class="section-title">
+                <h2>I Nostri Servizi</h2>
+                <p>Offriamo un'ampia gamma di trattamenti dentali specializzati con tecnologia all'avanguardia e comfort del paziente al centro della nostra attenzione.</p>
+            </div>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-crown"></i>
+                    </div>
+                    <h3>Protesi Dentali</h3>
+                    <p>Soluzioni protesiche fisse e mobili di alta qualità per ripristinare funzione ed estetica del sorriso.</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-child"></i>
+                    </div>
+                    <h3>Pedodonzia</h3>
+                    <p>Offriamo cure dentali specializzate per l'infanzia, in un ambiente accogliente e pensato in ogni dettaglio per le esigenze del piccolo paziente.</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-teeth"></i>
+                    </div>
+                    <h3>Endodonzia e Conservativa</h3>
+                    <p>Trattamenti per curare carie e preservare la struttura dentale originale, utilizzando materiali estetici e durevoli.</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-tooth"></i>
+                    </div>
+                    <h3>Implantologia</h3>
+                    <p>Sostituzione di denti mancanti con impianti dentali di alta qualità, per un risultato naturale e duraturo.</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-spray-can"></i>
+                    </div>
+                    <h3>Igiene Orale Professionale</h3>
+                    <p>Pulizie dentali professionali e sbiancamento dentale programmi personalizzati di mantenimento per una salute orale ottimale.</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-smile-beam"></i>
+                    </div>
+                    <h3>Protesi e Ortodonzia</h3>
+                    <p>Specializzati in protesi dentarie e trattamenti di ortodonzia, offriamo soluzioni personalizzate per migliorare il sorriso e la salute orale dei nostri pazienti.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About -->
+    <section class="about" id="about">
+        <div class="container about-container">
+            <div class="about-image">
+                <img src="insieme.jpg" alt="Studio Dentistico OsteoDent - Vista interna moderna">
+                <div class="image-label">Il nostro studio moderno e accogliente</div>
+            </div>
+            
+            <div class="about-content">
+                <h2>Il Nostro Approccio Moderno alla Cura Dentale</h2>
+                <p>Da oltre 30 anni, il nostro studio si impegna a offrire cure dentali di eccellenza in un ambiente accogliente e tecnologico. Crediamo che ogni paziente meriti un trattamento personalizzato e un'assistenza di alta qualità.</p>
+                
+                <div class="features">
+                    <div class="feature">
+                        <i class="fas fa-microscope"></i>
+                        <div>
+                            <h4>Tecnologia All'avanguardia</h4>
+                            <p>Attrezzature digitali per diagnosi precise e trattamenti efficaci.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="feature">
+                        <i class="fas fa-user-md"></i>
+                        <div>
+                            <h4>Team Specializzato</h4>
+                            <p>Professionisti con esperienza in diverse specialità odontoiatriche.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="feature">
+                        <i class="fas fa-couch"></i>
+                        <div>
+                            <h4>Confort del Paziente</h4>
+                            <p>Ambiente rilassante e approccio empatico per ogni trattamento.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="feature">
+                        <i class="fas fa-award"></i>
+                        <div>
+                            <h4>Esperienza Trentennale</h4>
+                            <p>Oltre 30 anni di esperienza nel settore odontoiatrico.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- NOUVELLE GALERIE STYLÉE -->
+    <section class="gallery" id="gallery">
+        <div class="container gallery-container">
+            <div class="section-title">
+                <h2>Galleria del Nostro Studio</h2>
+                <p>Scopri il nostro ambiente moderno e accogliente, progettato per offrirti il massimo comfort durante le tue visite.</p>
+            </div>
+            
+            <div class="gallery-grid">
+                <div class="gallery-item" data-index="0">
+                    <img src="entre1.jpg" alt="Area reception" class="gallery-image">
+                    <div class="gallery-overlay">
+                        <div class="gallery-content">
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="gallery-item" data-index="1">
+                    <img src="entre2.jpg" alt="Sala d'attesa moderna" class="gallery-image">
+                    <div class="gallery-overlay">
+                        <div class="gallery-content">
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="gallery-item" data-index="2">
+                    <img src="entre3.jpg" alt="Area reception" class="gallery-image">
+                    <div class="gallery-overlay">
+                        <div class="gallery-content">
+                        </div>
+                    </div>
+                </div>
+                <div class="gallery-item" data-index="3">
+                    <img src="entre5.jpg" alt="Area reception" class="gallery-image">
+                    <div class="gallery-overlay">
+                        <div class="gallery-content">
+                        </div>
+                    </div>
+                </div>
+                <div class="gallery-item" data-index="4">
+                    <img src="entre6.jpg" alt="Area reception" class="gallery-image">
+                    <div class="gallery-overlay">
+                        <div class="gallery-content">
+                        </div>
+                    </div>
+                </div>
+                <div class="gallery-item" data-index="5">
+                    <img src="entre7.jpg" alt="Area reception" class="gallery-image">
+                    <div class="gallery-overlay">
+                        <div class="gallery-content">
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="gallery-item" data-index="6">
+                    <img src="entre4.jpg" alt="Sala Operatoria Moderna" class="gallery-image">
+                    <div class="gallery-overlay">
+                        <div class="gallery-content">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="team-section" id="team">
+        <div class="container">
+            <div class="section-title">
+                <h2>Il Nostro Team di Specialisti</h2>
+                <p>Un gruppo di professionisti esperti e appassionati, uniti dalla missione di offrire cure dentali di eccellenza con un approccio umano e personalizzato.</p>
+            </div>
+            
+            <div class="team-showcase">
+                <div class="team-member-card">
+                    <div class="member-image-container">
+                        <img src="img3.jpg" alt="Maria Chiara Brugnami" class="member-image">
+                        <div class="image-overlay"></div>
+                    </div>
+                    <div class="member-info">
+                        <h3 class="member-name">Maria Chiara Brugnami</h3>
+                        <p class="member-title">Odontoiatra</p>
+                        <div class="member-specialties">
+                            <span class="specialty-tag">Protesi Dentali</span>
+                            <span class="specialty-tag">Pedodonzia</span>
+                            <span class="specialty-tag">Implantologia</span>
+                        </div>
+                        <p class="member-description">Specializzata in protesi dentali, pedodonzia, endodonzia, conservativa e odontoiatrico.</p>
+                        <div class="member-stats">
+                            <div class="stat">
+                                <span class="stat-number"></span>
+                                <span class="stat-label"></span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-number"></span>
+                                <span class="stat-label"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="team-member-card">
+                    <div class="member-image-container">
+                        <img src="img1.jpg" alt="Elena Conti" class="member-image">
+                        <div class="image-overlay"></div>
+                    </div>
+                    <div class="member-info">
+                        <h3 class="member-name">Elena Conti</h3>
+                        <p class="member-title">Assistente alla Poltrona</p>
+                        <div class="member-specialties">
+                            <span class="specialty-tag">Assistenza Clinica</span>
+                            <span class="specialty-tag">Gestione Pazienti</span>
+                            <span class="specialty-tag">Strumentazione</span>
+                        </div>
+                        <p class="member-description">Assistente esperta con competenze specializzate nell'assistenza clinica, gestione del paziente e preparazione degli strumenti odontoiatrici.</p>
+                        <div class="member-stats">
+                            <div class="stat">
+                                <span class="stat-number"></span>
+                                <span class="stat-label"></span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-number"></span>
+                                <span class="stat-label"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="team-member-card">
+                    <div class="member-image-container">
+                        <img src="img2.jpg" alt="Elisa Bronzini" class="member-image">
+                        <div class="image-overlay"></div>
+                    </div>
+                    <div class="member-info">
+                        <h3 class="member-name">Elisa Bronzini</h3>
+                        <p class="member-title">Coordinatrice Sanitaria</p>
+                        <div class="member-specialties">
+                            <span class="specialty-tag">Organizzazione</span>
+                            <span class="specialty-tag">Gestione Team</span>
+                            <span class="specialty-tag">Qualità Servizio</span>
+                        </div>
+                        <p class="member-description">Gestisce l'organizzazione e il personale da oltre 30 anni, garantendo efficienza, qualità del servizio e un'esperienza eccellente per ogni paziente.</p>
+                        <div class="member-stats">
+                            <div class="stat">
+                                <span class="stat-number"></span>
+                                <span class="stat-label"></span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-number"></span>
+                                <span class="stat-label"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="team-member-card">
+                    <div class="member-image-container">
+                        <img src="img5.jpg" alt="Francesco Sparabombe" class="member-image">
+                        <div class="image-overlay"></div>
+                    </div>
+                    <div class="member-info">
+                        <h3 class="member-name">Francesco Sparabombe</h3>
+                        <p class="member-title">Osteopata</p>
+                        <div class="member-specialties">
+                            <span class="specialty-tag">Osteopatia</span>
+                            <span class="specialty-tag">Posturologia</span>
+                            <span class="specialty-tag">Equilibrio</span>
+                        </div>
+                        <p class="member-description">Osteopata professionista dedicato al benessere e all'equilibrio del corpo. Specializzato in approcci integrati per la salute orale e sistemica.</p>
+                        <div class="member-stats">
+                            <div class="stat">
+                                <span class="stat-number"></span>
+                                <span class="stat-label"></span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-number"></span>
+                                <span class="stat-label"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="team-member-card">
+                    <div class="member-image-container">
+                        <img src="img4.jpg" alt="Stefania Pascucci" class="member-image">
+                        <div class="image-overlay"></div>
+                    </div>
+                    <div class="member-info">
+                        <h3 class="member-name">Stefania Pascucci</h3>
+                        <p class="member-title">Igienista Dentale</p>
+                        <div class="member-specialties">
+                            <span class="specialty-tag">Prevenzione</span>
+                            <span class="specialty-tag">Igiene Orale</span>
+                            <span class="specialty-tag">Sbiancamento</span>
+                        </div>
+                        <p class="member-description">Specializzata in prevenzione e igiene orale con approccio delicato e personalizzato. Experta in tecniche di pulizia professionale e mantenimento della salute dentale.</p>
+                        <div class="member-stats">
+                            <div class="stat">
+                                <span class="stat-number"></span>
+                                <span class="stat-label"></span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-number"></span>
+                                <span class="stat-label"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="team-stats-container">
+                <div class="team-stat-card">
+                    <div class="team-stat-icon">
+                        <i class="fas fa-user-md"></i>
+                    </div>
+                    <div class="team-stat-content">
+                        <h4>Team Multidisciplinare</h4>
+                        <p>5 specialisti con competenze integrate per una cura completa</p>
+                    </div>
+                </div>
+                
+                <div class="team-stat-card">
+                    <div class="team-stat-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="team-stat-content">
+                        <h4>Esperienza Cumulativa</h4>
+                        <p>Oltre 120 anni di esperienza combinata nel settore</p>
+                    </div>
+                </div>
+                
+                <div class="team-stat-card">
+                    <div class="team-stat-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <div class="team-stat-content">
+                        <h4>Formazione Continua</h4>
+                        <p>Aggiornamento costante sulle ultime tecnologie e tecniche</p>
+                    </div>
+                </div>
+                
+                <div class="team-stat-card">
+                    <div class="team-stat-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <div class="team-stat-content">
+                        <h4>Approccio Umano</h4>
+                        <p>Attenzione personalizzata per ogni singolo paziente</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="team-philosophy">
+                <div class="philosophy-content">
+                    <h3><i class="fas fa-star"></i> La Nostra Filosofia di Team</h3>
+                    <p>Crediamo nella forza della collaboratione e nella sinergia tra diverse competenze professionali. Ogni membro del nostro team contribuisce con la propria esperienza e passione per offrire un servizio odontoiatrico completo, che considera non solo la salute orale ma anche il benessere generale del paziente.</p>
+                    <p>L'integrazione dell'osteopatia nel percorso di cura rappresenta il nostro approccio innovativo verso una medicina sempre più orientata alla persona nella sua totalità.</p>
+                </div>
+                <div class="philosophy-image">
+                    <img src="insieme.jpg" alt="Il Team di OsteoDent insieme">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reviews Section -->
+    <section class="reviews-section" id="reviews">
+        <div class="container">
+            <div class="reviews-title">
+                <h2>Cosa Dicono i Nostri Pazienti</h2>
+                <p>La soddisfazione dei nostri pazienti è la nostra migliore ricompensa. Scopri le esperienze di chi ha scelto OsteoDent per il proprio sorriso.</p>
+            </div>
+            
+            <div class="reviews-container">
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="reviewer-info">
+                            <div class="reviewer-avatar">
+                                <span>FD</span>
+                            </div>
+                            <div class="reviewer-details">
+                                <h4>Florina Danila</h4>
+                                <div class="review-date"></div>
+                                <div class="review-rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="rating-badge">
+                            <span>5.0</span>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="review-content">
+                        <i class="fas fa-quote-left"></i>
+                        <p class="review-text">Grazie mille al studio osteo dent, sono persone con esperienza lavorano con il cuore. Raccomando con tutta la mia sincerità. Mi hanno messo i miei denti a posto grazie a tutto lo staff. Oggi posso sorridere senza vergognarmi dei miei denti. Complimenti alla dottoressa, mi ha fatto un bellissimo lavoro. Grazie anche a te Elisa di tutto.</p>
+                        
+                        <div class="review-highlight">
+                            "Oggi posso sorridere senza vergognarmi dei miei denti"
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="reviewer-info">
+                            <div class="reviewer-avatar">
+                                <span>FP</span>
+                            </div>
+                            <div class="reviewer-details">
+                                <h4>F. P.</h4>
+                                <div class="review-date"></div>
+                                <div class="review-rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="rating-badge">
+                            <span>5.0</span>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="review-content">
+                        <i class="fas fa-quote-left"></i>
+                        <p class="review-text">Molto brave, competenti, gentili e disponibili. Ho risolto un problema che avevo da anni in modo rapido e professionale. L'ambiente è accogliente e il personale è sempre sorridente e disponibile. Consiglio assolutamente questo studio a chiunque abbia bisogno di cure dentali.</p>
+                        
+                        <div class="review-highlight">
+                            "Molto brave, competenti, gentili e disponibili"
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="reviewer-info">
+                            <div class="reviewer-avatar">
+                                <span>AM</span>
+                            </div>
+                            <div class="reviewer-details">
+                                <h4>Andrea Mastroianni</h4>
+                                <div class="review-date"></div>
+                                <div class="review-rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="rating-badge">
+                            <span>5.0</span>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="review-content">
+                        <i class="fas fa-quote-left"></i>
+                        <p class="review-text">5 stelle meritatissime! Professionalità assoluta, attenzione al dettaglio e una cura per il paziente che raramente si trova. Ho fatto un impianto e il risultato è stato eccellente. Il prezzo è onesto e il servizio è di altissima qualità. Tornerò sicuramente e lo consiglierò a tutti i miei amici e familiari.</p>
+                        
+                        <div class="review-highlight">
+                            "Professionalità assoluta e attenzione al dettaglio"
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="reviews-summary">
+                <div class="summary-rating">
+                    <span class="average-rating">5.0</span>
+                    <div class="all-stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <div class="total-reviews"></div>
+                </div>
+                
+                <div class="stars-distribution">
+                    <div class="star-row">
+                        <span>5 stelle</span>
+                        <div class="star-bar">
+                            <div class="star-fill" style="width: 100%"></div>
+                        </div>
+                        <span>100%</span>
+                    </div>
+                    <div class="star-row">
+                        <span>4 stelle</span>
+                        <div class="star-bar">
+                            <div class="star-fill" style="width: 0%"></div>
+                        </div>
+                        <span>0%</span>
+                    </div>
+                    <div class="star-row">
+                        <span>3 stelle</span>
+                        <div class="star-bar">
+                            <div class="star-fill" style="width: 0%"></div>
+                        </div>
+                        <span>0%</span>
+                    </div>
+                    <div class="star-row">
+                        <span>2 stelle</span>
+                        <div class="star-bar">
+                            <div class="star-fill" style="width: 0%"></div>
+                        </div>
+                        <span>0%</span>
+                    </div>
+                    <div class="star-row">
+                        <span>1 stella</span>
+                        <div class="star-bar">
+                            <div class="star-fill" style="width: 0%"></div>
+                        </div>
+                        <span>0%</span>
+                    </div>
+                </div>
+                
+                <div class="summary-cta">
+                    <h3>Unisciti ai nostri pazienti soddisfatti!</h3>
+                    <a href="https://wa.me/3703073990?text=Ciao,%20vorrei%20prenotare%20una%20visita%20presso%20il%20vostro%20studio%20dentistico" class="btn btn-whatsapp" target="_blank">
+                        <i class="fab fa-whatsapp"></i> Prenota la tua visita
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact & WhatsApp Booking -->
+    <section class="contact" id="contatti">
+        <div class="container contact-container">
+            <div class="contact-info">
+                <h2>Prenota la Tua Visita</h2>
+                <p>Contattaci per fissare un appuntamento o per ricevere maggiori informazioni sui nostri servizi. Saremo lieti di prenderti in cura.</p>
+                
+                <div class="contact-details">
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <h4>Il Nostro Studio</h4>
+                            <p>Via Martiri della Resistenza n 10, 60125 Ancona</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <i class="fas fa-phone-alt"></i>
+                        <div>
+                            <h4>Telefono</h4>
+                            <p>370 3073990</p>
+                            <p>0712806038</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <h4>Email</h4>
+                            <p>osteodent@libero.it</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <i class="fas fa-clock"></i>
+                        <div>
+                            <h4>Orari di Apertura</h4>
+                            <p>Lunedì - Venerdì : 9:00-12:30 - 15h30-18h30 <br>Sabato e Domenica: Chiuso</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="whatsapp-booking">
+                <h3>Prenotazione Rapida via WhatsApp</h3>
+                <p>Per prenotare una visita, richiedere informazioni o fissare un appuntamento, clicca sul pulsante qui sotto per parlare direttamente con il nostro staff.</p>
+                
+                <div class="whatsapp-features">
+                    <div class="whatsapp-feature">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Risposta immediata</span>
+                    </div>
+                    <div class="whatsapp-feature">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Prenotazione 24/7</span>
+                    </div>
+                    <div class="whatsapp-feature">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Nessuna attesa telefonica</span>
+                    </div>
+                    <div class="whatsapp-feature">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Conferma immediata</span>
+                    </div>
+                </div>
+                
+                <div class="booking-steps">
+                    <h4>Come prenotare in 3 semplici passi:</h4>
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <div>Clicca sul pulsante WhatsApp qui sotto</div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <div>Scrivi il tuo nome e il servizio richiesto</div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <div>Ricevi la conferma dell'appuntamento in pochi minuti</div>
+                    </div>
+                </div>
+                
+                <a href="https://wa.me/3703073990?text=Ciao,%20vorrei%20prenotare%20una%20visita%20presso%20il%20vostro%20studio%20dentistico" class="btn btn-whatsapp" target="_blank" style="padding: 15px 40px; font-size: 1.1rem;">
+                    <i class="fab fa-whatsapp"></i> PRENOTA ORA SU WHATSAPP
+                </a>
+                
+                <p style="margin-top: 20px; font-size: 0.9rem; color: #666;">Rispondiamo di solito entro pochi minuti durante gli orari di apertura.</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Map Section -->
+    <section class="map-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Dove Siamo</h2>
+                <p>Trovaci facilmente nella nostra posizione centrale ad Ancona</p>
+            </div>
+            <div class="map-container">
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!4v1769706840366!6m8!1m7!1se46ZYP6G0YTQgfIQLqofqg!2m2!1d43.6071116568084!2d13.51139420578692!3f187.10753396098053!4f3.200941769841563!5f0.7820865974627469"
+                    allowfullscreen
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-col">
+                    <h3>OsteoDent Ancona</h3>
+                    <p>Studio dentistico con oltre 30 anni di esperienza. Offriamo cure di alta qualità con tecnologia all'avanguardia e un approccio personalizzato per ogni paziente.</p>
+                    <a href="https://wa.me/3703073990?text=Ciao,%20vorrei%20prenotare%20una%20visita%20presso%20il%20vostro%20studio%20dentistico" class="btn btn-whatsapp" target="_blank" style="margin-top: 15px; padding: 10px 20px; font-size: 0.9rem;">
+                        <i class="fab fa-whatsapp"></i> Prenota su WhatsApp
+                    </a>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Link Rapidi</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#transformations">Trasformazioni</a></li>
+                        <li><a href="#servizi">Servizi</a></li>
+                        <li><a href="#about">Chi Siamo</a></li>
+                        <li><a href="#team">Il Team</a></li>
+                        <li><a href="#gallery">Galleria</a></li>
+                        <li><a href="#reviews">Recensioni</a></li>
+                        <li><a href="#contatti">Contatti</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Servizi</h3>
+                    <ul class="footer-links">
+                        <li><a href="#servizi">Protesi Dentali</a></li>
+                        <li><a href="#servizi">Pedodonzia</a></li>
+                        <li><a href="#servizi">Endodonzia e Conservativa</a></li>
+                        <li><a href="#servizi">Implantologia</a></li>
+                        <li><a href="#servizi">Igiene Orale</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Contatti</h3>
+                    <ul class="footer-contact">
+                        <li>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Via Martiri della Resistenza 10, 60125 Ancona</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-phone-alt"></i>
+                            <span>370 3073990</span>
+                            <br><span>0712806038</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-envelope"></i>
+                            <span>osteodent@libero.it</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-clock"></i>
+                            <span>Lunedì - Venerdì : 9:00-12:30 - 15h30-18h30<br>Sabato e Domenica: Chiuso</span>
+                        </li>
+                    </ul> 
+                </div>
+            </div>
+            
+            
+            <div class="copyright">
+                <p>&copy; 2026 OsteoDent Ancona. Tutti i diritti riservati.</p>
+                <p style="font-size:14px; color:#999; text-align:center; margin-top:20px;">
+  By 
+  <a href="https://ankoautca.it/" 
+     target="_blank"
+     style="color:#ffffff; text-decoration:none; font-weight:600; transition:0.3s;">
+     Ankoautca
+  </a>
+</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Loading screen
+        window.addEventListener('load', function() {
+            let progress = 0;
+            const progressBar = document.querySelector('.loading-progress-bar');
+            const interval = setInterval(function() {
+                progress += Math.random() * 10;
+                if (progress >= 100) {
+                    progress = 100;
+                    clearInterval(interval);
+                    
+                    setTimeout(function() {
+                        const loadingScreen = document.getElementById('loadingScreen');
+                        loadingScreen.classList.add('fade-out');
+                        
+                        const particles = document.createElement('div');
+                        particles.style.position = 'fixed';
+                        particles.style.top = '0';
+                        particles.style.left = '0';
+                        particles.style.width = '100%';
+                        particles.style.height = '100%';
+                        particles.style.zIndex = '9998';
+                        particles.style.pointerEvents = 'none';
+                        document.body.appendChild(particles);
+                        
+                        for (let i = 0; i < 50; i++) {
+                            const particle = document.createElement('div');
+                            particle.style.position = 'absolute';
+                            particle.style.width = '6px';
+                            particle.style.height = '6px';
+                            particle.style.background = 'white';
+                            particle.style.borderRadius = '50%';
+                            particle.style.top = '50%';
+                            particle.style.left = '50%';
+                            particle.style.opacity = '0.8';
+                            
+                            const angle = Math.random() * Math.PI * 2;
+                            const distance = 100 + Math.random() * 200;
+                            const duration = 0.5 + Math.random() * 0.5;
+                            
+                            particle.style.animation = `explode ${duration}s ease-out forwards`;
+                            particle.style.setProperty('--end-x', `${Math.cos(angle) * distance}px`);
+                            particle.style.setProperty('--end-y', `${Math.sin(angle) * distance}px`);
+                            
+                            particles.appendChild(particle);
+                        }
+                        
+                        setTimeout(function() {
+                            loadingScreen.style.display = 'none';
+                            particles.remove();
+                        }, 1200);
+                    }, 500);
+                }
+            }, 100);
+        });
+        
+        // Gallery Modal System
+        function initGallery() {
+            const galleryItems = document.querySelectorAll('.gallery-item');
+            const modal = document.getElementById('galleryModal');
+            const modalImage = document.getElementById('modalImage');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalDescription = document.getElementById('modalDescription');
+            const modalClose = document.getElementById('modalClose');
+            const modalPrev = document.getElementById('modalPrev');
+            const modalNext = document.getElementById('modalNext');
+            
+            let currentIndex = 0;
+            
+            const galleryData = [
+                { src: 'entre1.jpg', title: 'Sala Operatoria Moderna', description: 'Ambiente sterile e tecnologicamente avanzato con attrezzature all\'avanguardia per trattamenti precisi e confortevoli.' },
+                { src: 'entre2.jpg', title: 'Sala d\'Attesa Accogliente', description: 'Design moderno e comfort ottimale per rilassarsi prima della visita. Spazio luminoso e confortevole.' },
+                { src: 'entre3.jpg', title: 'Area Reception Professionale', description: 'Accoglienza cordiale e organizzazione efficiente per garantirti un\'esperienza senza stress dall\'arrivo alla partenza.' },
+                { src: 'entre5.jpg', title: 'Studio Dentistico', description: 'Ambiente moderno con attrezzature all\'avanguardia.' },
+                { src: 'entre6.jpg', title: 'Studio Dentistico', description: 'Spazi accoglienti e tecnologicamente avanzati.' },
+                { src: 'entre7.jpg', title: 'Studio Dentistico', description: 'Professionalità e comfort in ogni dettaglio.' },
+                { src: 'entre4.jpg', title: 'Spazio Relax', description: 'Ambiente sereno e rilassante dove trovare tranquillità prima del trattamento. Design curato per il massimo benessere.' }
+            ];
+            
+            galleryItems.forEach((item, index) => {
+                item.addEventListener('click', () => {
+                    currentIndex = index;
+                    openModal();
+                });
+            });
+            
+            function openModal() {
+                const data = galleryData[currentIndex];
+                modalImage.src = data.src;
+                modalImage.alt = data.title;
+                modalTitle.textContent = data.title;
+                modalDescription.textContent = data.description;
+                
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+                
+                setTimeout(() => {
+                    modalImage.style.transform = 'scale(1)';
+                    modalImage.style.opacity = '1';
+                }, 50);
+            }
+            
+            function closeModal() {
+                modal.classList.remove('active');
+                document.body.style.overflow = 'auto';
+                modalImage.style.transform = 'scale(0.9)';
+                modalImage.style.opacity = '0';
+            }
+            
+            function showNext() {
+                currentIndex = (currentIndex + 1) % galleryData.length;
+                openModal();
+            }
+            
+            function showPrev() {
+                currentIndex = (currentIndex - 1 + galleryData.length) % galleryData.length;
+                openModal();
+            }
+            
+            modalClose.addEventListener('click', closeModal);
+            modalNext.addEventListener('click', showNext);
+            modalPrev.addEventListener('click', showPrev);
+            
+            document.addEventListener('keydown', (e) => {
+                if (!modal.classList.contains('active')) return;
+                if (e.key === 'Escape') closeModal();
+                if (e.key === 'ArrowRight') showNext();
+                if (e.key === 'ArrowLeft') showPrev();
+            });
+            
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) closeModal();
+            });
+            
+            let touchStartX = 0;
+            let touchEndX = 0;
+            
+            modal.addEventListener('touchstart', (e) => {
+                touchStartX = e.changedTouches[0].screenX;
+            });
+            
+            modal.addEventListener('touchend', (e) => {
+                touchEndX = e.changedTouches[0].screenX;
+                const swipeThreshold = 50;
+                const diff = touchStartX - touchEndX;
+                
+                if (Math.abs(diff) > swipeThreshold) {
+                    if (diff > 0) showNext();
+                    else showPrev();
+                }
+            });
+        }
+        
+        // Create modal HTML
+        const modalHTML = `
+            <div class="gallery-modal" id="galleryModal">
+                <div class="modal-container">
+                    <button class="modal-close" id="modalClose">
+                        <i class="fas fa-times"></i>
+                    </button>
+                    <button class="modal-nav modal-prev" id="modalPrev">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button class="modal-nav modal-next" id="modalNext">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                    <img class="modal-image" id="modalImage" alt="Gallery image">
+                    <div class="modal-info">
+                        <h3 id="modalTitle"></h3>
+                        <p id="modalDescription"></p>
+                    </div>
+                </div>
+            </div>
+        `;
+        
+        document.body.insertAdjacentHTML('beforeend', modalHTML);
+        
+        document.addEventListener('DOMContentLoaded', initGallery);
+        
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes explode {
+                0% { transform: translate(0, 0); opacity: 0.8; }
+                100% { transform: translate(var(--end-x), var(--end-y)); opacity: 0; }
+            }
+        `;
+        document.head.appendChild(style);
+        
+        const mobileToggle = document.getElementById('mobileToggle');
+        const navLinks = document.getElementById('navLinks');
+        const header = document.getElementById('mainHeader');
+        let lastScrollTop = 0;
+        
+        mobileToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            const icon = mobileToggle.querySelector('i');
+            if (navLinks.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+        
+        window.addEventListener('scroll', function() {
+            let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            if (scrollTop > lastScrollTop && scrollTop > 100) {
+                header.classList.add('hidden');
+            } else {
+                header.classList.remove('hidden');
+            }
+            lastScrollTop = scrollTop;
+        });
+        
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    if (navLinks.classList.contains('active')) {
+                        navLinks.classList.remove('active');
+                        const icon = mobileToggle.querySelector('i');
+                        icon.classList.remove('fa-times');
+                        icon.classList.add('fa-bars');
+                    }
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        document.querySelectorAll('.btn-whatsapp, .whatsapp-float, .nav-cta').forEach(button => {
+            button.addEventListener('click', function(e) {
+                console.log('WhatsApp booking clicked');
+            });
+        });
+        
+        window.addEventListener('scroll', function() {
+            const beforeAfterSection = document.querySelector('.before-after-section');
+            const scrolled = window.pageYOffset;
+            const rate = scrolled * -0.5;
+            if (beforeAfterSection && scrolled < beforeAfterSection.offsetHeight) {
+                beforeAfterSection.style.backgroundPosition = `center ${rate}px`;
+            }
+        });
+    </script>
+</body>
+</html>
